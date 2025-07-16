@@ -54,6 +54,7 @@ const Show = sequelize.define('Show', {
     type: DataTypes.DECIMAL(10, 2),
   },
 }, {
+  tableName: 'shows',
   timestamps: false
 });
 

@@ -25,6 +25,7 @@ const Student = sequelize.define('Student', {
     type: DataTypes.STRING,
   },
 }, {
+  tableName: 'students',
   timestamps: false
 });
 

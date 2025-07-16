@@ -27,6 +27,7 @@ const Workshop = sequelize.define('Workshop', {
     type: DataTypes.DECIMAL(10, 2),
   },
 }, {
+  tableName: 'workshops',
   timestamps: false
 });
 
