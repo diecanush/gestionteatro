@@ -16,7 +16,7 @@ const KitchenOrder = _KitchenOrder(sequelize, DataTypes);
 const KitchenOrderItem = _KitchenOrderItem(sequelize, DataTypes);
 
 // Workshop-Student Association
-Workshop.belongsToMany(Student, { through: 'workshop_students', foreignKey: 'workshop_id', as: 'Students', timestamps: false });
+Workshop.belongsToMany(Student, { through: 'workshop_students', foreignKey: 'workshop_id', as: 'students', timestamps: false });
 Student.belongsToMany(Workshop, { through: 'workshop_students', foreignKey: 'student_id', as: 'Workshops', timestamps: false });
 
 // KitchenOrder-KitchenOrderItem Association

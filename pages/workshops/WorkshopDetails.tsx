@@ -48,7 +48,7 @@ const StudentForm: React.FC<{ workshopId: string; onStudentAdded: (student: Stud
 };
 
 const WorkshopDetails: React.FC<WorkshopDetailsProps> = ({ workshop, onBack }) => {
-  const [students, setStudents] = useState<Student[]>(workshop.Students);
+  const [students, setStudents] = useState<Student[]>(workshop.students || []);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [activeTab, setActiveTab] = useState<'students' | 'attendance' | 'payments'>('students');
   

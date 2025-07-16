@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 export const getWorkshops = async (req, res) => {
   try {
-    const workshops = await Workshop.findAll({ include: { model: Student, as: 'Students' } });
+    const workshops = await Workshop.findAll({ include: { model: Student, as: 'students' } });
     res.json(workshops);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -13,7 +13,7 @@ export const getWorkshops = async (req, res) => {
 
 export const getWorkshopById = async (req, res) => {
   try {
-    const workshop = await Workshop.findByPk(req.params.id, { include: { model: Student, as: 'Students' } });
+    const workshop = await Workshop.findByPk(req.params.id, { include: { model: Student, as: 'students' } });
     if (workshop) {
       res.json(workshop);
     } else {
