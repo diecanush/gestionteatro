@@ -1,6 +1,5 @@
 
-import Workshop from '../models/Workshop.js';
-import Student from '../models/Student.js';
+import { Workshop, Student } from '../models/index.js';
 import { v4 as uuidv4 } from 'uuid';
 
 export const getWorkshops = async (req, res) => {
