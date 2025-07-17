@@ -119,6 +119,11 @@ export const confirmSale = async (order: OrderItem[], tableNumber: number) => {
     return response.data;
 };
 
+export const getSalesHistory = async (): Promise<SnackBarSale[]> => {
+    const response = await api.get('/sales/history');
+    return response.data;
+};
+
 // --- Kitchen API ---
 export const getKitchenOrders = async (includeDelivered: boolean = false): Promise<KitchenOrder[]> => {
     const response = await api.get(`/kitchen${includeDelivered ? '?includeDelivered=true' : ''}`);

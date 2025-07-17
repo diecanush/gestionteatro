@@ -13,6 +13,7 @@ import { KitchenDisplayPage } from './pages/kitchen/KitchenDisplayPage';
 import KitchenHistoryPage from './pages/kitchen/KitchenHistoryPage';
 import ProductManagementPage from './pages/products/ProductManagementPage';
 import ProductForm from './components/ProductForm';
+import SalesHistoryPage from './pages/sales/SalesHistoryPage';
 
 const AppContent: React.FC = () => {
   const [theme, setTheme] = useState(() => {
@@ -54,6 +55,7 @@ const AppContent: React.FC = () => {
     if (pathname.startsWith('/shows/edit')) return 'Editar Espectáculo';
     if (pathname.startsWith('/shows')) return 'Gestión de Espectáculos';
     if (pathname.startsWith('/snackbar')) return 'Punto de Venta - Snack Bar';
+    if (pathname.startsWith('/sales/history')) return 'Historial de Ventas';
     if (pathname.startsWith('/products/new')) return 'Nuevo Producto';
     if (pathname.startsWith('/products/edit')) return 'Editar Producto';
     if (pathname.startsWith('/products')) return 'Gestión de Productos';
@@ -77,6 +79,7 @@ const AppContent: React.FC = () => {
             <Route path="/shows/new" element={<ShowForm />} />
             <Route path="/shows/edit/:id" element={<ShowForm />} />
             <Route path="/snackbar" element={<SnackBarPOSPage />} />
+            <Route path="/sales/history" element={<SalesHistoryPage />} />
             <Route path="/products" element={<ProductManagementPage />} />
             <Route path="/products/new" element={<ProductForm />} />
             <Route path="/products/edit/:id" element={<ProductForm />} />

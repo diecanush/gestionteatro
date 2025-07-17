@@ -27,5 +27,16 @@ KitchenOrderItem.belongsTo(KitchenOrder, { as: 'order', foreignKey: 'order_id' }
 SnackBarProduct.hasMany(KitchenOrderItem, { foreignKey: 'product_id' });
 KitchenOrderItem.belongsTo(SnackBarProduct, { as: 'product', foreignKey: 'product_id' });
 
+// Import model functions and initialize them
+import _SnackBarSale from './SnackBarSale.js';
+import _SnackBarSaleItem from './SnackBarSaleItem.js';
 
-export { Workshop, Student, Show, SnackBarProduct, KitchenOrder, KitchenOrderItem, sequelize };
+const SnackBarSale = _SnackBarSale(sequelize, DataTypes);
+const SnackBarSaleItem = _SnackBarSaleItem(sequelize, DataTypes);
+
+// SnackBarSale-SnackBarSaleItem Association
+SnackBarSale.hasMany(SnackBarSaleItem, { as: 'items', foreignKey: 'sale_id' });
+SnackBarSaleItem.belongsTo(SnackBarSale, { as: 'sale', foreignKey: 'sale_id' });
+
+
+export { Workshop, Student, Show, SnackBarProduct, KitchenOrder, KitchenOrderItem, SnackBarSale, SnackBarSaleItem, sequelize };
