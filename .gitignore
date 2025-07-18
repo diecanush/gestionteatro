@@ -39,3 +39,4 @@ Thumbs.db
 
 # Sensitive config files
 backend/config/database.js
+services/api.ts

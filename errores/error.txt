@@ -1,0 +1,191 @@
+Executing (default): SELECT `SnackBarSale`.`id`, `SnackBarSale`.`total`, `SnackBarSale`.`saleDate`, `items`.`id` AS `items.id`, `items`.`productName` AS `items.productName`, `items`.`quantity` AS `items.quantity`, `items`.`unitPrice` AS `items.unitPrice`, `items`.`totalPrice` AS `items.totalPrice`, `items`.`saleId` AS `items.saleId` FROM `SnackBarSales` AS `SnackBarSale` LEFT OUTER JOIN `SnackBarSaleItems` AS `items` ON `SnackBarSale`.`id` = `items`.`saleId` ORDER BY `SnackBarSale`.`saleDate` DESC;
+Error fetching sales history: Error
+    at Query.run (C:\Users\dieca\gestionteatro\backend\node_modules\sequelize\lib\dialects\mariadb\query.js:53:25)
+    at C:\Users\dieca\gestionteatro\backend\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async MySQLQueryInterface.select (C:\Users\dieca\gestionteatro\backend\node_modules\sequelize\lib\dialects\abstract\query-interface.js:407:12)
+    at async SnackBarSale.findAll (C:\Users\dieca\gestionteatro\backend\node_modules\sequelize\lib\model.js:1140:21)
+    at async getSalesHistory (file:///C:/Users/dieca/gestionteatro/backend/controllers/saleController.js:82:23) {
+  name: 'SequelizeDatabaseError',
+  parent: SqlError: (conn:402, no: 1054, SQLState: 42S22) Unknown column 'items.saleId' in 'field list'
+  sql: SELECT `SnackBarSale`.`id`, `SnackBarSale`.`total`, `SnackBarSale`.`saleDate`, `items`.`id` AS `items.id`, `items`.`productName` AS `items.productName`, `items`.`quantity` AS `items.quantity`, `items`.`unitPrice` AS `items.unitPrice`, `items`.`totalPrice` ... - parameters:[]    
+      at module.exports.createError (C:\Users\dieca\gestionteatro\backend\node_modules\mariadb\lib\misc\errors.js:66:10)
+      at PacketNodeEncoded.readError (C:\Users\dieca\gestionteatro\backend\node_modules\mariadb\lib\io\packet.js:588:19)
+      at Query.handleErrorPacket (C:\Users\dieca\gestionteatro\backend\node_modules\mariadb\lib\cmd\parser.js:92:24)
+      at Query.readResponsePacket (C:\Users\dieca\gestionteatro\backend\node_modules\mariadb\lib\cmd\parser.js:70:21)
+      at PacketInputStream.receivePacketBasic (C:\Users\dieca\gestionteatro\backend\node_modules\mariadb\lib\io\packet-input-stream.js:85:9)   
+      at PacketInputStream.onData (C:\Users\dieca\gestionteatro\backend\node_modules\mariadb\lib\io\packet-input-stream.js:135:20)
+      at Socket.emit (node:events:518:28)
+      at addChunk (node:internal/streams/readable:561:12)
+      at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+      at Readable.push (node:internal/streams/readable:392:5) {
+    sqlMessage: "Unknown column 'items.saleId' in 'field list'",
+    sql: 'SELECT `SnackBarSale`.`id`, `SnackBarSale`.`total`, `SnackBarSale`.`saleDate`, `items`.`id` AS `items.id`, `items`.`productName` AS `items.productName`, `items`.`quantity` AS `items.quantity`, `items`.`unitPrice` AS `items.unitPrice`, `items`.`totalPrice` AS `items.totalPrice`, `items`.`saleId` AS `items.saleId` FROM `SnackBarSales` AS `SnackBarSale` LEFT OUTER JOIN `SnackBarSaleItems` AS `items` ON `SnackBarSale`.`id` = `items`.`saleId` ORDER BY `SnackBarSale`.`saleDate` DESC;',
+    fatal: false,
+    errno: 1054,
+    sqlState: '42S22',
+    code: 'ER_BAD_FIELD_ERROR',
+    parameters: undefined
+  },
+  original: SqlError: (conn:402, no: 1054, SQLState: 42S22) Unknown column 'items.saleId' in 'field list'
+  sql: SELECT `SnackBarSale`.`id`, `SnackBarSale`.`total`, `SnackBarSale`.`saleDate`, `items`.`id` AS `items.id`, `items`.`productName` AS `items.productName`, `items`.`quantity` AS `items.quantity`, `items`.`unitPrice` AS `items.unitPrice`, `items`.`totalPrice` ... - parameters:[]    
+      at module.exports.createError (C:\Users\dieca\gestionteatro\backend\node_modules\mariadb\lib\misc\errors.js:66:10)
+      at PacketNodeEncoded.readError (C:\Users\dieca\gestionteatro\backend\node_modules\mariadb\lib\io\packet.js:588:19)
+      at Query.handleErrorPacket (C:\Users\dieca\gestionteatro\backend\node_modules\mariadb\lib\cmd\parser.js:92:24)
+      at Query.readResponsePacket (C:\Users\dieca\gestionteatro\backend\node_modules\mariadb\lib\cmd\parser.js:70:21)
+      at PacketInputStream.receivePacketBasic (C:\Users\dieca\gestionteatro\backend\node_modules\mariadb\lib\io\packet-input-stream.js:85:9)   
+      at PacketInputStream.onData (C:\Users\dieca\gestionteatro\backend\node_modules\mariadb\lib\io\packet-input-stream.js:135:20)
+      at Socket.emit (node:events:518:28)
+      at addChunk (node:internal/streams/readable:561:12)
+      at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+      at Readable.push (node:internal/streams/readable:392:5) {
+    sqlMessage: "Unknown column 'items.saleId' in 'field list'",
+    sql: 'SELECT `SnackBarSale`.`id`, `SnackBarSale`.`total`, `SnackBarSale`.`saleDate`, `items`.`id` AS `items.id`, `items`.`productName` AS `items.productName`, `items`.`quantity` AS `items.quantity`, `items`.`unitPrice` AS `items.unitPrice`, `items`.`totalPrice` AS `items.totalPrice`, `items`.`saleId` AS `items.saleId` FROM `SnackBarSales` AS `SnackBarSale` LEFT OUTER JOIN `SnackBarSaleItems` AS `items` ON `SnackBarSale`.`id` = `items`.`saleId` ORDER BY `SnackBarSale`.`saleDate` DESC;',
+    fatal: false,
+    errno: 1054,
+    sqlState: '42S22',
+    code: 'ER_BAD_FIELD_ERROR',
+    parameters: undefined
+  },
+  sql: 'SELECT `SnackBarSale`.`id`, `SnackBarSale`.`total`, `SnackBarSale`.`saleDate`, `items`.`id` AS `items.id`, `items`.`productName` AS `items.productName`, `items`.`quantity` AS `items.quantity`, `items`.`unitPrice` AS `items.unitPrice`, `items`.`totalPrice` AS `items.totalPrice`, `items`.`saleId` AS `items.saleId` FROM `SnackBarSales` AS `SnackBarSale` LEFT OUTER JOIN `SnackBarSaleItems` AS `items` ON `SnackBarSale`.`id` = `items`.`saleId` ORDER BY `SnackBarSale`.`saleDate` DESC;',
+  parameters: {}
+}
+Executing (default): SELECT `SnackBarSale`.`id`, `SnackBarSale`.`total`, `SnackBarSale`.`saleDate`, `items`.`id` AS `items.id`, `items`.`productName` AS `items.productName`, `items`.`quantity` AS `items.quantity`, `items`.`unitPrice` AS `items.unitPrice`, `items`.`totalPrice` AS `items.totalPrice`, `items`.`saleId` AS `items.saleId` FROM `SnackBarSales` AS `SnackBarSale` LEFT OUTER JOIN `SnackBarSaleItems` AS `items` ON `SnackBarSale`.`id` = `items`.`saleId` ORDER BY `SnackBarSale`.`saleDate` DESC;
+Error fetching sales history: Error
+    at Query.run (C:\Users\dieca\gestionteatro\backend\node_modules\sequelize\lib\dialects\mariadb\query.js:53:25)
+    at C:\Users\dieca\gestionteatro\backend\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async MySQLQueryInterface.select (C:\Users\dieca\gestionteatro\backend\node_modules\sequelize\lib\dialects\abstract\query-interface.js:407:12)
+    at async SnackBarSale.findAll (C:\Users\dieca\gestionteatro\backend\node_modules\sequelize\lib\model.js:1140:21)
+    at async getSalesHistory (file:///C:/Users/dieca/gestionteatro/backend/controllers/saleController.js:82:23) {
+  name: 'SequelizeDatabaseError',
+  parent: SqlError: (conn:402, no: 1054, SQLState: 42S22) Unknown column 'items.saleId' in 'field list'
+  sql: SELECT `SnackBarSale`.`id`, `SnackBarSale`.`total`, `SnackBarSale`.`saleDate`, `items`.`id` AS `items.id`, `items`.`productName` AS `items.productName`, `items`.`quantity` AS `items.quantity`, `items`.`unitPrice` AS `items.unitPrice`, `items`.`totalPrice` ... - parameters:[]    
+      at module.exports.createError (C:\Users\dieca\gestionteatro\backend\node_modules\mariadb\lib\misc\errors.js:66:10)
+      at PacketNodeEncoded.readError (C:\Users\dieca\gestionteatro\backend\node_modules\mariadb\lib\io\packet.js:588:19)
+      at Query.handleErrorPacket (C:\Users\dieca\gestionteatro\backend\node_modules\mariadb\lib\cmd\parser.js:92:24)
+      at Query.readResponsePacket (C:\Users\dieca\gestionteatro\backend\node_modules\mariadb\lib\cmd\parser.js:70:21)
+      at PacketInputStream.receivePacketBasic (C:\Users\dieca\gestionteatro\backend\node_modules\mariadb\lib\io\packet-input-stream.js:85:9)   
+      at PacketInputStream.onData (C:\Users\dieca\gestionteatro\backend\node_modules\mariadb\lib\io\packet-input-stream.js:135:20)
+      at Socket.emit (node:events:518:28)
+      at addChunk (node:internal/streams/readable:561:12)
+      at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+      at Readable.push (node:internal/streams/readable:392:5) {
+    sqlMessage: "Unknown column 'items.saleId' in 'field list'",
+    sql: 'SELECT `SnackBarSale`.`id`, `SnackBarSale`.`total`, `SnackBarSale`.`saleDate`, `items`.`id` AS `items.id`, `items`.`productName` AS `items.productName`, `items`.`quantity` AS `items.quantity`, `items`.`unitPrice` AS `items.unitPrice`, `items`.`totalPrice` AS `items.totalPrice`, `items`.`saleId` AS `items.saleId` FROM `SnackBarSales` AS `SnackBarSale` LEFT OUTER JOIN `SnackBarSaleItems` AS `items` ON `SnackBarSale`.`id` = `items`.`saleId` ORDER BY `SnackBarSale`.`saleDate` DESC;',
+    fatal: false,
+    errno: 1054,
+    sqlState: '42S22',
+    code: 'ER_BAD_FIELD_ERROR',
+    parameters: undefined
+  },
+  original: SqlError: (conn:402, no: 1054, SQLState: 42S22) Unknown column 'items.saleId' in 'field list'
+  sql: SELECT `SnackBarSale`.`id`, `SnackBarSale`.`total`, `SnackBarSale`.`saleDate`, `items`.`id` AS `items.id`, `items`.`productName` AS `items.productName`, `items`.`quantity` AS `items.quantity`, `items`.`unitPrice` AS `items.unitPrice`, `items`.`totalPrice` ... - parameters:[]    
+      at module.exports.createError (C:\Users\dieca\gestionteatro\backend\node_modules\mariadb\lib\misc\errors.js:66:10)
+      at PacketNodeEncoded.readError (C:\Users\dieca\gestionteatro\backend\node_modules\mariadb\lib\io\packet.js:588:19)
+      at Query.handleErrorPacket (C:\Users\dieca\gestionteatro\backend\node_modules\mariadb\lib\cmd\parser.js:92:24)
+      at Query.readResponsePacket (C:\Users\dieca\gestionteatro\backend\node_modules\mariadb\lib\cmd\parser.js:70:21)
+      at PacketInputStream.receivePacketBasic (C:\Users\dieca\gestionteatro\backend\node_modules\mariadb\lib\io\packet-input-stream.js:85:9)   
+      at PacketInputStream.onData (C:\Users\dieca\gestionteatro\backend\node_modules\mariadb\lib\io\packet-input-stream.js:135:20)
+      at Socket.emit (node:events:518:28)
+      at addChunk (node:internal/streams/readable:561:12)
+      at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+      at Readable.push (node:internal/streams/readable:392:5) {
+    sqlMessage: "Unknown column 'items.saleId' in 'field list'",
+    sql: 'SELECT `SnackBarSale`.`id`, `SnackBarSale`.`total`, `SnackBarSale`.`saleDate`, `items`.`id` AS `items.id`, `items`.`productName` AS `items.productName`, `items`.`quantity` AS `items.quantity`, `items`.`unitPrice` AS `items.unitPrice`, `items`.`totalPrice` AS `items.totalPrice`, `items`.`saleId` AS `items.saleId` FROM `SnackBarSales` AS `SnackBarSale` LEFT OUTER JOIN `SnackBarSaleItems` AS `items` ON `SnackBarSale`.`id` = `items`.`saleId` ORDER BY `SnackBarSale`.`saleDate` DESC;',
+    fatal: false,
+    errno: 1054,
+    sqlState: '42S22',
+    code: 'ER_BAD_FIELD_ERROR',
+    parameters: undefined
+  },
+  sql: 'SELECT `SnackBarSale`.`id`, `SnackBarSale`.`total`, `SnackBarSale`.`saleDate`, `items`.`id` AS `items.id`, `items`.`productName` AS `items.productName`, `items`.`quantity` AS `items.quantity`, `items`.`unitPrice` AS `items.unitPrice`, `items`.`totalPrice` AS `items.totalPrice`, `items`.`saleId` AS `items.saleId` FROM `SnackBarSales` AS `SnackBarSale` LEFT OUTER JOIN `SnackBarSaleItems` AS `items` ON `SnackBarSale`.`id` = `items`.`saleId` ORDER BY `SnackBarSale`.`saleDate` DESC;',
+  parameters: {}
+}
+Executing (default): SELECT `id`, `name`, `category`, `brand`, `size`, `purchasePrice`, `sellPrice`, `stock`, `delivery`, `canBeHalf`, `halfPrice` FROM `snackbarproducts` AS `SnackBarProduct`;
+Executing (default): SELECT `id`, `name`, `category`, `brand`, `size`, `purchasePrice`, `sellPrice`, `stock`, `delivery`, `canBeHalf`, `halfPrice` FROM `snackbarproducts` AS `SnackBarProduct`;
+Executing (4a06ce4b-fd4a-4126-bfb3-080ca7462c18): START TRANSACTION;
+Received order for confirmation: [
+  {
+    "productId": "p1",
+    "productName": "Quilmes",
+    "quantity": 1,
+    "unitPrice": 2000,
+    "totalPrice": 2000,
+    "isHalf": false,
+    "delivery": "Barra"
+  },
+  {
+    "productId": "p2",
+    "productName": "Coca-Cola",
+    "quantity": 1,
+    "unitPrice": 1000,
+    "totalPrice": 1000,
+    "isHalf": false,
+    "delivery": "Barra"
+  },
+  {
+    "productId": "p4",
+    "productName": "Pizza Muzzarella (1/2)",
+    "quantity": 1,
+    "unitPrice": 3500,
+    "totalPrice": 3500,
+    "isHalf": true,
+    "delivery": "Cocina"
+  }
+]
+Executing (4a06ce4b-fd4a-4126-bfb3-080ca7462c18): INSERT INTO `SnackBarSales` (`id`,`total`,`saleDate`) VALUES (DEFAULT,?,?);
+Executing (4a06ce4b-fd4a-4126-bfb3-080ca7462c18): INSERT INTO `SnackBarSaleItems` (`id`,`productName`,`quantity`,`unitPrice`,`totalPrice`,`saleId`) VALUES (DEFAULT,?,?,?,?,?);
+Executing (4a06ce4b-fd4a-4126-bfb3-080ca7462c18): ROLLBACK;
+Error confirming sale: Error
+    at Query.run (C:\Users\dieca\gestionteatro\backend\node_modules\sequelize\lib\dialects\mariadb\query.js:53:25)
+    at C:\Users\dieca\gestionteatro\backend\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async MySQLQueryInterface.insert (C:\Users\dieca\gestionteatro\backend\node_modules\sequelize\lib\dialects\abstract\query-interface.js:308:21)
+    at async model.save (C:\Users\dieca\gestionteatro\backend\node_modules\sequelize\lib\model.js:2490:35)
+    at async SnackBarSaleItem.create (C:\Users\dieca\gestionteatro\backend\node_modules\sequelize\lib\model.js:1362:12)
+    at async confirmSale (file:///C:/Users/dieca/gestionteatro/backend/controllers/saleController.js:21:13) {
+  name: 'SequelizeDatabaseError',
+  parent: SqlError: (conn:402, no: 1054, SQLState: 42S22) Unknown column 'saleId' in 'field list'
+  sql: INSERT INTO `SnackBarSaleItems` (`id`,`productName`,`quantity`,`unitPrice`,`totalPrice`,`saleId`) VALUES (DEFAULT,?,?,?,?,?); - parameters:['Quilmes',1,2000,2000,2]
+      at module.exports.createError (C:\Users\dieca\gestionteatro\backend\node_modules\mariadb\lib\misc\errors.js:66:10)
+      at PacketNodeEncoded.readError (C:\Users\dieca\gestionteatro\backend\node_modules\mariadb\lib\io\packet.js:588:19)
+      at Query.handleErrorPacket (C:\Users\dieca\gestionteatro\backend\node_modules\mariadb\lib\cmd\parser.js:92:24)
+      at Query.readResponsePacket (C:\Users\dieca\gestionteatro\backend\node_modules\mariadb\lib\cmd\parser.js:70:21)
+      at PacketInputStream.receivePacketBasic (C:\Users\dieca\gestionteatro\backend\node_modules\mariadb\lib\io\packet-input-stream.js:85:9)   
+      at PacketInputStream.onData (C:\Users\dieca\gestionteatro\backend\node_modules\mariadb\lib\io\packet-input-stream.js:135:20)
+      at Socket.emit (node:events:518:28)
+      at addChunk (node:internal/streams/readable:561:12)
+      at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+      at Readable.push (node:internal/streams/readable:392:5) {
+    sqlMessage: "Unknown column 'saleId' in 'field list'",
+    sql: 'INSERT INTO `SnackBarSaleItems` (`id`,`productName`,`quantity`,`unitPrice`,`totalPrice`,`saleId`) VALUES (DEFAULT,?,?,?,?,?);',      
+    fatal: false,
+    errno: 1054,
+    sqlState: '42S22',
+    code: 'ER_BAD_FIELD_ERROR',
+    parameters: [ 'Quilmes', 1, 2000, 2000, 2 ]
+  },
+  original: SqlError: (conn:402, no: 1054, SQLState: 42S22) Unknown column 'saleId' in 'field list'
+  sql: INSERT INTO `SnackBarSaleItems` (`id`,`productName`,`quantity`,`unitPrice`,`totalPrice`,`saleId`) VALUES (DEFAULT,?,?,?,?,?); - parameters:['Quilmes',1,2000,2000,2]
+      at module.exports.createError (C:\Users\dieca\gestionteatro\backend\node_modules\mariadb\lib\misc\errors.js:66:10)
+      at PacketNodeEncoded.readError (C:\Users\dieca\gestionteatro\backend\node_modules\mariadb\lib\io\packet.js:588:19)
+      at Query.handleErrorPacket (C:\Users\dieca\gestionteatro\backend\node_modules\mariadb\lib\cmd\parser.js:92:24)
+      at Query.readResponsePacket (C:\Users\dieca\gestionteatro\backend\node_modules\mariadb\lib\cmd\parser.js:70:21)
+      at PacketInputStream.receivePacketBasic (C:\Users\dieca\gestionteatro\backend\node_modules\mariadb\lib\io\packet-input-stream.js:85:9)   
+      at PacketInputStream.onData (C:\Users\dieca\gestionteatro\backend\node_modules\mariadb\lib\io\packet-input-stream.js:135:20)
+      at Socket.emit (node:events:518:28)
+      at addChunk (node:internal/streams/readable:561:12)
+      at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+      at Readable.push (node:internal/streams/readable:392:5) {
+    sqlMessage: "Unknown column 'saleId' in 'field list'",
+    sql: 'INSERT INTO `SnackBarSaleItems` (`id`,`productName`,`quantity`,`unitPrice`,`totalPrice`,`saleId`) VALUES (DEFAULT,?,?,?,?,?);',      
+    fatal: false,
+    errno: 1054,
+    sqlState: '42S22',
+    code: 'ER_BAD_FIELD_ERROR',
+    parameters: [ 'Quilmes', 1, 2000, 2000, 2 ]
+  },
+  sql: 'INSERT INTO `SnackBarSaleItems` (`id`,`productName`,`quantity`,`unitPrice`,`totalPrice`,`saleId`) VALUES (DEFAULT,?,?,?,?,?);',        
+  parameters: [ 'Quilmes', 1, 2000, 2000, 2 ]
+}

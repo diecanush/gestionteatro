@@ -114,3 +114,18 @@ export interface KitchenOrder {
   created_at: string;
   items: KitchenOrderItem[];
 }
+
+export interface SnackBarSaleItem {
+  id: number;
+  productName: string;
+  quantity: number;
+  unitPrice: number;
+  totalPrice: number;
+}
+
+export interface SnackBarSale {
+  id: number;
+  total: number;
+  saleDate: string;
+  items: SnackBarSaleItem[];
+}

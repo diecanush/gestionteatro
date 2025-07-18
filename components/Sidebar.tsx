@@ -124,6 +124,12 @@ const Sidebar: React.FC<{ isOpen: boolean; toggleSidebar: () => void }> = ({ isO
                   to="/kitchen/history"
                   onClick={toggleSidebar}
                 />
+                <NavItem
+                  icon={<Clock className="h-6 w-6" />}
+                  label="Historial Ventas"
+                  to="/sales/history"
+                  onClick={toggleSidebar}
+                />
               </ul>
             )}
           </li>

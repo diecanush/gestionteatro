@@ -1,16 +1,19 @@
 
 import React, { useState, useEffect } from 'react';
-import { SnackBarProduct, OrderItem, SnackBarProductDelivery } from '../../types';
+import { SnackBarProduct, OrderItem, SnackBarSale } from '../../types';
 import { getSnackBarProducts, confirmSale } from '../../services/api';
 import Modal from '../../components/Modal';
+import TicketModal from './TicketModal'; // Assuming this will be the new component
 
 const SnackBarPOSPage: React.FC = () => {
     const [products, setProducts] = useState<SnackBarProduct[]>([]);
     const [order, setOrder] = useState<OrderItem[]>([]);
-    const [tableNumber, setTableNumber] = useState<number | ''>(0); // New state for table number
+    const [tableNumber, setTableNumber] = useState<number | ''>(0);
     const [loading, setLoading] = useState(true);
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isPizzaModalOpen, setIsPizzaModalOpen] = useState(false);
+    const [isTicketModalOpen, setIsTicketModalOpen] = useState(false);
     const [pizzaToAdd, setPizzaToAdd] = useState<SnackBarProduct | null>(null);
+    const [lastSale, setLastSale] = useState<SnackBarSale | null>(null);
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -48,7 +51,7 @@ const SnackBarPOSPage: React.FC = () => {
     const handleProductClick = (product: SnackBarProduct) => {
         if(product.canBeHalf) {
             setPizzaToAdd(product);
-            setIsModalOpen(true);
+            setIsPizzaModalOpen(true);
         } else {
             addToOrder(product);
         }
@@ -58,7 +61,7 @@ const SnackBarPOSPage: React.FC = () => {
         if(pizzaToAdd) {
             addToOrder(pizzaToAdd, isHalf);
         }
-        setIsModalOpen(false);
+        setIsPizzaModalOpen(false);
         setPizzaToAdd(null);
     };
 
@@ -70,13 +73,48 @@ const SnackBarPOSPage: React.FC = () => {
         }
         try {
             const result = await confirmSale(order.map(item => ({ ...item, isHalf: item.isHalf || false })), tableNumber as number);
-            alert(result.message); // Simulate success
-            // In a real app, you would print receipts/commandas here
-            console.log("Comanda Cocina:", order.filter(i => i.delivery === SnackBarProductDelivery.Kitchen));
-            console.log("Ticket Barra:", order.filter(i => i.delivery === SnackBarProductDelivery.Bar));
+            setLastSale(result.sale);
+            setIsTicketModalOpen(true);
+            
+            // Send ticket data to local printer microservice
+            await printSaleTicket(result.sale);
+
             setOrder([]);
+            setTableNumber(0);
         } catch (error) {
             alert("Error al confirmar la venta.");
+        }
+    };
+
+    const printSaleTicket = async (sale: SnackBarSale) => {
+        let ticketText = "";
+        ticketText += "        Onírico Sur\n";
+        ticketText += "      Comprobante de Venta\n";
+        ticketText += `    ${new Date(sale.saleDate).toLocaleString()}\n`;
+        ticketText += "----------------------------------------\n";
+        sale.items.forEach(item => {
+            ticketText += `${item.productName} x${item.quantity}  ${Number(item.totalPrice).toLocaleString()}\n`;
+        });
+        ticketText += "----------------------------------------\n";
+        ticketText += `TOTAL: ${Number(sale.total).toLocaleString()}\n`;
+        ticketText += "        ¡Gracias por su compra!\n";
+
+        try {
+            const response = await fetch('http://localhost:3000/imprimir', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ texto: ticketText })
+            });
+            const data = await response.json();
+            if (data.ok) {
+                console.log("Ticket enviado a la impresora local.");
+            } else {
+                console.error("Error al enviar ticket a la impresora local:", data.error);
+                alert("Error al enviar ticket a la impresora local: " + data.error);
+            }
+        } catch (error) {
+            console.error("Error de conexión con el microservicio de impresión:", error);
+            alert("Error de conexión con el microservicio de impresión. Asegúrese de que esté corriendo.");
         }
     };
 
@@ -154,7 +192,7 @@ const SnackBarPOSPage: React.FC = () => {
                 </div>
             </div>
             
-            <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} title={`Seleccionar opción para ${pizzaToAdd?.name}`}>
+            <Modal isOpen={isPizzaModalOpen} onClose={() => setIsPizzaModalOpen(false)} title={`Seleccionar opción para ${pizzaToAdd?.name}`}>
                 <div className="p-4 text-center">
                     <p className="mb-6 text-lg text-gray-800 dark:text-white">¿Desea la pizza entera o por mitad?</p>
                     <div className="flex justify-center gap-4">
@@ -163,6 +201,14 @@ const SnackBarPOSPage: React.FC = () => {
                     </div>
                 </div>
             </Modal>
+
+            {lastSale && (
+                <TicketModal 
+                    isOpen={isTicketModalOpen} 
+                    onClose={() => setIsTicketModalOpen(false)} 
+                    sale={lastSale} 
+                />
+            )}
         </div>
     );
 };
