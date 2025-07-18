@@ -2,7 +2,7 @@
 import { Sequelize } from 'sequelize';
 
 const sequelize = new Sequelize('onirico_sur_db', 'root', '', {
-  host: 'localhost',
+  host: '127.0.0.1',
   dialect: 'mariadb',
   timezone: '+00:00', // Use UTC timezone
   dialectOptions: {

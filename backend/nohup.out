@@ -1,0 +1,147 @@
+/root/gestionteatro/backend/node_modules/sequelize/lib/dialects/mariadb/connection-manager.js:87
+          throw new SequelizeErrors.ConnectionRefusedError(err);
+                ^
+
+ConnectionRefusedError [SequelizeConnectionRefusedError]: connect ECONNREFUSED 69.62.95.248:3306
+    at ConnectionManager.connect (/root/gestionteatro/backend/node_modules/sequelize/lib/dialects/mariadb/connection-manager.js:87:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async ConnectionManager._connect (/root/gestionteatro/backend/node_modules/sequelize/lib/dialects/abstract/connection-manager.js:222:24)
+    at async /root/gestionteatro/backend/node_modules/sequelize/lib/dialects/abstract/connection-manager.js:174:32
+    at async ConnectionManager.getConnection (/root/gestionteatro/backend/node_modules/sequelize/lib/dialects/abstract/connection-manager.js:197:7)
+    at async /root/gestionteatro/backend/node_modules/sequelize/lib/sequelize.js:305:26
+    at async MySQLQueryInterface.tableExists (/root/gestionteatro/backend/node_modules/sequelize/lib/dialects/abstract/query-interface.js:102:17)
+    at async Workshop.sync (/root/gestionteatro/backend/node_modules/sequelize/lib/model.js:939:21)
+    at async Sequelize.sync (/root/gestionteatro/backend/node_modules/sequelize/lib/sequelize.js:377:9) {
+  parent: Error: connect ECONNREFUSED 69.62.95.248:3306
+      at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1549:16)
+   From event:
+      at /root/gestionteatro/backend/node_modules/mariadb/lib/connection.js:146:13
+      at new Promise (<anonymous>)
+      at Connection.connect (/root/gestionteatro/backend/node_modules/mariadb/lib/connection.js:132:12)
+      at Object.createConnection (/root/gestionteatro/backend/node_modules/mariadb/promise.js:37:17)
+      at ConnectionManager.connect (/root/gestionteatro/backend/node_modules/sequelize/lib/dialects/mariadb/connection-manager.js:71:41)
+      at ConnectionManager._connect (/root/gestionteatro/backend/node_modules/sequelize/lib/dialects/abstract/connection-manager.js:222:61)
+      at async /root/gestionteatro/backend/node_modules/sequelize/lib/dialects/abstract/connection-manager.js:174:32
+      at async ConnectionManager.getConnection (/root/gestionteatro/backend/node_modules/sequelize/lib/dialects/abstract/connection-manager.js:197:7)
+      at async /root/gestionteatro/backend/node_modules/sequelize/lib/sequelize.js:305:26 {
+    errno: -111,
+    code: 'ECONNREFUSED',
+    syscall: 'connect',
+    address: '69.62.95.248',
+    port: 3306,
+    fatal: true,
+    sqlState: 'HY000'
+  },
+  original: Error: connect ECONNREFUSED 69.62.95.248:3306
+      at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1549:16)
+   From event:
+      at /root/gestionteatro/backend/node_modules/mariadb/lib/connection.js:146:13
+      at new Promise (<anonymous>)
+      at Connection.connect (/root/gestionteatro/backend/node_modules/mariadb/lib/connection.js:132:12)
+      at Object.createConnection (/root/gestionteatro/backend/node_modules/mariadb/promise.js:37:17)
+      at ConnectionManager.connect (/root/gestionteatro/backend/node_modules/sequelize/lib/dialects/mariadb/connection-manager.js:71:41)
+      at ConnectionManager._connect (/root/gestionteatro/backend/node_modules/sequelize/lib/dialects/abstract/connection-manager.js:222:61)
+      at async /root/gestionteatro/backend/node_modules/sequelize/lib/dialects/abstract/connection-manager.js:174:32
+      at async ConnectionManager.getConnection (/root/gestionteatro/backend/node_modules/sequelize/lib/dialects/abstract/connection-manager.js:197:7)
+      at async /root/gestionteatro/backend/node_modules/sequelize/lib/sequelize.js:305:26 {
+    errno: -111,
+    code: 'ECONNREFUSED',
+    syscall: 'connect',
+    address: '69.62.95.248',
+    port: 3306,
+    fatal: true,
+    sqlState: 'HY000'
+  }
+}
+
+Node.js v18.19.1
+/root/gestionteatro/backend/node_modules/sequelize/lib/dialects/mariadb/connection-manager.js:87
+          throw new SequelizeErrors.ConnectionRefusedError(err);
+                ^
+
+ConnectionRefusedError [SequelizeConnectionRefusedError]: connect ECONNREFUSED 69.62.95.248:3306
+    at ConnectionManager.connect (/root/gestionteatro/backend/node_modules/sequelize/lib/dialects/mariadb/connection-manager.js:87:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async ConnectionManager._connect (/root/gestionteatro/backend/node_modules/sequelize/lib/dialects/abstract/connection-manager.js:222:24)
+    at async /root/gestionteatro/backend/node_modules/sequelize/lib/dialects/abstract/connection-manager.js:174:32
+    at async ConnectionManager.getConnection (/root/gestionteatro/backend/node_modules/sequelize/lib/dialects/abstract/connection-manager.js:197:7)
+    at async /root/gestionteatro/backend/node_modules/sequelize/lib/sequelize.js:305:26
+    at async MySQLQueryInterface.tableExists (/root/gestionteatro/backend/node_modules/sequelize/lib/dialects/abstract/query-interface.js:102:17)
+    at async Workshop.sync (/root/gestionteatro/backend/node_modules/sequelize/lib/model.js:939:21)
+    at async Sequelize.sync (/root/gestionteatro/backend/node_modules/sequelize/lib/sequelize.js:377:9) {
+  parent: Error: connect ECONNREFUSED 69.62.95.248:3306
+      at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1549:16)
+   From event:
+      at /root/gestionteatro/backend/node_modules/mariadb/lib/connection.js:146:13
+      at new Promise (<anonymous>)
+      at Connection.connect (/root/gestionteatro/backend/node_modules/mariadb/lib/connection.js:132:12)
+      at Object.createConnection (/root/gestionteatro/backend/node_modules/mariadb/promise.js:37:17)
+      at ConnectionManager.connect (/root/gestionteatro/backend/node_modules/sequelize/lib/dialects/mariadb/connection-manager.js:71:41)
+      at ConnectionManager._connect (/root/gestionteatro/backend/node_modules/sequelize/lib/dialects/abstract/connection-manager.js:222:61)
+      at async /root/gestionteatro/backend/node_modules/sequelize/lib/dialects/abstract/connection-manager.js:174:32
+      at async ConnectionManager.getConnection (/root/gestionteatro/backend/node_modules/sequelize/lib/dialects/abstract/connection-manager.js:197:7)
+      at async /root/gestionteatro/backend/node_modules/sequelize/lib/sequelize.js:305:26 {
+    errno: -111,
+    code: 'ECONNREFUSED',
+    syscall: 'connect',
+    address: '69.62.95.248',
+    port: 3306,
+    fatal: true,
+    sqlState: 'HY000'
+  },
+  original: Error: connect ECONNREFUSED 69.62.95.248:3306
+      at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1549:16)
+   From event:
+      at /root/gestionteatro/backend/node_modules/mariadb/lib/connection.js:146:13
+      at new Promise (<anonymous>)
+      at Connection.connect (/root/gestionteatro/backend/node_modules/mariadb/lib/connection.js:132:12)
+      at Object.createConnection (/root/gestionteatro/backend/node_modules/mariadb/promise.js:37:17)
+      at ConnectionManager.connect (/root/gestionteatro/backend/node_modules/sequelize/lib/dialects/mariadb/connection-manager.js:71:41)
+      at ConnectionManager._connect (/root/gestionteatro/backend/node_modules/sequelize/lib/dialects/abstract/connection-manager.js:222:61)
+      at async /root/gestionteatro/backend/node_modules/sequelize/lib/dialects/abstract/connection-manager.js:174:32
+      at async ConnectionManager.getConnection (/root/gestionteatro/backend/node_modules/sequelize/lib/dialects/abstract/connection-manager.js:197:7)
+      at async /root/gestionteatro/backend/node_modules/sequelize/lib/sequelize.js:305:26 {
+    errno: -111,
+    code: 'ECONNREFUSED',
+    syscall: 'connect',
+    address: '69.62.95.248',
+    port: 3306,
+    fatal: true,
+    sqlState: 'HY000'
+  }
+}
+
+Node.js v18.19.1
+Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'workshops' AND TABLE_SCHEMA = 'onirico_sur_db'
+Executing (default): SHOW INDEX FROM `workshops`
+Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'students' AND TABLE_SCHEMA = 'onirico_sur_db'
+Executing (default): SHOW INDEX FROM `students`
+Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'shows' AND TABLE_SCHEMA = 'onirico_sur_db'
+Executing (default): SHOW INDEX FROM `shows`
+Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'snackbarproducts' AND TABLE_SCHEMA = 'onirico_sur_db'
+Executing (default): SHOW INDEX FROM `snackbarproducts`
+Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'kitchen_orders' AND TABLE_SCHEMA = 'onirico_sur_db'
+Executing (default): SHOW INDEX FROM `kitchen_orders`
+Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'kitchen_order_items' AND TABLE_SCHEMA = 'onirico_sur_db'
+Executing (default): SHOW INDEX FROM `kitchen_order_items`
+Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'workshop_students' AND TABLE_SCHEMA = 'onirico_sur_db'
+Executing (default): SHOW INDEX FROM `workshop_students`
+Server is running on port 8080.
+Executing (default): SELECT `Workshop`.`id`, `Workshop`.`name`, `Workshop`.`schedule`, `Workshop`.`startDate`, `Workshop`.`endDate`, `Workshop`.`teacher`, `Workshop`.`fee`, `students`.`id` AS `students.id`, `students`.`lastName` AS `students.lastName`, `students`.`firstName` AS `students.firstName`, `students`.`birthDate` AS `students.birthDate`, `students`.`phone` AS `students.phone`, `students`.`email` AS `students.email`, `students->workshop_students`.`workshop_id` AS `students.workshop_students.workshop_id`, `students->workshop_students`.`student_id` AS `students.workshop_students.student_id` FROM `workshops` AS `Workshop` LEFT OUTER JOIN ( `workshop_students` AS `students->workshop_students` INNER JOIN `students` AS `students` ON `students`.`id` = `students->workshop_students`.`student_id`) ON `Workshop`.`id` = `students->workshop_students`.`workshop_id`;
+Executing (default): SELECT `id`, `name`, `category`, `brand`, `size`, `purchasePrice`, `sellPrice`, `stock`, `delivery`, `canBeHalf`, `halfPrice` FROM `snackbarproducts` AS `SnackBarProduct`;
+Executing (default): SELECT `id`, `name`, `category`, `brand`, `size`, `purchasePrice`, `sellPrice`, `stock`, `delivery`, `canBeHalf`, `halfPrice` FROM `snackbarproducts` AS `SnackBarProduct`;
+Executing (default): SELECT `Workshop`.`id`, `Workshop`.`name`, `Workshop`.`schedule`, `Workshop`.`startDate`, `Workshop`.`endDate`, `Workshop`.`teacher`, `Workshop`.`fee`, `students`.`id` AS `students.id`, `students`.`lastName` AS `students.lastName`, `students`.`firstName` AS `students.firstName`, `students`.`birthDate` AS `students.birthDate`, `students`.`phone` AS `students.phone`, `students`.`email` AS `students.email`, `students->workshop_students`.`workshop_id` AS `students.workshop_students.workshop_id`, `students->workshop_students`.`student_id` AS `students.workshop_students.student_id` FROM `workshops` AS `Workshop` LEFT OUTER JOIN ( `workshop_students` AS `students->workshop_students` INNER JOIN `students` AS `students` ON `students`.`id` = `students->workshop_students`.`student_id`) ON `Workshop`.`id` = `students->workshop_students`.`workshop_id`;
+Executing (default): SELECT `Workshop`.`id`, `Workshop`.`name`, `Workshop`.`schedule`, `Workshop`.`startDate`, `Workshop`.`endDate`, `Workshop`.`teacher`, `Workshop`.`fee`, `students`.`id` AS `students.id`, `students`.`lastName` AS `students.lastName`, `students`.`firstName` AS `students.firstName`, `students`.`birthDate` AS `students.birthDate`, `students`.`phone` AS `students.phone`, `students`.`email` AS `students.email`, `students->workshop_students`.`workshop_id` AS `students.workshop_students.workshop_id`, `students->workshop_students`.`student_id` AS `students.workshop_students.student_id` FROM `workshops` AS `Workshop` LEFT OUTER JOIN ( `workshop_students` AS `students->workshop_students` INNER JOIN `students` AS `students` ON `students`.`id` = `students->workshop_students`.`student_id`) ON `Workshop`.`id` = `students->workshop_students`.`workshop_id`;
+Executing (default): SELECT `id`, `title`, `description`, `producer`, `date`, `time`, `hasBar`, `capacity`, `availableSeats`, `posterUrl`, `promoText`, `doorPrice`, `advancePrice`, `hasPromo`, `promoName`, `promoPrice` FROM `shows` AS `Show`;
+Executing (default): SELECT `id`, `title`, `description`, `producer`, `date`, `time`, `hasBar`, `capacity`, `availableSeats`, `posterUrl`, `promoText`, `doorPrice`, `advancePrice`, `hasPromo`, `promoName`, `promoPrice` FROM `shows` AS `Show`;
+Executing (default): SELECT `Workshop`.`id`, `Workshop`.`name`, `Workshop`.`schedule`, `Workshop`.`startDate`, `Workshop`.`endDate`, `Workshop`.`teacher`, `Workshop`.`fee`, `students`.`id` AS `students.id`, `students`.`lastName` AS `students.lastName`, `students`.`firstName` AS `students.firstName`, `students`.`birthDate` AS `students.birthDate`, `students`.`phone` AS `students.phone`, `students`.`email` AS `students.email`, `students->workshop_students`.`workshop_id` AS `students.workshop_students.workshop_id`, `students->workshop_students`.`student_id` AS `students.workshop_students.student_id` FROM `workshops` AS `Workshop` LEFT OUTER JOIN ( `workshop_students` AS `students->workshop_students` INNER JOIN `students` AS `students` ON `students`.`id` = `students->workshop_students`.`student_id`) ON `Workshop`.`id` = `students->workshop_students`.`workshop_id`;
+Executing (default): SELECT `KitchenOrder`.`id`, `KitchenOrder`.`table_number`, `KitchenOrder`.`status`, `KitchenOrder`.`created_at`, `KitchenOrder`.`updated_at`, `items`.`id` AS `items.id`, `items`.`order_id` AS `items.order_id`, `items`.`product_id` AS `items.product_id`, `items`.`quantity` AS `items.quantity`, `items`.`price_at_sale` AS `items.price_at_sale`, `items`.`ishalf` AS `items.ishalf`, `items->product`.`id` AS `items.product.id`, `items->product`.`name` AS `items.product.name` FROM `kitchen_orders` AS `KitchenOrder` LEFT OUTER JOIN `kitchen_order_items` AS `items` ON `KitchenOrder`.`id` = `items`.`order_id` LEFT OUTER JOIN `snackbarproducts` AS `items->product` ON `items`.`product_id` = `items->product`.`id` WHERE `KitchenOrder`.`status` IN ('pendiente', 'listo') ORDER BY `KitchenOrder`.`created_at` ASC;
+Executing (default): SELECT `KitchenOrder`.`id`, `KitchenOrder`.`table_number`, `KitchenOrder`.`status`, `KitchenOrder`.`created_at`, `KitchenOrder`.`updated_at`, `items`.`id` AS `items.id`, `items`.`order_id` AS `items.order_id`, `items`.`product_id` AS `items.product_id`, `items`.`quantity` AS `items.quantity`, `items`.`price_at_sale` AS `items.price_at_sale`, `items`.`ishalf` AS `items.ishalf`, `items->product`.`id` AS `items.product.id`, `items->product`.`name` AS `items.product.name` FROM `kitchen_orders` AS `KitchenOrder` LEFT OUTER JOIN `kitchen_order_items` AS `items` ON `KitchenOrder`.`id` = `items`.`order_id` LEFT OUTER JOIN `snackbarproducts` AS `items->product` ON `items`.`product_id` = `items->product`.`id` ORDER BY `KitchenOrder`.`created_at` ASC;
+Executing (default): SELECT `KitchenOrder`.`id`, `KitchenOrder`.`table_number`, `KitchenOrder`.`status`, `KitchenOrder`.`created_at`, `KitchenOrder`.`updated_at`, `items`.`id` AS `items.id`, `items`.`order_id` AS `items.order_id`, `items`.`product_id` AS `items.product_id`, `items`.`quantity` AS `items.quantity`, `items`.`price_at_sale` AS `items.price_at_sale`, `items`.`ishalf` AS `items.ishalf`, `items->product`.`id` AS `items.product.id`, `items->product`.`name` AS `items.product.name` FROM `kitchen_orders` AS `KitchenOrder` LEFT OUTER JOIN `kitchen_order_items` AS `items` ON `KitchenOrder`.`id` = `items`.`order_id` LEFT OUTER JOIN `snackbarproducts` AS `items->product` ON `items`.`product_id` = `items->product`.`id` ORDER BY `KitchenOrder`.`created_at` ASC;
+Executing (default): SELECT `KitchenOrder`.`id`, `KitchenOrder`.`table_number`, `KitchenOrder`.`status`, `KitchenOrder`.`created_at`, `KitchenOrder`.`updated_at`, `items`.`id` AS `items.id`, `items`.`order_id` AS `items.order_id`, `items`.`product_id` AS `items.product_id`, `items`.`quantity` AS `items.quantity`, `items`.`price_at_sale` AS `items.price_at_sale`, `items`.`ishalf` AS `items.ishalf`, `items->product`.`id` AS `items.product.id`, `items->product`.`name` AS `items.product.name` FROM `kitchen_orders` AS `KitchenOrder` LEFT OUTER JOIN `kitchen_order_items` AS `items` ON `KitchenOrder`.`id` = `items`.`order_id` LEFT OUTER JOIN `snackbarproducts` AS `items->product` ON `items`.`product_id` = `items->product`.`id` WHERE `KitchenOrder`.`status` IN ('pendiente', 'listo') ORDER BY `KitchenOrder`.`created_at` ASC;
+Executing (default): SELECT `KitchenOrder`.`id`, `KitchenOrder`.`table_number`, `KitchenOrder`.`status`, `KitchenOrder`.`created_at`, `KitchenOrder`.`updated_at`, `items`.`id` AS `items.id`, `items`.`order_id` AS `items.order_id`, `items`.`product_id` AS `items.product_id`, `items`.`quantity` AS `items.quantity`, `items`.`price_at_sale` AS `items.price_at_sale`, `items`.`ishalf` AS `items.ishalf`, `items->product`.`id` AS `items.product.id`, `items->product`.`name` AS `items.product.name` FROM `kitchen_orders` AS `KitchenOrder` LEFT OUTER JOIN `kitchen_order_items` AS `items` ON `KitchenOrder`.`id` = `items`.`order_id` LEFT OUTER JOIN `snackbarproducts` AS `items->product` ON `items`.`product_id` = `items->product`.`id` WHERE `KitchenOrder`.`status` IN ('pendiente', 'listo') ORDER BY `KitchenOrder`.`created_at` ASC;
+Executing (default): SELECT `id`, `name`, `category`, `brand`, `size`, `purchasePrice`, `sellPrice`, `stock`, `delivery`, `canBeHalf`, `halfPrice` FROM `snackbarproducts` AS `SnackBarProduct`;
+Executing (default): SELECT `id`, `name`, `category`, `brand`, `size`, `purchasePrice`, `sellPrice`, `stock`, `delivery`, `canBeHalf`, `halfPrice` FROM `snackbarproducts` AS `SnackBarProduct`;
+Executing (default): SELECT `id`, `name`, `category`, `brand`, `size`, `purchasePrice`, `sellPrice`, `stock`, `delivery`, `canBeHalf`, `halfPrice` FROM `snackbarproducts` AS `SnackBarProduct`;
+Executing (default): SELECT `id`, `name`, `category`, `brand`, `size`, `purchasePrice`, `sellPrice`, `stock`, `delivery`, `canBeHalf`, `halfPrice` FROM `snackbarproducts` AS `SnackBarProduct`;
+Executing (default): SELECT `Workshop`.`id`, `Workshop`.`name`, `Workshop`.`schedule`, `Workshop`.`startDate`, `Workshop`.`endDate`, `Workshop`.`teacher`, `Workshop`.`fee`, `students`.`id` AS `students.id`, `students`.`lastName` AS `students.lastName`, `students`.`firstName` AS `students.firstName`, `students`.`birthDate` AS `students.birthDate`, `students`.`phone` AS `students.phone`, `students`.`email` AS `students.email`, `students->workshop_students`.`workshop_id` AS `students.workshop_students.workshop_id`, `students->workshop_students`.`student_id` AS `students.workshop_students.student_id` FROM `workshops` AS `Workshop` LEFT OUTER JOIN ( `workshop_students` AS `students->workshop_students` INNER JOIN `students` AS `students` ON `students`.`id` = `students->workshop_students`.`student_id`) ON `Workshop`.`id` = `students->workshop_students`.`workshop_id`;
