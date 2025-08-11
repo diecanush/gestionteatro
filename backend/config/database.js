@@ -10,6 +10,12 @@ const sequelize = new Sequelize('onirico_sur_db', 'root', '', {
     dateStrings: true,
     typeCast: true,
     timezone: '+00:00'
+  },
+  pool: {
+    max: 5,
+    min: 0,
+    acquire: 30000,
+    idle: 10000
   }
 });
 
