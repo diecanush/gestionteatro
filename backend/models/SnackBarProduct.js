@@ -40,8 +40,7 @@ const SnackBarProduct = sequelize.define('SnackBarProduct', {
     type: DataTypes.DECIMAL(10, 2),
   },
 }, {
-  tableName: 'snackbarproducts',
-  timestamps: false
+  tableName: 'snackbarproducts'
 });
 
 export default SnackBarProduct;

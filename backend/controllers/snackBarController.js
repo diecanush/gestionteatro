@@ -28,10 +28,15 @@ export const getProductById = async (req, res) => {
 // Create a new snack bar product
 export const createProduct = async (req, res) => {
   try {
-    const product = await SnackBarProduct.create(req.body);
+    const newProductData = {
+      ...req.body,
+      id: `prod_${Date.now()}` // Simple unique ID generation
+    };
+    const product = await SnackBarProduct.create(newProductData);
     res.status(201).json(product);
   } catch (error) {
-    res.status(400).json({ message: error.message });
+    console.error('Error creating product:', error);
+    res.status(400).json({ message: 'Error al crear el producto.', error: error.message });
   }
 };
 
