@@ -49,7 +49,8 @@ const ProductForm: React.FC = () => {
 
         try {
             if (id) {
-                await updateSnackBarProduct(id, product);
+                const { id: productId, createdAt, updatedAt, ...updateData } = product as SnackBarProduct;
+                await updateSnackBarProduct(id, updateData);
             } else {
                 await createSnackBarProduct(product as Omit<SnackBarProduct, 'id'>);
             }
