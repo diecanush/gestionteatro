@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { Workshop, Student, Show, SnackBarProduct, SnackBarProductCategory, SnackBarProductDelivery, KitchenOrder } from '../types';
 
-const API_BASE_URL = 'http://localhost:8080/api';
+const API_BASE_URL = 'http://69.62.95.248:8080/api';
 
 export const api = axios.create({
   baseURL: API_BASE_URL,
@@ -112,6 +112,11 @@ export const updateSnackBarProduct = async (id: string, product: Partial<SnackBa
 
 export const deleteSnackBarProduct = async (id: string): Promise<void> => {
     await api.delete(`/snackbar/${id}`);
+};
+
+export const purchaseSnackBarProduct = async (id: string, quantity: number, purchasePrice: number): Promise<SnackBarProduct> => {
+    const response = await api.post(`/snackbar/${id}/purchase`, { quantity, purchasePrice });
+    return response.data;
 };
 
 export const confirmSale = async (order: OrderItem[], tableNumber: number) => {

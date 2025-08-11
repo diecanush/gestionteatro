@@ -13,6 +13,7 @@ import { KitchenDisplayPage } from './pages/kitchen/KitchenDisplayPage';
 import KitchenHistoryPage from './pages/kitchen/KitchenHistoryPage';
 import ProductManagementPage from './pages/products/ProductManagementPage';
 import ProductForm from './components/ProductForm';
+import ProductPurchasePage from './pages/products/ProductPurchasePage';
 import SalesHistoryPage from './pages/sales/SalesHistoryPage';
 
 const AppContent: React.FC = () => {
@@ -58,6 +59,7 @@ const AppContent: React.FC = () => {
     if (pathname.startsWith('/sales/history')) return 'Historial de Ventas';
     if (pathname.startsWith('/products/new')) return 'Nuevo Producto';
     if (pathname.startsWith('/products/edit')) return 'Editar Producto';
+    if (pathname.startsWith('/products/purchase')) return 'Compras';
     if (pathname.startsWith('/products')) return 'Gestión de Productos';
     if (pathname.startsWith('/kitchen/history')) return 'Historial de Comandas';
     if (pathname.startsWith('/kitchen')) return 'Comandas de Cocina';
@@ -83,6 +85,7 @@ const AppContent: React.FC = () => {
             <Route path="/products" element={<ProductManagementPage />} />
             <Route path="/products/new" element={<ProductForm />} />
             <Route path="/products/edit/:id" element={<ProductForm />} />
+            <Route path="/products/purchase" element={<ProductPurchasePage />} />
             <Route path="/kitchen" element={<KitchenDisplayPage />} />
             <Route path="/kitchen/history" element={<KitchenHistoryPage />} />
           </Routes>

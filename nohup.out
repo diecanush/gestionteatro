@@ -1,0 +1,15 @@
+
+> onírico-sur---sistema-de-gestión-teatral@0.0.0 dev
+> vite --host
+
+
+  VITE v6.3.5  ready in 618 ms
+
+  ➜  Local:   http://localhost:5173/
+  ➜  Network: http://69.62.95.248:5173/
+12:07:18 AM [vite] (client) page reload App.tsx
+12:07:18 AM [vite] (client) page reload components/Sidebar.tsx
+12:07:18 AM [vite] (client) page reload pages/snackbar/SnackBarPOSPage.tsx
+12:07:18 AM [vite] (client) page reload services/api.ts
+12:07:18 AM [vite] (client) page reload types.ts
+12:24:52 AM [vite] (client) page reload index.html
