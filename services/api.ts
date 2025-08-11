@@ -114,6 +114,11 @@ export const deleteSnackBarProduct = async (id: string): Promise<void> => {
     await api.delete(`/snackbar/${id}`);
 };
 
+export const purchaseSnackBarProduct = async (id: string, quantity: number, purchasePrice: number): Promise<SnackBarProduct> => {
+    const response = await api.post(`/snackbar/${id}/purchase`, { quantity, purchasePrice });
+    return response.data;
+};
+
 export const confirmSale = async (order: OrderItem[], tableNumber: number) => {
     const response = await api.post('/sales/confirm', { order, tableNumber });
     return response.data;
