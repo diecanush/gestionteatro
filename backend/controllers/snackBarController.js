@@ -53,6 +53,27 @@ export const updateProduct = async (req, res) => {
   }
 };
 
+// Purchase stock for a snack bar product
+export const purchaseProduct = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { quantity, purchasePrice } = req.body;
+    const product = await SnackBarProduct.findByPk(id);
+    if (!product) {
+      return res.status(404).json({ message: 'Producto no encontrado.' });
+    }
+
+    product.stock = (product.stock || 0) + Number(quantity);
+    if (purchasePrice !== undefined) {
+      product.purchasePrice = purchasePrice;
+    }
+    await product.save();
+    res.status(200).json(product);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
+
 // Delete a snack bar product
 export const deleteProduct = async (req, res) => {
   try {
