@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Workshop, Student, Show, SnackBarProduct, SnackBarProductCategory, SnackBarProductDelivery, KitchenOrder } from '../types';
+import { Workshop, Student, Show, SnackBarProduct, SnackBarProductCategory, SnackBarProductDelivery, KitchenOrder, OrderItem, SnackBarSale } from '../types';
 
 const API_BASE_URL = 'http://69.62.95.248:8080/api';
 
@@ -119,8 +119,12 @@ export const purchaseSnackBarProduct = async (id: string, quantity: number, purc
     return response.data;
 };
 
-export const confirmSale = async (order: OrderItem[], tableNumber: number) => {
-    const response = await api.post('/sales/confirm', { order, tableNumber });
+export const confirmSale = async (
+    order: OrderItem[],
+    tableNumber: number,
+    paymentMethod: 'Efectivo' | 'Transferencia' | 'Tarjeta'
+) => {
+    const response = await api.post('/sales/confirm', { order, tableNumber, paymentMethod });
     return response.data;
 };
 
@@ -139,3 +143,4 @@ export const updateOrderStatus = async (orderId: number, status: 'pendiente' | '
     const response = await api.patch(`/kitchen/${orderId}/status`, { status });
     return response.data;
 };
+
