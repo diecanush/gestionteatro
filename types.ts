@@ -127,5 +127,8 @@ export interface SnackBarSale {
   id: number;
   total: number;
   saleDate: string;
+  paymentMethod: 'Efectivo' | 'Transferencia' | 'Tarjeta';
   items: SnackBarSaleItem[];
 }
+
+

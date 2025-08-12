@@ -1,7 +1,7 @@
 import { KitchenOrder, KitchenOrderItem, SnackBarProduct, SnackBarSale, SnackBarSaleItem, sequelize } from '../models/index.js';
 
 const confirmSale = async (req, res) => {
-    const { order, tableNumber } = req.body;
+    const { order, tableNumber, paymentMethod } = req.body;
     const t = await sequelize.transaction();
 
     try {
@@ -13,7 +13,8 @@ const confirmSale = async (req, res) => {
         // Create SnackBarSale record
         const newSale = await SnackBarSale.create({
             total: totalSaleAmount,
-            saleDate: new Date()
+            saleDate: new Date(),
+            paymentMethod
         }, { transaction: t });
 
         // Create SnackBarSaleItem records
@@ -91,3 +92,5 @@ const getSalesHistory = async (req, res) => {
 };
 
 export default { confirmSale, getSalesHistory };
+
+
