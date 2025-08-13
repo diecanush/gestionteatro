@@ -1,5 +1,6 @@
 
 import SnackBarProduct from '../models/SnackBarProduct.js';
+import SnackBarPurchase from '../models/SnackBarPurchase.js';
 
 // Get all snack bar products
 export const getSnackBarProducts = async (req, res) => {
@@ -73,6 +74,13 @@ export const purchaseProduct = async (req, res) => {
       product.purchasePrice = purchasePrice;
     }
     await product.save();
+
+    await SnackBarPurchase.create({
+      productId: product.id,
+      quantity: Number(quantity),
+      purchasePrice
+    });
+
     res.status(200).json(product);
   } catch (error) {
     res.status(400).json({ message: error.message });

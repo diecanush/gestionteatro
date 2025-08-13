@@ -46,6 +46,7 @@ const SalesHistoryPage: React.FC = () => {
                                             <div>
                                                 <p className="font-bold text-lg text-brand-accent">Venta #{sale.id}</p>
                                                 <p className="text-sm text-gray-500 dark:text-gray-400">{new Date(sale.saleDate).toLocaleTimeString()}</p>
+                                                <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">Método de Pago: {sale.paymentMethod}</p>
                                             </div>
                                             <p className="font-bold text-xl text-gray-800 dark:text-white">Total: ${Number(sale.total).toLocaleString()}</p>
                                         </div>

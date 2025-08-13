@@ -14,6 +14,7 @@ const SnackBarPOSPage: React.FC = () => {
     const [isTicketModalOpen, setIsTicketModalOpen] = useState(false);
     const [pizzaToAdd, setPizzaToAdd] = useState<SnackBarProduct | null>(null);
     const [lastSale, setLastSale] = useState<SnackBarSale | null>(null);
+    const [paymentMethod, setPaymentMethod] = useState<'Efectivo' | 'Transferencia' | 'Tarjeta'>('Efectivo');
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -72,7 +73,11 @@ const SnackBarPOSPage: React.FC = () => {
             return;
         }
         try {
-            const result = await confirmSale(order.map(item => ({ ...item, isHalf: item.isHalf || false })), tableNumber as number);
+            const result = await confirmSale(
+                order.map(item => ({ ...item, isHalf: item.isHalf || false })),
+                tableNumber as number,
+                paymentMethod
+            );
             setLastSale(result.sale);
             setIsTicketModalOpen(true);
             
@@ -81,6 +86,7 @@ const SnackBarPOSPage: React.FC = () => {
 
             setOrder([]);
             setTableNumber(0);
+            setPaymentMethod('Efectivo');
         } catch (error) {
             alert("Error al confirmar la venta.");
         }
@@ -185,6 +191,26 @@ const SnackBarPOSPage: React.FC = () => {
                         <span>TOTAL:</span>
                         <span className="text-brand-accent">${total.toLocaleString()}</span>
                     </div>
+                    <div className="grid grid-cols-3 gap-3 mb-4">
+                        <button
+                            onClick={() => setPaymentMethod('Efectivo')}
+                            className={`bg-green-600 hover:bg-green-700 text-white font-bold py-2 rounded-lg transition-colors ${paymentMethod === 'Efectivo' ? 'ring-4 ring-green-300' : ''}`}
+                        >
+                            Efectivo
+                        </button>
+                        <button
+                            onClick={() => setPaymentMethod('Transferencia')}
+                            className={`bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 rounded-lg transition-colors ${paymentMethod === 'Transferencia' ? 'ring-4 ring-blue-300' : ''}`}
+                        >
+                            Transferencia
+                        </button>
+                        <button
+                            onClick={() => setPaymentMethod('Tarjeta')}
+                            className={`bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 rounded-lg transition-colors ${paymentMethod === 'Tarjeta' ? 'ring-4 ring-purple-300' : ''}`}
+                        >
+                            Tarjeta
+                        </button>
+                    </div>
                     <div className="grid grid-cols-2 gap-3">
                         <button onClick={() => setOrder([])} className="bg-gray-600 hover:bg-gray-700 text-white font-bold py-3 rounded-lg transition-colors">Limpiar</button>
                         <button onClick={handleConfirmSale} disabled={order.length === 0} className="bg-green-600 hover:bg-green-700 text-white font-bold py-3 rounded-lg transition-colors disabled:bg-gray-500 disabled:cursor-not-allowed">Cobrar</button>
@@ -214,3 +240,4 @@ const SnackBarPOSPage: React.FC = () => {
 };
 
 export default SnackBarPOSPage;
+

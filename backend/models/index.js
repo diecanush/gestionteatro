@@ -11,9 +11,11 @@ import SnackBarProduct from './SnackBarProduct.js';
 // Import model functions and initialize them
 import _KitchenOrder from './KitchenOrder.js';
 import _KitchenOrderItem from './KitchenOrderItem.js';
+import _SnackBarPurchase from './SnackBarPurchase.js';
 
 const KitchenOrder = _KitchenOrder(sequelize, DataTypes);
 const KitchenOrderItem = _KitchenOrderItem(sequelize, DataTypes);
+const SnackBarPurchase = _SnackBarPurchase(sequelize, DataTypes);
 
 // Workshop-Student Association
 Workshop.belongsToMany(Student, { through: 'workshop_students', foreignKey: 'workshop_id', as: 'students', timestamps: false });
@@ -27,6 +29,10 @@ KitchenOrderItem.belongsTo(KitchenOrder, { as: 'order', foreignKey: 'order_id' }
 SnackBarProduct.hasMany(KitchenOrderItem, { foreignKey: 'product_id' });
 KitchenOrderItem.belongsTo(SnackBarProduct, { as: 'product', foreignKey: 'product_id' });
 
+// SnackBarProduct-SnackBarPurchase Association
+SnackBarProduct.hasMany(SnackBarPurchase, { as: 'purchases', foreignKey: 'product_id' });
+SnackBarPurchase.belongsTo(SnackBarProduct, { as: 'product', foreignKey: 'product_id' });
+
 // Import model functions and initialize them
 import _SnackBarSale from './SnackBarSale.js';
 import _SnackBarSaleItem from './SnackBarSaleItem.js';
@@ -39,4 +45,4 @@ SnackBarSale.hasMany(SnackBarSaleItem, { as: 'items', foreignKey: 'sale_id' });
 SnackBarSaleItem.belongsTo(SnackBarSale, { as: 'sale', foreignKey: 'sale_id' });
 
 
-export { Workshop, Student, Show, SnackBarProduct, KitchenOrder, KitchenOrderItem, SnackBarSale, SnackBarSaleItem, sequelize };
+export { Workshop, Student, Show, SnackBarProduct, KitchenOrder, KitchenOrderItem, SnackBarPurchase, SnackBarSale, SnackBarSaleItem, sequelize };
