@@ -4,6 +4,13 @@ export default (sequelize, DataTypes) => {
             type: DataTypes.DECIMAL(10, 2),
             allowNull: false
         },
+        paymentMethod: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate: {
+                isIn: [['Efectivo', 'Transferencia', 'Tarjeta']]
+            }
+        },
         saleDate: {
             type: DataTypes.DATE,
             defaultValue: DataTypes.NOW
@@ -21,3 +28,5 @@ export default (sequelize, DataTypes) => {
 
     return SnackBarSale;
 };
+
+
