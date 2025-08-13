@@ -20,7 +20,7 @@ app.use('/api/sales', salesRoutes); // New route
 
 const PORT = process.env.PORT || 8080;
 
-sequelize.sync().then(() => {
+sequelize.sync({ alter: true }).then(() => {
   app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}.`);
   });
