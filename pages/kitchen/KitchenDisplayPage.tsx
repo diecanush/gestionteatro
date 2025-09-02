@@ -62,12 +62,16 @@ const OrderCard = ({ order, onItemStatusChange }: { order: KitchenOrder, onItemS
                 </div>
                 <ul className="space-y-2">
                     {order.items.map((item: KitchenOrderItem) => {
-                        const nextStatus = item.status === 'pendiente' ? 'listo' : item.status === 'listo' ? 'entregado' : 'pendiente';
+                        const nextStatus =
+                            item.status === 'pendiente' ? 'listo' :
+                            item.status === 'listo' ? 'entregado' :
+                            'entregado';
                         return (
                             <li key={item.id}>
                                 <button
                                     onClick={() => onItemStatusChange(order.id, item.id, nextStatus)}
-                                    className={`w-full flex items-center text-lg text-gray-800 dark:text-white p-2 rounded-md ${getItemColor(item.status)} transition-colors`}
+                                    disabled={item.status === 'entregado'}
+                                    className={`w-full flex items-center text-lg text-gray-800 dark:text-white p-2 rounded-md ${getItemColor(item.status)} transition-colors ${item.status === 'entregado' ? 'opacity-50 cursor-not-allowed' : ''}`}
                                 >
                                     <Tag size={16} className="mr-2 text-gray-600 dark:text-gray-400" />
                                     <span className="font-semibold mr-2">{item.quantity}x</span>
@@ -103,6 +107,8 @@ export const KitchenDisplayPage = () => {
     }, []);
 
     const handleItemStatusChange = async (orderId: number, itemId: number, status: 'pendiente' | 'listo' | 'entregado') => {
+        const current = orders.find(o => o.id === orderId)?.items.find(i => i.id === itemId);
+        if (current?.status === status) return;
         try {
             await updateKitchenItemStatus(itemId, status);
             setOrders(prevOrders => prevOrders
