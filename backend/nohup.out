@@ -2780,3 +2780,55 @@ Executing (default): SELECT `id`, `name`, `category`, `brand`, `size`, `purchase
 Executing (default): SELECT `id`, `name`, `category`, `brand`, `size`, `purchasePrice`, `sellPrice`, `stock`, `delivery`, `canBeHalf`, `halfPrice`, `createdAt`, `updatedAt` FROM `snackbarproducts` AS `SnackBarProduct`;
 Executing (default): SELECT `id`, `name`, `category`, `brand`, `size`, `purchasePrice`, `sellPrice`, `stock`, `delivery`, `canBeHalf`, `halfPrice`, `createdAt`, `updatedAt` FROM `snackbarproducts` AS `SnackBarProduct`;
 Executing (default): SELECT `id`, `name`, `category`, `brand`, `size`, `purchasePrice`, `sellPrice`, `stock`, `delivery`, `canBeHalf`, `halfPrice`, `createdAt`, `updatedAt` FROM `snackbarproducts` AS `SnackBarProduct`;
+Executing (default): SELECT `id`, `name`, `category`, `brand`, `size`, `purchasePrice`, `sellPrice`, `stock`, `delivery`, `canBeHalf`, `halfPrice`, `createdAt`, `updatedAt` FROM `snackbarproducts` AS `SnackBarProduct`;
+Executing (default): SELECT `id`, `name`, `category`, `brand`, `size`, `purchasePrice`, `sellPrice`, `stock`, `delivery`, `canBeHalf`, `halfPrice`, `createdAt`, `updatedAt` FROM `snackbarproducts` AS `SnackBarProduct`;
+Executing (default): SELECT `id`, `name`, `category`, `brand`, `size`, `purchasePrice`, `sellPrice`, `stock`, `delivery`, `canBeHalf`, `halfPrice`, `createdAt`, `updatedAt` FROM `snackbarproducts` AS `SnackBarProduct`;
+Executing (default): SELECT `id`, `name`, `category`, `brand`, `size`, `purchasePrice`, `sellPrice`, `stock`, `delivery`, `canBeHalf`, `halfPrice`, `createdAt`, `updatedAt` FROM `snackbarproducts` AS `SnackBarProduct`;
+Executing (e133ba71-a1bc-4d10-b23f-f107ecaba070): START TRANSACTION;
+Received order for confirmation: [
+  {
+    "productId": "p3",
+    "productName": "Agua sin gas",
+    "quantity": 1,
+    "unitPrice": 4000,
+    "totalPrice": 4000,
+    "isHalf": false,
+    "delivery": "Barra"
+  }
+]
+Executing (e133ba71-a1bc-4d10-b23f-f107ecaba070): INSERT INTO `SnackBarSales` (`id`,`total`,`paymentMethod`,`saleDate`) VALUES (DEFAULT,?,?,?);
+Executing (e133ba71-a1bc-4d10-b23f-f107ecaba070): INSERT INTO `SnackBarSaleItems` (`id`,`productName`,`quantity`,`unitPrice`,`totalPrice`,`sale_id`) VALUES (DEFAULT,?,?,?,?,?);
+Executing (e133ba71-a1bc-4d10-b23f-f107ecaba070): SELECT `id`, `name`, `category`, `brand`, `size`, `purchasePrice`, `sellPrice`, `stock`, `delivery`, `canBeHalf`, `halfPrice`, `createdAt`, `updatedAt` FROM `snackbarproducts` AS `SnackBarProduct` WHERE `SnackBarProduct`.`id` = 'p3';
+Executing (e133ba71-a1bc-4d10-b23f-f107ecaba070): UPDATE `snackbarproducts` SET `stock`=?,`updatedAt`=? WHERE `id` = ?
+Executing (e133ba71-a1bc-4d10-b23f-f107ecaba070): COMMIT;
+Executing (default): SELECT `SnackBarSale`.`id`, `SnackBarSale`.`total`, `SnackBarSale`.`paymentMethod`, `SnackBarSale`.`saleDate`, `items`.`id` AS `items.id`, `items`.`productName` AS `items.productName`, `items`.`quantity` AS `items.quantity`, `items`.`unitPrice` AS `items.unitPrice`, `items`.`totalPrice` AS `items.totalPrice`, `items`.`sale_id` AS `items.saleId`, `items`.`sale_id` AS `items.sale_id` FROM `SnackBarSales` AS `SnackBarSale` LEFT OUTER JOIN `SnackBarSaleItems` AS `items` ON `SnackBarSale`.`id` = `items`.`sale_id` WHERE `SnackBarSale`.`id` = 15;
+Executing (57efe35a-d883-47e5-bb74-81b2b1c38ad8): START TRANSACTION;
+Received order for confirmation: [
+  {
+    "productId": "prod_1754774215722",
+    "productName": "PROMO PIZZA",
+    "quantity": 1,
+    "unitPrice": 35000,
+    "totalPrice": 35000,
+    "isHalf": false,
+    "delivery": "Cocina"
+  }
+]
+Executing (57efe35a-d883-47e5-bb74-81b2b1c38ad8): INSERT INTO `SnackBarSales` (`id`,`total`,`paymentMethod`,`saleDate`) VALUES (DEFAULT,?,?,?);
+Executing (57efe35a-d883-47e5-bb74-81b2b1c38ad8): INSERT INTO `SnackBarSaleItems` (`id`,`productName`,`quantity`,`unitPrice`,`totalPrice`,`sale_id`) VALUES (DEFAULT,?,?,?,?,?);
+Executing (57efe35a-d883-47e5-bb74-81b2b1c38ad8): INSERT INTO `kitchen_orders` (`id`,`table_number`,`status`,`created_at`,`updated_at`) VALUES (DEFAULT,?,?,?,?);
+Executing (57efe35a-d883-47e5-bb74-81b2b1c38ad8): INSERT INTO `kitchen_order_items` (`id`,`order_id`,`product_id`,`quantity`,`price_at_sale`,`ishalf`) VALUES (DEFAULT,?,?,?,?,?);
+Executing (57efe35a-d883-47e5-bb74-81b2b1c38ad8): SELECT `id`, `name`, `category`, `brand`, `size`, `purchasePrice`, `sellPrice`, `stock`, `delivery`, `canBeHalf`, `halfPrice`, `createdAt`, `updatedAt` FROM `snackbarproducts` AS `SnackBarProduct` WHERE `SnackBarProduct`.`id` = 'prod_1754774215722';
+Executing (57efe35a-d883-47e5-bb74-81b2b1c38ad8): UPDATE `snackbarproducts` SET `stock`=?,`updatedAt`=? WHERE `id` = ?
+Executing (57efe35a-d883-47e5-bb74-81b2b1c38ad8): COMMIT;
+Executing (default): SELECT `SnackBarSale`.`id`, `SnackBarSale`.`total`, `SnackBarSale`.`paymentMethod`, `SnackBarSale`.`saleDate`, `items`.`id` AS `items.id`, `items`.`productName` AS `items.productName`, `items`.`quantity` AS `items.quantity`, `items`.`unitPrice` AS `items.unitPrice`, `items`.`totalPrice` AS `items.totalPrice`, `items`.`sale_id` AS `items.saleId`, `items`.`sale_id` AS `items.sale_id` FROM `SnackBarSales` AS `SnackBarSale` LEFT OUTER JOIN `SnackBarSaleItems` AS `items` ON `SnackBarSale`.`id` = `items`.`sale_id` WHERE `SnackBarSale`.`id` = 16;
+Executing (default): SELECT `id`, `name`, `category`, `brand`, `size`, `purchasePrice`, `sellPrice`, `stock`, `delivery`, `canBeHalf`, `halfPrice`, `createdAt`, `updatedAt` FROM `snackbarproducts` AS `SnackBarProduct`;
+Executing (default): SELECT `id`, `name`, `category`, `brand`, `size`, `purchasePrice`, `sellPrice`, `stock`, `delivery`, `canBeHalf`, `halfPrice`, `createdAt`, `updatedAt` FROM `snackbarproducts` AS `SnackBarProduct`;
+Executing (default): SELECT `id`, `name`, `category`, `brand`, `size`, `purchasePrice`, `sellPrice`, `stock`, `delivery`, `canBeHalf`, `halfPrice`, `createdAt`, `updatedAt` FROM `snackbarproducts` AS `SnackBarProduct`;
+Executing (default): SELECT `id`, `name`, `category`, `brand`, `size`, `purchasePrice`, `sellPrice`, `stock`, `delivery`, `canBeHalf`, `halfPrice`, `createdAt`, `updatedAt` FROM `snackbarproducts` AS `SnackBarProduct`;
+Executing (default): SELECT `id`, `name`, `category`, `brand`, `size`, `purchasePrice`, `sellPrice`, `stock`, `delivery`, `canBeHalf`, `halfPrice`, `createdAt`, `updatedAt` FROM `snackbarproducts` AS `SnackBarProduct`;
+Executing (default): SELECT `id`, `name`, `category`, `brand`, `size`, `purchasePrice`, `sellPrice`, `stock`, `delivery`, `canBeHalf`, `halfPrice`, `createdAt`, `updatedAt` FROM `snackbarproducts` AS `SnackBarProduct`;
+Executing (default): SELECT `id`, `name`, `category`, `brand`, `size`, `purchasePrice`, `sellPrice`, `stock`, `delivery`, `canBeHalf`, `halfPrice`, `createdAt`, `updatedAt` FROM `snackbarproducts` AS `SnackBarProduct`;
+Executing (default): SELECT `id`, `name`, `category`, `brand`, `size`, `purchasePrice`, `sellPrice`, `stock`, `delivery`, `canBeHalf`, `halfPrice`, `createdAt`, `updatedAt` FROM `snackbarproducts` AS `SnackBarProduct`;
+Executing (default): SELECT `id`, `name`, `category`, `brand`, `size`, `purchasePrice`, `sellPrice`, `stock`, `delivery`, `canBeHalf`, `halfPrice`, `createdAt`, `updatedAt` FROM `snackbarproducts` AS `SnackBarProduct`;
+Executing (default): SELECT `id`, `name`, `category`, `brand`, `size`, `purchasePrice`, `sellPrice`, `stock`, `delivery`, `canBeHalf`, `halfPrice`, `createdAt`, `updatedAt` FROM `snackbarproducts` AS `SnackBarProduct`;
