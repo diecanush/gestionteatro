@@ -4152,3 +4152,123 @@ Executing (default): SELECT `KitchenOrder`.`id`, `KitchenOrder`.`table_number`, 
 Executing (default): UPDATE `kitchen_orders` SET `status`=?,`updated_at`=? WHERE `id` = ?
 Executing (default): SELECT `KitchenOrder`.`id`, `KitchenOrder`.`table_number`, `KitchenOrder`.`status`, `KitchenOrder`.`created_at`, `KitchenOrder`.`updated_at`, `items`.`id` AS `items.id`, `items`.`order_id` AS `items.order_id`, `items`.`product_id` AS `items.product_id`, `items`.`quantity` AS `items.quantity`, `items`.`price_at_sale` AS `items.price_at_sale`, `items`.`status` AS `items.status`, `items`.`ishalf` AS `items.ishalf`, `items->product`.`id` AS `items.product.id`, `items->product`.`name` AS `items.product.name` FROM `kitchen_orders` AS `KitchenOrder` LEFT OUTER JOIN `kitchen_order_items` AS `items` ON `KitchenOrder`.`id` = `items`.`order_id` LEFT OUTER JOIN `snackbarproducts` AS `items->product` ON `items`.`product_id` = `items->product`.`id` ORDER BY `KitchenOrder`.`created_at` ASC;
 Executing (default): SELECT `KitchenOrder`.`id`, `KitchenOrder`.`table_number`, `KitchenOrder`.`status`, `KitchenOrder`.`created_at`, `KitchenOrder`.`updated_at`, `items`.`id` AS `items.id`, `items`.`order_id` AS `items.order_id`, `items`.`product_id` AS `items.product_id`, `items`.`quantity` AS `items.quantity`, `items`.`price_at_sale` AS `items.price_at_sale`, `items`.`status` AS `items.status`, `items`.`ishalf` AS `items.ishalf`, `items->product`.`id` AS `items.product.id`, `items->product`.`name` AS `items.product.name` FROM `kitchen_orders` AS `KitchenOrder` LEFT OUTER JOIN `kitchen_order_items` AS `items` ON `KitchenOrder`.`id` = `items`.`order_id` LEFT OUTER JOIN `snackbarproducts` AS `items->product` ON `items`.`product_id` = `items->product`.`id` ORDER BY `KitchenOrder`.`created_at` ASC;
+Executing (default): SELECT `KitchenOrder`.`id`, `KitchenOrder`.`table_number`, `KitchenOrder`.`status`, `KitchenOrder`.`created_at`, `KitchenOrder`.`updated_at`, `items`.`id` AS `items.id`, `items`.`order_id` AS `items.order_id`, `items`.`product_id` AS `items.product_id`, `items`.`quantity` AS `items.quantity`, `items`.`price_at_sale` AS `items.price_at_sale`, `items`.`status` AS `items.status`, `items`.`ishalf` AS `items.ishalf`, `items->product`.`id` AS `items.product.id`, `items->product`.`name` AS `items.product.name` FROM `kitchen_orders` AS `KitchenOrder` LEFT OUTER JOIN `kitchen_order_items` AS `items` ON `KitchenOrder`.`id` = `items`.`order_id` LEFT OUTER JOIN `snackbarproducts` AS `items->product` ON `items`.`product_id` = `items->product`.`id` ORDER BY `KitchenOrder`.`created_at` ASC;
+Executing (default): SELECT `KitchenOrder`.`id`, `KitchenOrder`.`table_number`, `KitchenOrder`.`status`, `KitchenOrder`.`created_at`, `KitchenOrder`.`updated_at`, `items`.`id` AS `items.id`, `items`.`order_id` AS `items.order_id`, `items`.`product_id` AS `items.product_id`, `items`.`quantity` AS `items.quantity`, `items`.`price_at_sale` AS `items.price_at_sale`, `items`.`status` AS `items.status`, `items`.`ishalf` AS `items.ishalf`, `items->product`.`id` AS `items.product.id`, `items->product`.`name` AS `items.product.name` FROM `kitchen_orders` AS `KitchenOrder` LEFT OUTER JOIN `kitchen_order_items` AS `items` ON `KitchenOrder`.`id` = `items`.`order_id` LEFT OUTER JOIN `snackbarproducts` AS `items->product` ON `items`.`product_id` = `items->product`.`id` ORDER BY `KitchenOrder`.`created_at` ASC;
+Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'workshops' AND TABLE_SCHEMA = 'onirico_sur_db'
+Executing (default): SHOW FULL COLUMNS FROM `workshops`;
+Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'workshops' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='onirico_sur_db' AND REFERENCED_TABLE_NAME IS NOT NULL;
+Executing (default): ALTER TABLE `workshops` CHANGE `name` `name` VARCHAR(255) NOT NULL;
+Executing (default): ALTER TABLE `workshops` CHANGE `schedule` `schedule` VARCHAR(255);
+Executing (default): ALTER TABLE `workshops` CHANGE `startDate` `startDate` DATETIME;
+Executing (default): ALTER TABLE `workshops` CHANGE `endDate` `endDate` DATETIME;
+Executing (default): ALTER TABLE `workshops` CHANGE `teacher` `teacher` VARCHAR(255);
+Executing (default): ALTER TABLE `workshops` CHANGE `fee` `fee` DECIMAL(10,2);
+Executing (default): SHOW INDEX FROM `workshops`
+Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'students' AND TABLE_SCHEMA = 'onirico_sur_db'
+Executing (default): SHOW FULL COLUMNS FROM `students`;
+Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'students' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='onirico_sur_db' AND REFERENCED_TABLE_NAME IS NOT NULL;
+Executing (default): ALTER TABLE `students` CHANGE `lastName` `lastName` VARCHAR(255) NOT NULL;
+Executing (default): ALTER TABLE `students` CHANGE `firstName` `firstName` VARCHAR(255) NOT NULL;
+Executing (default): ALTER TABLE `students` CHANGE `birthDate` `birthDate` DATETIME;
+Executing (default): ALTER TABLE `students` CHANGE `phone` `phone` VARCHAR(255);
+Executing (default): ALTER TABLE `students` CHANGE `email` `email` VARCHAR(255);
+Executing (default): SHOW INDEX FROM `students`
+Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'shows' AND TABLE_SCHEMA = 'onirico_sur_db'
+Executing (default): SHOW FULL COLUMNS FROM `shows`;
+Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'shows' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='onirico_sur_db' AND REFERENCED_TABLE_NAME IS NOT NULL;
+Executing (default): ALTER TABLE `shows` CHANGE `title` `title` VARCHAR(255) NOT NULL;
+Executing (default): ALTER TABLE `shows` CHANGE `description` `description` TEXT;
+Executing (default): ALTER TABLE `shows` CHANGE `producer` `producer` VARCHAR(255);
+Executing (default): ALTER TABLE `shows` CHANGE `date` `date` DATETIME;
+Executing (default): ALTER TABLE `shows` CHANGE `time` `time` TIME;
+Executing (default): ALTER TABLE `shows` CHANGE `hasBar` `hasBar` TINYINT(1);
+Executing (default): ALTER TABLE `shows` CHANGE `capacity` `capacity` INTEGER;
+Executing (default): ALTER TABLE `shows` CHANGE `availableSeats` `availableSeats` INTEGER;
+Executing (default): ALTER TABLE `shows` CHANGE `posterUrl` `posterUrl` VARCHAR(255);
+Executing (default): ALTER TABLE `shows` CHANGE `promoText` `promoText` VARCHAR(255);
+Executing (default): ALTER TABLE `shows` CHANGE `doorPrice` `doorPrice` DECIMAL(10,2);
+Executing (default): ALTER TABLE `shows` CHANGE `advancePrice` `advancePrice` DECIMAL(10,2);
+Executing (default): ALTER TABLE `shows` CHANGE `hasPromo` `hasPromo` TINYINT(1);
+Executing (default): ALTER TABLE `shows` CHANGE `promoName` `promoName` VARCHAR(255);
+Executing (default): ALTER TABLE `shows` CHANGE `promoPrice` `promoPrice` DECIMAL(10,2);
+Executing (default): SHOW INDEX FROM `shows`
+Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'snackbarproducts' AND TABLE_SCHEMA = 'onirico_sur_db'
+Executing (default): SHOW FULL COLUMNS FROM `snackbarproducts`;
+Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'snackbarproducts' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='onirico_sur_db' AND REFERENCED_TABLE_NAME IS NOT NULL;
+Executing (default): ALTER TABLE `snackbarproducts` CHANGE `name` `name` VARCHAR(255) NOT NULL;
+Executing (default): ALTER TABLE `snackbarproducts` CHANGE `category` `category` ENUM('Cerveza', 'Gaseosa', 'Agua', 'Agua Saborizada', 'Pizza', 'Empanada', 'Trago', 'Snack') NOT NULL;
+Executing (default): ALTER TABLE `snackbarproducts` CHANGE `brand` `brand` VARCHAR(255);
+Executing (default): ALTER TABLE `snackbarproducts` CHANGE `size` `size` VARCHAR(255);
+Executing (default): ALTER TABLE `snackbarproducts` CHANGE `purchasePrice` `purchasePrice` DECIMAL(10,2);
+Executing (default): ALTER TABLE `snackbarproducts` CHANGE `sellPrice` `sellPrice` DECIMAL(10,2);
+Executing (default): ALTER TABLE `snackbarproducts` CHANGE `stock` `stock` INTEGER;
+Executing (default): ALTER TABLE `snackbarproducts` CHANGE `delivery` `delivery` ENUM('Barra', 'Cocina');
+Executing (default): ALTER TABLE `snackbarproducts` CHANGE `canBeHalf` `canBeHalf` TINYINT(1);
+Executing (default): ALTER TABLE `snackbarproducts` CHANGE `halfPrice` `halfPrice` DECIMAL(10,2);
+Executing (default): ALTER TABLE `snackbarproducts` CHANGE `createdAt` `createdAt` DATETIME NOT NULL;
+Executing (default): ALTER TABLE `snackbarproducts` CHANGE `updatedAt` `updatedAt` DATETIME NOT NULL;
+Executing (default): SHOW INDEX FROM `snackbarproducts`
+Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'combos' AND TABLE_SCHEMA = 'onirico_sur_db'
+Executing (default): CREATE TABLE IF NOT EXISTS `combos` (`id` VARCHAR(255) , `name` VARCHAR(255) NOT NULL, `price` DECIMAL(10,2) NOT NULL, PRIMARY KEY (`id`)) ENGINE=InnoDB;
+Executing (default): SHOW INDEX FROM `combos`
+Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'combo_items' AND TABLE_SCHEMA = 'onirico_sur_db'
+Executing (default): CREATE TABLE IF NOT EXISTS `combo_items` (`id` INTEGER auto_increment , `comboId` VARCHAR(255) NOT NULL, `label` VARCHAR(255) NOT NULL, PRIMARY KEY (`id`), FOREIGN KEY (`comboId`) REFERENCES `combos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE) ENGINE=InnoDB;
+Executing (default): SHOW INDEX FROM `combo_items`
+Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'kitchen_orders' AND TABLE_SCHEMA = 'onirico_sur_db'
+Executing (default): SHOW FULL COLUMNS FROM `kitchen_orders`;
+Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'kitchen_orders' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='onirico_sur_db' AND REFERENCED_TABLE_NAME IS NOT NULL;
+Executing (default): ALTER TABLE `kitchen_orders` CHANGE `table_number` `table_number` INTEGER NOT NULL;
+Executing (default): ALTER TABLE `kitchen_orders` CHANGE `status` `status` ENUM('pendiente', 'listo', 'entregado') NOT NULL DEFAULT 'pendiente';
+Executing (default): ALTER TABLE `kitchen_orders` CHANGE `created_at` `created_at` DATETIME NOT NULL;
+Executing (default): ALTER TABLE `kitchen_orders` CHANGE `updated_at` `updated_at` DATETIME NOT NULL;
+Executing (default): SHOW INDEX FROM `kitchen_orders`
+Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'kitchen_order_items' AND TABLE_SCHEMA = 'onirico_sur_db'
+Executing (default): SHOW FULL COLUMNS FROM `kitchen_order_items`;
+Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'kitchen_order_items' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='onirico_sur_db' AND REFERENCED_TABLE_NAME IS NOT NULL;
+Executing (default): SELECT CONSTRAINT_CATALOG AS constraintCatalog, CONSTRAINT_NAME AS constraintName, CONSTRAINT_SCHEMA AS constraintSchema, CONSTRAINT_TYPE AS constraintType, TABLE_NAME AS tableName, TABLE_SCHEMA AS tableSchema from INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE table_name='kitchen_order_items' AND constraint_name = 'kitchen_order_items_ibfk_13' AND TABLE_SCHEMA = 'onirico_sur_db';
+Executing (default): ALTER TABLE `kitchen_order_items` DROP FOREIGN KEY `kitchen_order_items_ibfk_13`;
+Executing (default): ALTER TABLE `kitchen_order_items` ADD FOREIGN KEY (`order_id`) REFERENCES `kitchen_orders` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+Executing (default): SELECT CONSTRAINT_CATALOG AS constraintCatalog, CONSTRAINT_NAME AS constraintName, CONSTRAINT_SCHEMA AS constraintSchema, CONSTRAINT_TYPE AS constraintType, TABLE_NAME AS tableName, TABLE_SCHEMA AS tableSchema from INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE table_name='kitchen_order_items' AND constraint_name = 'kitchen_order_items_ibfk_14' AND TABLE_SCHEMA = 'onirico_sur_db';
+Executing (default): ALTER TABLE `kitchen_order_items` DROP FOREIGN KEY `kitchen_order_items_ibfk_14`;
+Executing (default): ALTER TABLE `kitchen_order_items` ADD FOREIGN KEY (`product_id`) REFERENCES `snackbarproducts` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+Executing (default): ALTER TABLE `kitchen_order_items` CHANGE `quantity` `quantity` INTEGER NOT NULL DEFAULT 1;
+Executing (default): ALTER TABLE `kitchen_order_items` CHANGE `price_at_sale` `price_at_sale` DECIMAL(10,2) NOT NULL;
+Executing (default): ALTER TABLE `kitchen_order_items` CHANGE `ishalf` `ishalf` TINYINT(1) NOT NULL DEFAULT false;
+Executing (default): ALTER TABLE `kitchen_order_items` CHANGE `status` `status` ENUM('pendiente', 'listo', 'entregado') NOT NULL DEFAULT 'pendiente';
+Executing (default): SHOW INDEX FROM `kitchen_order_items`
+Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'SnackBarPurchases' AND TABLE_SCHEMA = 'onirico_sur_db'
+Executing (default): SHOW FULL COLUMNS FROM `SnackBarPurchases`;
+Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'SnackBarPurchases' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='onirico_sur_db' AND REFERENCED_TABLE_NAME IS NOT NULL;
+Executing (default): SELECT CONSTRAINT_CATALOG AS constraintCatalog, CONSTRAINT_NAME AS constraintName, CONSTRAINT_SCHEMA AS constraintSchema, CONSTRAINT_TYPE AS constraintType, TABLE_NAME AS tableName, TABLE_SCHEMA AS tableSchema from INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE table_name='SnackBarPurchases' AND constraint_name = 'SnackBarPurchases_ibfk_1' AND TABLE_SCHEMA = 'onirico_sur_db';
+Executing (default): ALTER TABLE `SnackBarPurchases` DROP FOREIGN KEY `SnackBarPurchases_ibfk_1`;
+Executing (default): ALTER TABLE `SnackBarPurchases` ADD FOREIGN KEY (`product_id`) REFERENCES `snackbarproducts` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+Executing (default): ALTER TABLE `SnackBarPurchases` CHANGE `quantity` `quantity` INTEGER NOT NULL;
+Executing (default): ALTER TABLE `SnackBarPurchases` CHANGE `purchase_price` `purchase_price` DECIMAL(10,2) NOT NULL;
+Executing (default): ALTER TABLE `SnackBarPurchases` CHANGE `purchase_date` `purchase_date` DATETIME;
+Executing (default): SHOW INDEX FROM `SnackBarPurchases`
+Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'workshop_students' AND TABLE_SCHEMA = 'onirico_sur_db'
+Executing (default): SHOW FULL COLUMNS FROM `workshop_students`;
+Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'workshop_students' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='onirico_sur_db' AND REFERENCED_TABLE_NAME IS NOT NULL;
+Executing (default): SHOW INDEX FROM `workshop_students`
+Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'comboitem_products' AND TABLE_SCHEMA = 'onirico_sur_db'
+Executing (default): CREATE TABLE IF NOT EXISTS `comboitem_products` (`combo_item_id` INTEGER , `product_id` VARCHAR(255) , PRIMARY KEY (`combo_item_id`, `product_id`), FOREIGN KEY (`combo_item_id`) REFERENCES `combo_items` (`id`) ON DELETE CASCADE ON UPDATE CASCADE, FOREIGN KEY (`product_id`) REFERENCES `snackbarproducts` (`id`) ON DELETE CASCADE ON UPDATE CASCADE) ENGINE=InnoDB;
+Executing (default): SHOW INDEX FROM `comboitem_products`
+Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'SnackBarSales' AND TABLE_SCHEMA = 'onirico_sur_db'
+Executing (default): SHOW FULL COLUMNS FROM `SnackBarSales`;
+Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'SnackBarSales' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='onirico_sur_db' AND REFERENCED_TABLE_NAME IS NOT NULL;
+Executing (default): ALTER TABLE `SnackBarSales` CHANGE `total` `total` DECIMAL(10,2) NOT NULL;
+Executing (default): ALTER TABLE `SnackBarSales` CHANGE `saleDate` `saleDate` DATETIME;
+Executing (default): ALTER TABLE `SnackBarSales` CHANGE `paymentMethod` `paymentMethod` VARCHAR(255) NOT NULL;
+Executing (default): SHOW INDEX FROM `SnackBarSales`
+Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'SnackBarSaleItems' AND TABLE_SCHEMA = 'onirico_sur_db'
+Executing (default): SHOW FULL COLUMNS FROM `SnackBarSaleItems`;
+Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'SnackBarSaleItems' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='onirico_sur_db' AND REFERENCED_TABLE_NAME IS NOT NULL;
+Executing (default): ALTER TABLE `SnackBarSaleItems` CHANGE `productName` `productName` VARCHAR(255) NOT NULL;
+Executing (default): ALTER TABLE `SnackBarSaleItems` CHANGE `quantity` `quantity` INTEGER NOT NULL;
+Executing (default): ALTER TABLE `SnackBarSaleItems` CHANGE `unitPrice` `unitPrice` DECIMAL(10,2) NOT NULL;
+Executing (default): ALTER TABLE `SnackBarSaleItems` CHANGE `totalPrice` `totalPrice` DECIMAL(10,2) NOT NULL;
+Executing (default): SELECT CONSTRAINT_CATALOG AS constraintCatalog, CONSTRAINT_NAME AS constraintName, CONSTRAINT_SCHEMA AS constraintSchema, CONSTRAINT_TYPE AS constraintType, TABLE_NAME AS tableName, TABLE_SCHEMA AS tableSchema from INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE table_name='SnackBarSaleItems' AND constraint_name = 'SnackBarSaleItems_ibfk_1' AND TABLE_SCHEMA = 'onirico_sur_db';
+Executing (default): ALTER TABLE `SnackBarSaleItems` DROP FOREIGN KEY `SnackBarSaleItems_ibfk_1`;
+Executing (default): ALTER TABLE `SnackBarSaleItems` ADD FOREIGN KEY (`sale_id`) REFERENCES `SnackBarSales` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+Executing (default): SHOW INDEX FROM `SnackBarSaleItems`
+Server is running on port 8080.
