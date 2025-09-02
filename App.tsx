@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import Sidebar from './components/Sidebar';
 import Header from './components/Header';
 import DashboardPage from './pages/Dashboard';
@@ -99,9 +99,9 @@ const AppContent: React.FC = () => {
 };
 
 const App: React.FC = () => (
-  <Router>
+  <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
     <AppContent />
-  </Router>
+  </BrowserRouter>
 );
 
 export default App;
