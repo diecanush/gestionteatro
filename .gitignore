@@ -40,5 +40,5 @@ Thumbs.db
 # Sensitive config files
 backend/config/database.js
 services/api.ts
-backend/nohup.output
+backend/nohup.out
 nohup.out
