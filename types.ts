@@ -101,7 +101,8 @@ export interface KitchenOrderItem {
   id: number;
   quantity: number;
   price_at_sale: string;
-  isHalf?: boolean; // Added this line
+  status: 'pendiente' | 'listo' | 'entregado';
+  ishalf?: boolean; // Added this line
   product: {
     name: string;
   };
