@@ -157,11 +157,12 @@ export interface ComboComponent {
   id?: number;
   name: string;
   productIds: string[];
+  categories?: SnackBarProductCategory[];
 }
 
 export interface Combo {
-  id?: number;
+  id?: string;
   name: string;
+  price: number;
   components: ComboComponent[];
-
 }
