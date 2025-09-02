@@ -184,6 +184,7 @@ export const updateKitchenItemStatus = async (itemId: number, status: 'pendiente
 
 
 // --- Combo API ---
+/*
 export const getCombos = async (): Promise<Combo[]> => {
     const response = await api.get('/combos');
     return response.data;
@@ -198,3 +199,4 @@ export const updateCombo = async (id: number, combo: Omit<Combo, 'id'>): Promise
     const response = await api.put(`/combos/${id}`, combo);
     return response.data;
 };
+*/
