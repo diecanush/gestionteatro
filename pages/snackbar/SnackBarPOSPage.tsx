@@ -10,7 +10,9 @@ const SnackBarPOSPage: React.FC = () => {
     const [products, setProducts] = useState<SnackBarProduct[]>([]);
     const [order, setOrder] = useState<OrderItem[]>([]);
     const [tableNumber, setTableNumber] = useState<number>(0);
+
     const [customerName, setCustomerName] = useState<string>('');
+
     const [loading, setLoading] = useState(true);
     const [isPizzaModalOpen, setIsPizzaModalOpen] = useState(false);
     const [isTicketModalOpen, setIsTicketModalOpen] = useState(false);
@@ -71,6 +73,7 @@ const SnackBarPOSPage: React.FC = () => {
 
     const handleConfirmSale = async () => {
         if (order.length === 0) return;
+
         try {
             const result = await confirmSale(
                 order.map(item => ({ ...item, isHalf: item.isHalf || false })),
@@ -159,8 +162,10 @@ const SnackBarPOSPage: React.FC = () => {
                 <div className="flex justify-between items-center mb-4">
                     <h3 className="text-xl font-bold text-gray-800 dark:text-white">Pedido Actual</h3>
                     <div className="flex items-center">
+
                         <span className="text-sm font-medium text-gray-700 dark:text-gray-300 mr-2">Mesa/Cliente:</span>
                         <span className="text-lg font-bold text-gray-800 dark:text-white">{tableNumber ? tableNumber : (customerName || '--')}</span>
+
                     </div>
                 </div>
                 <div className="flex-grow overflow-y-auto pr-2">
@@ -238,6 +243,7 @@ const SnackBarPOSPage: React.FC = () => {
                 onSelect={(num, name) => {
                     setTableNumber(num);
                     setCustomerName(name || '');
+
                     setIsTableModalOpen(false);
                 }}
             />
