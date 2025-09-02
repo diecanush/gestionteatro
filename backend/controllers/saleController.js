@@ -43,7 +43,17 @@ const confirmSale = async (req, res) => {
         }
 
         // Separate items for kitchen and bar
-        const kitchenItems = order.filter(item => item.delivery === 'Cocina');
+        const standaloneKitchenItems = order.filter(item => item.delivery === 'Cocina');
+        const comboKitchenItems = combos.flatMap(combo =>
+            (combo.items || []).filter(item => item.delivery === 'Cocina').map(item => ({
+                productId: item.productId,
+                productName: item.productName,
+                quantity: item.quantity,
+                unitPrice: 0,
+                isHalf: item.isHalf || false,
+            }))
+        );
+        const kitchenItems = [...standaloneKitchenItems, ...comboKitchenItems];
 
         // Process kitchen order
         if (kitchenItems.length > 0) {
@@ -66,12 +76,23 @@ const confirmSale = async (req, res) => {
             }
         }
 
-        // Update stock for all products in the order
+        // Update stock for standalone items
         for (const item of order) {
             const product = await SnackBarProduct.findByPk(item.productId, { transaction: t });
             if (product) {
                 product.stock -= item.quantity;
                 await product.save({ transaction: t });
+            }
+        }
+
+        // Update stock for combo items
+        for (const combo of combos) {
+            for (const item of combo.items || []) {
+                const product = await SnackBarProduct.findByPk(item.productId, { transaction: t });
+                if (product) {
+                    product.stock -= item.quantity;
+                    await product.save({ transaction: t });
+                }
             }
         }
 

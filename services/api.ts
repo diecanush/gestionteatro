@@ -157,7 +157,13 @@ export const confirmSale = async (
     paymentMethod: 'Efectivo' | 'Transferencia' | 'Tarjeta',
     combos: OrderCombo[] = []
 ) => {
-    const response = await api.post('/sales/confirm', { order, combos, tableNumber, paymentMethod });
+    const standaloneItems = order.filter(item => !item.comboId);
+    const response = await api.post('/sales/confirm', {
+        order: standaloneItems,
+        combos,
+        tableNumber,
+        paymentMethod,
+    });
     return response.data;
 };
 
