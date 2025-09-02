@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { Combo, ComboComponent, SnackBarProduct } from '../../types';
+import { Combo, ComboComponent, SnackBarProduct, SnackBarProductCategory } from '../../types';
 import { getCombos, createCombo, updateCombo, getSnackBarProducts } from '../../services/api';
 
-const emptyComponent = (): ComboComponent => ({ name: '', productIds: [] });
+const emptyComponent = (): ComboComponent => ({ name: '', productIds: [], categories: [] });
 
 const ComboBuilderPage: React.FC = () => {
     const [products, setProducts] = useState<SnackBarProduct[]>([]);
     const [combos, setCombos] = useState<Combo[]>([]);
     const [editingCombo, setEditingCombo] = useState<Combo | null>(null);
     const [name, setName] = useState('');
+    const [price, setPrice] = useState(0);
     const [components, setComponents] = useState<ComboComponent[]>([]);
 
     useEffect(() => {
@@ -35,19 +36,23 @@ const ComboBuilderPage: React.FC = () => {
         setComponents(components.filter((_, i) => i !== index));
     };
 
-    const handleSelectChange = (index: number, e: React.ChangeEvent<HTMLSelectElement>) => {
-        const values = Array.from(e.target.selectedOptions).map(o => o.value);
-        updateComponent(index, { productIds: values });
+    const handleCategoryChange = (index: number, e: React.ChangeEvent<HTMLSelectElement>) => {
+        const categories = Array.from(e.target.selectedOptions).map(o => o.value as SnackBarProductCategory);
+        const productIds = products
+            .filter(p => categories.includes(p.category))
+            .map(p => p.id);
+        updateComponent(index, { categories, productIds });
     };
 
     const resetForm = () => {
         setEditingCombo(null);
         setName('');
+        setPrice(0);
         setComponents([]);
     };
 
     const handleSubmit = async () => {
-        const comboData = { name, components };
+        const comboData = { name, price, components: components.map(c => ({ name: c.name, productIds: c.productIds })) };
         if (editingCombo && editingCombo.id) {
             await updateCombo(editingCombo.id, comboData);
         } else {
@@ -61,7 +66,16 @@ const ComboBuilderPage: React.FC = () => {
     const handleEdit = (combo: Combo) => {
         setEditingCombo(combo);
         setName(combo.name);
-        setComponents(combo.components.map(c => ({ name: c.name, productIds: c.productIds })));
+        setPrice(combo.price);
+        setComponents(combo.components.map(c => ({
+            name: c.name,
+            productIds: c.productIds,
+            categories: Array.from(new Set(
+                products
+                    .filter(p => c.productIds.includes(p.id))
+                    .map(p => p.category)
+            )) as SnackBarProductCategory[],
+        })));
     };
 
     return (
@@ -74,6 +88,13 @@ const ComboBuilderPage: React.FC = () => {
                     value={name}
                     onChange={e => setName(e.target.value)}
                 />
+                <input
+                    type="number"
+                    className="w-full p-2 border rounded mb-4"
+                    placeholder="Precio del combo"
+                    value={price}
+                    onChange={e => setPrice(Number(e.target.value))}
+                />
                 {components.map((component, idx) => (
                     <div key={idx} className="border rounded p-3 mb-4">
                         <input
@@ -85,11 +106,11 @@ const ComboBuilderPage: React.FC = () => {
                         <select
                             multiple
                             className="w-full border rounded p-2 h-32"
-                            value={component.productIds}
-                            onChange={e => handleSelectChange(idx, e)}
+                            value={component.categories}
+                            onChange={e => handleCategoryChange(idx, e)}
                         >
-                            {products.map(p => (
-                                <option key={p.id} value={p.id}>{p.name}</option>
+                            {Object.values(SnackBarProductCategory).map(cat => (
+                                <option key={cat} value={cat}>{cat}</option>
                             ))}
                         </select>
                         <button

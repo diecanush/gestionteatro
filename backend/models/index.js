@@ -35,7 +35,7 @@ SnackBarProduct.hasMany(SnackBarPurchase, { as: 'purchases', foreignKey: 'produc
 SnackBarPurchase.belongsTo(SnackBarProduct, { as: 'product', foreignKey: 'product_id' });
 
 // Combo-ComboItem Association
-Combo.hasMany(ComboItem, { as: 'items', foreignKey: 'comboId' });
+Combo.hasMany(ComboItem, { as: 'components', foreignKey: 'comboId' });
 ComboItem.belongsTo(Combo, { as: 'combo', foreignKey: 'comboId' });
 
 // ComboItem-SnackBarProduct Association (options)
