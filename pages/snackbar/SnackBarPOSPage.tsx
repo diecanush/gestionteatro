@@ -12,7 +12,6 @@ const SnackBarPOSPage: React.FC = () => {
     const [tableNumber, setTableNumber] = useState<number>(0);
 
     const [customerName, setCustomerName] = useState<string>('');
-
     const [loading, setLoading] = useState(true);
     const [isPizzaModalOpen, setIsPizzaModalOpen] = useState(false);
     const [isTicketModalOpen, setIsTicketModalOpen] = useState(false);

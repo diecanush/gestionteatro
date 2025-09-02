@@ -14,7 +14,8 @@ CREATE TABLE `kitchen_order_items` (
   `product_id` VARCHAR(255) NOT NULL,
   `quantity` INT NOT NULL DEFAULT 1,
   -- Guardar el precio al momento de la venta es crucial para reportes precisos
-  `price_at_sale` DECIMAL(10, 2) NOT NULL, 
+  `price_at_sale` DECIMAL(10, 2) NOT NULL,
+  `status` ENUM('pendiente', 'listo', 'entregado') NOT NULL DEFAULT 'pendiente',
   FOREIGN KEY (`order_id`) REFERENCES `kitchen_orders`(`id`) ON DELETE CASCADE,
   FOREIGN KEY (`product_id`) REFERENCES `snackbarproducts`(`id`)
 );

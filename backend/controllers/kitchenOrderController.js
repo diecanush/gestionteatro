@@ -46,7 +46,8 @@ export const createOrder = async (req, res) => {
                 order_id: order.id,
                 product_id: item.product_id,
                 quantity: item.quantity,
-                price_at_sale: item.price_at_sale
+                price_at_sale: item.price_at_sale,
+                status: 'pendiente'
             }, { transaction });
         });
 
@@ -119,5 +120,46 @@ export const updateOrderStatus = async (req, res) => {
         res.send(order);
     } catch (error) {
         res.status(500).send({ message: "Ocurrió un error al actualizar el estado de la comanda." });
+    }
+};
+
+// Update status of a single item within an order
+export const updateItemStatus = async (req, res) => {
+    const { id } = req.params; // item id
+    const { status } = req.body;
+    const validStatuses = ['pendiente', 'listo', 'entregado'];
+
+    if (!status || !validStatuses.includes(status)) {
+        return res.status(400).send({ message: "Estado inválido." });
+    }
+
+    try {
+        const item = await KitchenOrderItem.findByPk(id);
+        if (!item) {
+            return res.status(404).send({ message: "Producto de la comanda no encontrado." });
+        }
+
+        item.status = status;
+        await item.save();
+
+        // After updating the item, recalculate the order status
+        const order = await KitchenOrder.findByPk(item.order_id, {
+            include: [{ model: KitchenOrderItem, as: 'items' }]
+        });
+        if (order) {
+            const statuses = order.items.map(i => i.status);
+            let newStatus = 'pendiente';
+            if (statuses.every(s => s === 'entregado')) {
+                newStatus = 'entregado';
+            } else if (statuses.every(s => s !== 'pendiente') && statuses.some(s => s === 'listo' || s === 'entregado')) {
+                newStatus = 'listo';
+            }
+            order.status = newStatus;
+            await order.save();
+        }
+
+        res.send(item);
+    } catch (error) {
+        res.status(500).send({ message: "Ocurrió un error al actualizar el estado del producto." });
     }
 };
