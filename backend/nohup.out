@@ -5039,3 +5039,5 @@ Emitted 'error' event on ReadStream instance at:
 }
 
 Node.js v18.19.1
+Ignoring invalid configuration option passed to Connection: useUTC. This is currently a warning, but in future versions of MySQL2, an error will be thrown if you pass an invalid configuration option to a Connection
+Executing (default): SELECT `Workshop`.`id`, `Workshop`.`name`, `Workshop`.`schedule`, `Workshop`.`startDate`, `Workshop`.`endDate`, `Workshop`.`teacher`, `Workshop`.`fee`, `students`.`id` AS `students.id`, `students`.`lastName` AS `students.lastName`, `students`.`firstName` AS `students.firstName`, `students`.`birthDate` AS `students.birthDate`, `students`.`phone` AS `students.phone`, `students`.`email` AS `students.email`, `students->workshop_students`.`workshop_id` AS `students.workshop_students.workshop_id`, `students->workshop_students`.`student_id` AS `students.workshop_students.student_id` FROM `workshops` AS `Workshop` LEFT OUTER JOIN ( `workshop_students` AS `students->workshop_students` INNER JOIN `students` AS `students` ON `students`.`id` = `students->workshop_students`.`student_id`) ON `Workshop`.`id` = `students->workshop_students`.`workshop_id`;

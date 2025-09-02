@@ -16,3 +16,15 @@
 8:28:32 PM [vite] (client) page reload components/ProductForm.tsx
 8:28:32 PM [vite] (client) page reload components/ProductForm.tsx
 8:28:36 PM [vite] (client) page reload components/ProductForm.tsx
+
+> onírico-sur---sistema-de-gestión-teatral@0.0.0 dev
+> vite --host
+
+
+  VITE v6.3.5  ready in 355 ms
+
+  ➜  Local:   http://localhost:5173/
+  ➜  Network: http://69.62.95.248:5173/
+  ➜  Network: http://172.19.0.1:5173/
+10:40:20 PM [vite] (client) ✨ new dependencies optimized: react/jsx-dev-runtime
+10:40:20 PM [vite] (client) ✨ optimized dependencies changed. reloading
