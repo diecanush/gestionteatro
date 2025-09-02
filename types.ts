@@ -88,10 +88,19 @@ export interface SnackBarCombo {
     components: SnackBarComboComponent[];
 }
 
+export interface OrderComboItem {
+    productId: string;
+    productName: string;
+    quantity: number;
+    delivery: SnackBarProductDelivery;
+    isHalf?: boolean;
+}
+
 export interface OrderCombo {
     comboId: string;
     comboName: string;
     price: number;
+    items: OrderComboItem[];
 }
 
 export interface OrderItem {
