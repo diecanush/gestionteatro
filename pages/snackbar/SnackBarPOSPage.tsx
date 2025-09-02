@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { SnackBarProduct, OrderItem, SnackBarSale, SnackBarCombo, OrderCombo } from '../../types';
+import { SnackBarProduct, OrderItem, SnackBarSale, SnackBarCombo, OrderCombo, OrderComboItem } from '../../types';
 import { getSnackBarProducts, getSnackBarCombos, confirmSale } from '../../services/api';
 import Modal from '../../components/Modal';
 import TicketModal from './TicketModal';
@@ -91,8 +91,25 @@ const SnackBarPOSPage: React.FC = () => {
             const selectedProducts = Object.values(selection)
                 .map(id => products.find(p => p.id === id))
                 .filter((p): p is SnackBarProduct => !!p);
+
             selectedProducts.forEach(prod => addToOrder(prod, false, comboToAdd.id));
-            setSelectedCombos([...selectedCombos, { comboId: comboToAdd.id, comboName: comboToAdd.name, price: comboToAdd.price }]);
+
+            const comboItems: OrderComboItem[] = selectedProducts.map(prod => ({
+                productId: prod.id,
+                productName: prod.name,
+                quantity: 1,
+                delivery: prod.delivery,
+            }));
+
+            setSelectedCombos([
+                ...selectedCombos,
+                {
+                    comboId: comboToAdd.id,
+                    comboName: comboToAdd.name,
+                    price: comboToAdd.price,
+                    items: comboItems,
+                },
+            ]);
         }
         setIsComboModalOpen(false);
         setComboToAdd(null);
