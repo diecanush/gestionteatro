@@ -1,5 +1,7 @@
 import axios from 'axios';
+
 import { Workshop, Student, Show, SnackBarProduct, SnackBarProductCategory, SnackBarProductDelivery, KitchenOrder, OrderItem, SnackBarSale, Combo } from '../types';
+
 
 const API_BASE_URL = 'http://69.62.95.248:8080/api';
 
@@ -117,6 +119,31 @@ export const deleteSnackBarProduct = async (id: string): Promise<void> => {
 export const purchaseSnackBarProduct = async (id: string, quantity: number, purchasePrice: number): Promise<SnackBarProduct> => {
     const response = await api.post(`/snackbar/${id}/purchase`, { quantity, purchasePrice });
     return response.data;
+};
+
+
+export const getCombos = async (): Promise<Combo[]> => {
+    const response = await api.get('/combos');
+    return response.data;
+};
+
+export const getComboById = async (id: string): Promise<Combo> => {
+    const response = await api.get(`/combos/${id}`);
+    return response.data;
+};
+
+export const createCombo = async (combo: Omit<Combo, 'id'>): Promise<Combo> => {
+    const response = await api.post('/combos', combo);
+    return response.data;
+};
+
+export const updateCombo = async (id: string, combo: Partial<Combo>): Promise<Combo> => {
+    const response = await api.put(`/combos/${id}`, combo);
+    return response.data;
+};
+
+export const deleteCombo = async (id: string): Promise<void> => {
+    await api.delete(`/combos/${id}`);
 };
 
 export const confirmSale = async (

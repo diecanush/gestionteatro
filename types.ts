@@ -143,4 +143,5 @@ export interface Combo {
   id?: number;
   name: string;
   components: ComboComponent[];
+
 }
