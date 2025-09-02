@@ -2,6 +2,26 @@
 import SnackBarProduct from '../models/SnackBarProduct.js';
 import SnackBarPurchase from '../models/SnackBarPurchase.js';
 
+const combos = [
+  {
+    id: 'combo1',
+    name: 'Combo Pizza + Bebida',
+    price: 7000,
+    components: [
+      { id: 'pizza', name: 'Pizza', options: ['p4', 'p5'] },
+      { id: 'drink', name: 'Bebida', options: ['p1', 'p2', 'p3'] },
+    ],
+  },
+];
+
+export const getSnackBarCombos = async (req, res) => {
+  try {
+    res.json(combos);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 // Get all snack bar products
 export const getSnackBarProducts = async (req, res) => {
   try {
