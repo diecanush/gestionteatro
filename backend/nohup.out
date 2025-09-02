@@ -4623,3 +4623,84 @@ TypeError: Cannot delete property 'meta' of [object Array]
     at async Sequelize.sync (/root/gestionteatro/backend/node_modules/sequelize/lib/sequelize.js:377:9)
 
 Node.js v18.19.1
+Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'workshops' AND TABLE_SCHEMA = 'onirico_sur_db'
+Executing (default): SHOW FULL COLUMNS FROM `workshops`;
+Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'workshops' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='onirico_sur_db' AND REFERENCED_TABLE_NAME IS NOT NULL;
+Executing (default): ALTER TABLE `workshops` CHANGE `name` `name` VARCHAR(255) NOT NULL;
+Executing (default): ALTER TABLE `workshops` CHANGE `schedule` `schedule` VARCHAR(255);
+Executing (default): ALTER TABLE `workshops` CHANGE `startDate` `startDate` DATETIME;
+Executing (default): ALTER TABLE `workshops` CHANGE `endDate` `endDate` DATETIME;
+Executing (default): ALTER TABLE `workshops` CHANGE `teacher` `teacher` VARCHAR(255);
+Executing (default): ALTER TABLE `workshops` CHANGE `fee` `fee` DECIMAL(10,2);
+Executing (default): SHOW INDEX FROM `workshops`
+Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'students' AND TABLE_SCHEMA = 'onirico_sur_db'
+Executing (default): SHOW FULL COLUMNS FROM `students`;
+Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'students' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='onirico_sur_db' AND REFERENCED_TABLE_NAME IS NOT NULL;
+Executing (default): ALTER TABLE `students` CHANGE `lastName` `lastName` VARCHAR(255) NOT NULL;
+Executing (default): ALTER TABLE `students` CHANGE `firstName` `firstName` VARCHAR(255) NOT NULL;
+Executing (default): ALTER TABLE `students` CHANGE `birthDate` `birthDate` DATETIME;
+Executing (default): ALTER TABLE `students` CHANGE `phone` `phone` VARCHAR(255);
+Executing (default): ALTER TABLE `students` CHANGE `email` `email` VARCHAR(255);
+Executing (default): SHOW INDEX FROM `students`
+Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'shows' AND TABLE_SCHEMA = 'onirico_sur_db'
+Executing (default): SHOW FULL COLUMNS FROM `shows`;
+Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'shows' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='onirico_sur_db' AND REFERENCED_TABLE_NAME IS NOT NULL;
+Executing (default): ALTER TABLE `shows` CHANGE `title` `title` VARCHAR(255) NOT NULL;
+Executing (default): ALTER TABLE `shows` CHANGE `description` `description` TEXT;
+Executing (default): ALTER TABLE `shows` CHANGE `producer` `producer` VARCHAR(255);
+Executing (default): ALTER TABLE `shows` CHANGE `date` `date` DATETIME;
+Executing (default): ALTER TABLE `shows` CHANGE `time` `time` TIME;
+Executing (default): ALTER TABLE `shows` CHANGE `hasBar` `hasBar` TINYINT(1);
+Executing (default): ALTER TABLE `shows` CHANGE `capacity` `capacity` INTEGER;
+Executing (default): ALTER TABLE `shows` CHANGE `availableSeats` `availableSeats` INTEGER;
+Executing (default): ALTER TABLE `shows` CHANGE `posterUrl` `posterUrl` VARCHAR(255);
+Executing (default): ALTER TABLE `shows` CHANGE `promoText` `promoText` VARCHAR(255);
+Executing (default): ALTER TABLE `shows` CHANGE `doorPrice` `doorPrice` DECIMAL(10,2);
+Executing (default): ALTER TABLE `shows` CHANGE `advancePrice` `advancePrice` DECIMAL(10,2);
+Executing (default): ALTER TABLE `shows` CHANGE `hasPromo` `hasPromo` TINYINT(1);
+Executing (default): ALTER TABLE `shows` CHANGE `promoName` `promoName` VARCHAR(255);
+Executing (default): ALTER TABLE `shows` CHANGE `promoPrice` `promoPrice` DECIMAL(10,2);
+Executing (default): SHOW INDEX FROM `shows`
+Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'snackbarproducts' AND TABLE_SCHEMA = 'onirico_sur_db'
+Executing (default): SHOW FULL COLUMNS FROM `snackbarproducts`;
+Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'snackbarproducts' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='onirico_sur_db' AND REFERENCED_TABLE_NAME IS NOT NULL;
+Executing (default): ALTER TABLE `snackbarproducts` CHANGE `name` `name` VARCHAR(255) NOT NULL;
+Executing (default): ALTER TABLE `snackbarproducts` CHANGE `category` `category` ENUM('Cerveza', 'Gaseosa', 'Agua', 'Agua Saborizada', 'Pizza', 'Empanada', 'Trago', 'Snack') NOT NULL;
+Executing (default): ALTER TABLE `snackbarproducts` CHANGE `brand` `brand` VARCHAR(255);
+Executing (default): ALTER TABLE `snackbarproducts` CHANGE `size` `size` VARCHAR(255);
+Executing (default): ALTER TABLE `snackbarproducts` CHANGE `purchasePrice` `purchasePrice` DECIMAL(10,2);
+Executing (default): ALTER TABLE `snackbarproducts` CHANGE `sellPrice` `sellPrice` DECIMAL(10,2);
+Executing (default): ALTER TABLE `snackbarproducts` CHANGE `stock` `stock` INTEGER;
+Executing (default): ALTER TABLE `snackbarproducts` CHANGE `delivery` `delivery` ENUM('Barra', 'Cocina');
+Executing (default): ALTER TABLE `snackbarproducts` CHANGE `canBeHalf` `canBeHalf` TINYINT(1);
+Executing (default): ALTER TABLE `snackbarproducts` CHANGE `halfPrice` `halfPrice` DECIMAL(10,2);
+Executing (default): ALTER TABLE `snackbarproducts` CHANGE `createdAt` `createdAt` DATETIME NOT NULL;
+Executing (default): ALTER TABLE `snackbarproducts` CHANGE `updatedAt` `updatedAt` DATETIME NOT NULL;
+Executing (default): SHOW INDEX FROM `snackbarproducts`
+Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'combos' AND TABLE_SCHEMA = 'onirico_sur_db'
+Executing (default): SHOW FULL COLUMNS FROM `combos`;
+Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'combos' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='onirico_sur_db' AND REFERENCED_TABLE_NAME IS NOT NULL;
+Executing (default): ALTER TABLE `combos` CHANGE `name` `name` VARCHAR(255) NOT NULL;
+Executing (default): ALTER TABLE `combos` CHANGE `price` `price` DECIMAL(10,2) NOT NULL;
+Executing (default): SHOW INDEX FROM `combos`
+Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'combo_items' AND TABLE_SCHEMA = 'onirico_sur_db'
+Executing (default): SHOW FULL COLUMNS FROM `combo_items`;
+Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'combo_items' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='onirico_sur_db' AND REFERENCED_TABLE_NAME IS NOT NULL;
+Executing (default): SELECT CONSTRAINT_CATALOG AS constraintCatalog, CONSTRAINT_NAME AS constraintName, CONSTRAINT_SCHEMA AS constraintSchema, CONSTRAINT_TYPE AS constraintType, TABLE_NAME AS tableName, TABLE_SCHEMA AS tableSchema from INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE table_name='combo_items' AND constraint_name = 'combo_items_ibfk_1' AND TABLE_SCHEMA = 'onirico_sur_db';
+Executing (default): ALTER TABLE `combo_items` DROP FOREIGN KEY `combo_items_ibfk_1`;
+Executing (default): ALTER TABLE `combo_items` ADD FOREIGN KEY (`comboId`) REFERENCES `combos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE (REFERENCED_TABLE_NAME = 'combo_items' AND REFERENCED_TABLE_SCHEMA = 'onirico_sur_db' AND REFERENCED_COLUMN_NAME = 'label') OR (TABLE_NAME = 'combo_items' AND TABLE_SCHEMA = 'onirico_sur_db' AND COLUMN_NAME = 'label' AND REFERENCED_TABLE_NAME IS NOT NULL)
+/root/gestionteatro/backend/node_modules/sequelize/lib/dialects/mariadb/query.js:110
+      delete data.meta;
+      ^
+
+TypeError: Cannot delete property 'meta' of [object Array]
+    at Query.formatResults (/root/gestionteatro/backend/node_modules/sequelize/lib/dialects/mariadb/query.js:110:7)
+    at Query.run (/root/gestionteatro/backend/node_modules/sequelize/lib/dialects/mariadb/query.js:73:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async /root/gestionteatro/backend/node_modules/sequelize/lib/sequelize.js:315:16
+    at async MySQLQueryInterface.removeColumn (/root/gestionteatro/backend/node_modules/sequelize/lib/dialects/mysql/query-interface.js:27:23)
+    at async ComboItem.sync (/root/gestionteatro/backend/node_modules/sequelize/lib/model.js:967:13)
+    at async Sequelize.sync (/root/gestionteatro/backend/node_modules/sequelize/lib/sequelize.js:377:9)
+
+Node.js v18.19.1
