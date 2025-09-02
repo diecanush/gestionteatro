@@ -11,7 +11,7 @@ const ComboItem = sequelize.define('ComboItem', {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  label: {
+  name: {
     type: DataTypes.STRING,
     allowNull: false,
   },
