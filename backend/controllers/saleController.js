@@ -1,14 +1,16 @@
 import { KitchenOrder, KitchenOrderItem, SnackBarProduct, SnackBarSale, SnackBarSaleItem, sequelize } from '../models/index.js';
 
 const confirmSale = async (req, res) => {
-    const { order, tableNumber, paymentMethod } = req.body;
+    const { order, combos = [], tableNumber, paymentMethod } = req.body;
     const t = await sequelize.transaction();
 
     try {
         console.log("Received order for confirmation:", JSON.stringify(order, null, 2));
 
         // Calculate total sale amount
-        const totalSaleAmount = order.reduce((acc, item) => acc + (item.unitPrice * item.quantity), 0);
+        const standaloneTotal = order.filter(item => !item.comboId).reduce((acc, item) => acc + (item.unitPrice * item.quantity), 0);
+        const comboTotal = combos.reduce((acc, combo) => acc + combo.price, 0);
+        const totalSaleAmount = standaloneTotal + comboTotal;
 
         // Create SnackBarSale record
         const newSale = await SnackBarSale.create({
@@ -19,12 +21,24 @@ const confirmSale = async (req, res) => {
 
         // Create SnackBarSaleItem records
         for (const item of order) {
+            if (!item.comboId) {
+                await SnackBarSaleItem.create({
+                    saleId: newSale.id,
+                    productName: item.productName,
+                    quantity: item.quantity,
+                    unitPrice: item.unitPrice,
+                    totalPrice: item.unitPrice * item.quantity
+                }, { transaction: t });
+            }
+        }
+
+        for (const combo of combos) {
             await SnackBarSaleItem.create({
                 saleId: newSale.id,
-                productName: item.productName,
-                quantity: item.quantity,
-                unitPrice: item.unitPrice,
-                totalPrice: item.unitPrice * item.quantity
+                productName: combo.comboName,
+                quantity: 1,
+                unitPrice: combo.price,
+                totalPrice: combo.price
             }, { transaction: t });
         }
 

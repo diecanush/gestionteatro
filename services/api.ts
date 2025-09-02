@@ -1,5 +1,7 @@
 import axios from 'axios';
-import { Workshop, Student, Show, SnackBarProduct, SnackBarProductCategory, SnackBarProductDelivery, KitchenOrder, OrderItem, SnackBarSale, Combo} from '../types';
+
+import { Workshop, Student, Show, SnackBarProduct, SnackBarProductCategory, SnackBarProductDelivery, KitchenOrder, OrderItem, SnackBarSale, SnackBarCombo, OrderCombo } from '../types';
+
 
 const API_BASE_URL = 'http://69.62.95.248:8080/api';
 
@@ -95,6 +97,11 @@ export const getSnackBarProducts = async (): Promise<SnackBarProduct[]> => {
     return response.data;
 };
 
+export const getSnackBarCombos = async (): Promise<SnackBarCombo[]> => {
+    const response = await api.get('/snackbar/combos');
+    return response.data;
+};
+
 export const getSnackBarProductById = async (id: string): Promise<SnackBarProduct> => {
     const response = await api.get(`/snackbar/${id}`);
     return response.data;
@@ -147,9 +154,10 @@ export const deleteCombo = async (id: string): Promise<void> => {
 export const confirmSale = async (
     order: OrderItem[],
     tableNumber: number,
-    paymentMethod: 'Efectivo' | 'Transferencia' | 'Tarjeta'
+    paymentMethod: 'Efectivo' | 'Transferencia' | 'Tarjeta',
+    combos: OrderCombo[] = []
 ) => {
-    const response = await api.post('/sales/confirm', { order, tableNumber, paymentMethod });
+    const response = await api.post('/sales/confirm', { order, combos, tableNumber, paymentMethod });
     return response.data;
 };
 
@@ -174,3 +182,19 @@ export const updateKitchenItemStatus = async (itemId: number, status: 'pendiente
     return response.data;
 };
 
+
+// --- Combo API ---
+export const getCombos = async (): Promise<Combo[]> => {
+    const response = await api.get('/combos');
+    return response.data;
+};
+
+export const createCombo = async (combo: Omit<Combo, 'id'>): Promise<Combo> => {
+    const response = await api.post('/combos', combo);
+    return response.data;
+};
+
+export const updateCombo = async (id: number, combo: Omit<Combo, 'id'>): Promise<Combo> => {
+    const response = await api.put(`/combos/${id}`, combo);
+    return response.data;
+};

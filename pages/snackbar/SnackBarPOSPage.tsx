@@ -1,14 +1,17 @@
 
 import React, { useState, useEffect } from 'react';
-import { SnackBarProduct, OrderItem, SnackBarSale } from '../../types';
-import { getSnackBarProducts, confirmSale } from '../../services/api';
+import { SnackBarProduct, OrderItem, SnackBarSale, SnackBarCombo, OrderCombo } from '../../types';
+import { getSnackBarProducts, getSnackBarCombos, confirmSale } from '../../services/api';
 import Modal from '../../components/Modal';
 import TicketModal from './TicketModal';
 import TableNumberModal from './TableNumberModal';
+import ComboModal from './ComboModal';
 
 const SnackBarPOSPage: React.FC = () => {
     const [products, setProducts] = useState<SnackBarProduct[]>([]);
+    const [combos, setCombos] = useState<SnackBarCombo[]>([]);
     const [order, setOrder] = useState<OrderItem[]>([]);
+    const [selectedCombos, setSelectedCombos] = useState<OrderCombo[]>([]);
     const [tableNumber, setTableNumber] = useState<number>(0);
 
     const [customerName, setCustomerName] = useState<string>('');
@@ -17,22 +20,29 @@ const SnackBarPOSPage: React.FC = () => {
     const [isTicketModalOpen, setIsTicketModalOpen] = useState(false);
     const [isTableModalOpen, setIsTableModalOpen] = useState(true);
     const [pizzaToAdd, setPizzaToAdd] = useState<SnackBarProduct | null>(null);
+    const [isComboModalOpen, setIsComboModalOpen] = useState(false);
+    const [comboToAdd, setComboToAdd] = useState<SnackBarCombo | null>(null);
     const [lastSale, setLastSale] = useState<SnackBarSale | null>(null);
     const [paymentMethod, setPaymentMethod] = useState<'Efectivo' | 'Transferencia' | 'Tarjeta'>('Efectivo');
 
     useEffect(() => {
-        const fetchProducts = async () => {
+        const fetchData = async () => {
             setLoading(true);
-            const data = await getSnackBarProducts();
-            setProducts(data);
+            const [productsData, combosData] = await Promise.all([
+                getSnackBarProducts(),
+                getSnackBarCombos(),
+            ]);
+            setProducts(productsData);
+            setCombos(combosData);
             setLoading(false);
         };
-        fetchProducts();
+        fetchData();
     }, []);
     
-    const addToOrder = (product: SnackBarProduct, isHalf: boolean = false) => {
-        const price = isHalf && product.halfPrice ? product.halfPrice : product.sellPrice;
-        const existingItemIndex = order.findIndex(item => item.productId === product.id && item.isHalf === isHalf);
+    const addToOrder = (product: SnackBarProduct, isHalf: boolean = false, comboId?: string) => {
+        let price = isHalf && product.halfPrice ? product.halfPrice : product.sellPrice;
+        if (comboId) price = 0;
+        const existingItemIndex = order.findIndex(item => item.productId === product.id && item.isHalf === isHalf && item.comboId === comboId);
         
         if (existingItemIndex > -1) {
             const newOrder = [...order];
@@ -48,6 +58,7 @@ const SnackBarPOSPage: React.FC = () => {
                 totalPrice: price,
                 isHalf: isHalf,
                 delivery: product.delivery,
+                comboId,
             };
             setOrder([...order, newItem]);
         }
@@ -61,6 +72,11 @@ const SnackBarPOSPage: React.FC = () => {
             addToOrder(product);
         }
     };
+
+    const handleComboClick = (combo: SnackBarCombo) => {
+        setComboToAdd(combo);
+        setIsComboModalOpen(true);
+    };
     
     const handlePizzaSelection = (isHalf: boolean) => {
         if(pizzaToAdd) {
@@ -70,14 +86,27 @@ const SnackBarPOSPage: React.FC = () => {
         setPizzaToAdd(null);
     };
 
+    const handleComboConfirm = (selection: { [componentId: string]: string }) => {
+        if (comboToAdd) {
+            const selectedProducts = Object.values(selection)
+                .map(id => products.find(p => p.id === id))
+                .filter((p): p is SnackBarProduct => !!p);
+            selectedProducts.forEach(prod => addToOrder(prod, false, comboToAdd.id));
+            setSelectedCombos([...selectedCombos, { comboId: comboToAdd.id, comboName: comboToAdd.name, price: comboToAdd.price }]);
+        }
+        setIsComboModalOpen(false);
+        setComboToAdd(null);
+    };
+
     const handleConfirmSale = async () => {
-        if (order.length === 0) return;
+        if (order.length === 0 && selectedCombos.length === 0) return;
 
         try {
             const result = await confirmSale(
                 order.map(item => ({ ...item, isHalf: item.isHalf || false })),
                 tableNumber,
-                paymentMethod
+                paymentMethod,
+                selectedCombos
             );
             setLastSale(result.sale);
             setIsTicketModalOpen(true);
@@ -86,6 +115,7 @@ const SnackBarPOSPage: React.FC = () => {
             await printSaleTicket(result.sale);
 
             setOrder([]);
+            setSelectedCombos([]);
             setTableNumber(0);
             setCustomerName('');
             setPaymentMethod('Efectivo');
@@ -127,9 +157,11 @@ const SnackBarPOSPage: React.FC = () => {
         }
     };
 
-    const total = order.reduce((sum, item) => sum + item.totalPrice, 0);
+    const totalStandalone = order.filter(item => !item.comboId).reduce((sum, item) => sum + item.totalPrice, 0);
+    const comboTotal = selectedCombos.reduce((sum, c) => sum + c.price, 0);
+    const total = totalStandalone + comboTotal;
 
-    const categories = [...new Set(products.map(p => p.category))];
+    const categories = [...new Set(products.map(p => p.category)), ...(combos.length ? ['Combos'] : [])];
 
     return (
         <div className="flex flex-col lg:flex-row gap-6 h-screen lg:max-h-[calc(100vh-140px)]">
@@ -142,13 +174,21 @@ const SnackBarPOSPage: React.FC = () => {
                              <div key={category}>
                                  <h4 className="text-lg font-semibold text-brand-accent mb-2">{category}</h4>
                                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
-                                {products.filter(p => p.category === category).map(product => (
-                                    <button key={product.id} onClick={() => handleProductClick(product)}
-                                        className="bg-gray-100 dark:bg-brand-blue text-left p-3 rounded-lg hover:bg-gray-200 dark:hover:bg-opacity-80 transition-colors focus:outline-none focus:ring-2 focus:ring-brand-accent">
-                                        <p className="font-bold text-gray-800 dark:text-white">{product.name}</p>
-                                        <p className="text-sm text-gray-600 dark:text-gray-300">${product.sellPrice.toLocaleString()}</p>
-                                    </button>
-                                ))}
+                                {category === 'Combos'
+                                    ? combos.map(combo => (
+                                        <button key={combo.id} onClick={() => handleComboClick(combo)}
+                                            className="bg-gray-100 dark:bg-brand-blue text-left p-3 rounded-lg hover:bg-gray-200 dark:hover:bg-opacity-80 transition-colors focus:outline-none focus:ring-2 focus:ring-brand-accent">
+                                            <p className="font-bold text-gray-800 dark:text-white">{combo.name}</p>
+                                            <p className="text-sm text-gray-600 dark:text-gray-300">${combo.price.toLocaleString()}</p>
+                                        </button>
+                                    ))
+                                    : products.filter(p => p.category === category).map(product => (
+                                        <button key={product.id} onClick={() => handleProductClick(product)}
+                                            className="bg-gray-100 dark:bg-brand-blue text-left p-3 rounded-lg hover:bg-gray-200 dark:hover:bg-opacity-80 transition-colors focus:outline-none focus:ring-2 focus:ring-brand-accent">
+                                            <p className="font-bold text-gray-800 dark:text-white">{product.name}</p>
+                                            <p className="text-sm text-gray-600 dark:text-gray-300">${product.sellPrice.toLocaleString()}</p>
+                                        </button>
+                                    ))}
                                  </div>
                             </div>
                         ))}
@@ -175,10 +215,10 @@ const SnackBarPOSPage: React.FC = () => {
                             {order.map((item, index) => (
                                 <li key={index} className="flex justify-between items-center bg-gray-100 dark:bg-brand-dark p-2 rounded">
                                     <div>
-                                        <p className="font-semibold text-gray-800 dark:text-white">{item.productName}</p>
-                                        <p className="text-xs text-gray-500 dark:text-gray-400">{item.quantity} x ${item.unitPrice.toLocaleString()}</p>
+                                        <p className="font-semibold text-gray-800 dark:text-white">{item.productName}{item.comboId ? ' (Combo)' : ''}</p>
+                                        <p className="text-xs text-gray-500 dark:text-gray-400">{item.quantity} x {item.comboId ? 'Incluido' : `$${item.unitPrice.toLocaleString()}`}</p>
                                     </div>
-                                    <p className="font-bold text-lg text-gray-800 dark:text-white">${item.totalPrice.toLocaleString()}</p>
+                                    <p className="font-bold text-lg text-gray-800 dark:text-white">{item.comboId ? 'Incluido' : `$${item.totalPrice.toLocaleString()}`}</p>
                                 </li>
                             ))}
                         </ul>
@@ -225,6 +265,14 @@ const SnackBarPOSPage: React.FC = () => {
                     </div>
                 </div>
             </Modal>
+
+            <ComboModal
+                isOpen={isComboModalOpen}
+                combo={comboToAdd}
+                products={products}
+                onConfirm={handleComboConfirm}
+                onClose={() => setIsComboModalOpen(false)}
+            />
 
             {lastSale && (
                 <TicketModal

@@ -75,6 +75,25 @@ export interface SnackBarProduct {
     halfPrice?: number;
 }
 
+export interface SnackBarComboComponent {
+    id: string;
+    name: string;
+    options: string[]; // product IDs allowed for this component
+}
+
+export interface SnackBarCombo {
+    id: string;
+    name: string;
+    price: number;
+    components: SnackBarComboComponent[];
+}
+
+export interface OrderCombo {
+    comboId: string;
+    comboName: string;
+    price: number;
+}
+
 export interface OrderItem {
     productId: string;
     productName: string;
@@ -83,6 +102,7 @@ export interface OrderItem {
     totalPrice: number;
     isHalf?: boolean;
     delivery: SnackBarProductDelivery;
+    comboId?: string;
 }
 
 export interface TicketSale {
@@ -133,16 +153,15 @@ export interface SnackBarSale {
 }
 
 
-export interface ComboItem {
-  id: number;
-  comboId: string;
-  label: string;
-  options: SnackBarProduct[];
+export interface ComboComponent {
+  id?: number;
+  name: string;
+  productIds: string[];
 }
 
 export interface Combo {
-  id: string;
+  id?: number;
   name: string;
-  price: number;
-  items: ComboItem[];
+  components: ComboComponent[];
+
 }
