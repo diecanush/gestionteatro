@@ -10,5 +10,6 @@ router.get('/', kitchenOrderController.getAllOrders);
 
 // PATCH to update an order's status (e.g., from 'pending' to 'ready')
 router.patch('/:id/status', kitchenOrderController.updateOrderStatus);
+router.patch('/items/:id/status', kitchenOrderController.updateItemStatus);
 
 export default router;

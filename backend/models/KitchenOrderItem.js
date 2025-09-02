@@ -22,6 +22,11 @@ export default (sequelize, DataTypes) => {
       type: DataTypes.DECIMAL(10, 2),
       allowNull: false
     },
+    status: {
+      type: DataTypes.ENUM('pendiente', 'listo', 'entregado'),
+      allowNull: false,
+      defaultValue: 'pendiente'
+    },
     ishalf: {
       type: DataTypes.BOOLEAN,
       allowNull: false,

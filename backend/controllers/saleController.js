@@ -47,6 +47,7 @@ const confirmSale = async (req, res) => {
                     quantity: item.quantity,
                     price_at_sale: item.unitPrice,
                     ishalf: item.isHalf || false,
+                    status: 'pendiente'
                 }, { transaction: t });
             }
         }

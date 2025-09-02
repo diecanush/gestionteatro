@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { getKitchenOrders, updateOrderStatus } from '../../services/api';
+import { getKitchenOrders, updateKitchenItemStatus } from '../../services/api';
 import { KitchenOrder, KitchenOrderItem } from '../../types';
-import { Card } from '../../components/Card';
-import { Tag, Clock, CheckCircle, ArrowRight } from 'lucide-react';
+import { Tag, Clock } from 'lucide-react';
 
-const OrderCard = ({ order, onStatusChange }: { order: KitchenOrder, onStatusChange: (id: number, status: 'listo' | 'entregado') => void }) => {
+const OrderCard = ({ order, onItemStatusChange }: { order: KitchenOrder, onItemStatusChange: (orderId: number, itemId: number, status: 'pendiente' | 'listo' | 'entregado') => void }) => {
 
     const getStatusColor = () => {
         switch (order.status) {
@@ -14,11 +13,11 @@ const OrderCard = ({ order, onStatusChange }: { order: KitchenOrder, onStatusCha
         }
     };
 
-    const handleNextStatus = () => {
-        if (order.status === 'pendiente') {
-            onStatusChange(order.id, 'listo');
-        } else if (order.status === 'listo') {
-            onStatusChange(order.id, 'entregado');
+    const getItemColor = (status: string) => {
+        switch (status) {
+            case 'pendiente': return 'bg-yellow-200 dark:bg-yellow-600';
+            case 'listo': return 'bg-green-200 dark:bg-green-600';
+            default: return 'bg-blue-200 dark:bg-blue-600';
         }
     };
 
@@ -62,24 +61,23 @@ const OrderCard = ({ order, onStatusChange }: { order: KitchenOrder, onStatusCha
                     </span>
                 </div>
                 <ul className="space-y-2">
-                    {order.items.map((item: KitchenOrderItem) => (
-                        <li key={item.id} className="flex items-center text-lg text-gray-800 dark:text-white">
-                            <Tag size={16} className="mr-2 text-gray-600 dark:text-gray-400" />
-                            <span className="font-semibold mr-2">{item.quantity}x</span>
-                            <span>{item.product.name}{item.ishalf ? ' (1/2)' : ''}</span>
-                        </li>
-                    ))}
+                    {order.items.map((item: KitchenOrderItem) => {
+                        const nextStatus = item.status === 'pendiente' ? 'listo' : item.status === 'listo' ? 'entregado' : 'pendiente';
+                        return (
+                            <li key={item.id}>
+                                <button
+                                    onClick={() => onItemStatusChange(order.id, item.id, nextStatus)}
+                                    className={`w-full flex items-center text-lg text-gray-800 dark:text-white p-2 rounded-md ${getItemColor(item.status)} transition-colors`}
+                                >
+                                    <Tag size={16} className="mr-2 text-gray-600 dark:text-gray-400" />
+                                    <span className="font-semibold mr-2">{item.quantity}x</span>
+                                    <span>{item.product.name}{item.ishalf ? ' (1/2)' : ''}</span>
+                                </button>
+                            </li>
+                        );
+                    })}
                 </ul>
             </div>
-            {order.status !== 'entregado' && (
-                 <button 
-                    onClick={handleNextStatus}
-                    className={`mt-4 w-full py-2 px-4 rounded-md text-white font-semibold flex items-center justify-center transition-colors 
-                        ${order.status === 'pendiente' ? 'bg-blue-600 hover:bg-blue-700' : 'bg-green-600 hover:bg-green-700'}`}>
-                    {order.status === 'pendiente' ? 'Marcar como Listo' : 'Marcar como Entregado'}
-                    {order.status === 'pendiente' ? <CheckCircle size={20} className="ml-2"/> : <ArrowRight size={20} className="ml-2"/>}
-                </button>
-            )}
         </div>
     );
 };
@@ -87,7 +85,6 @@ const OrderCard = ({ order, onStatusChange }: { order: KitchenOrder, onStatusCha
 export const KitchenDisplayPage = () => {
     const [orders, setOrders] = useState<KitchenOrder[]>([]);
     const [error, setError] = useState<string | null>(null);
-    const [loading, setLoading] = useState<boolean>(true);
 
     const fetchOrders = async () => {
         try {
@@ -105,13 +102,26 @@ export const KitchenDisplayPage = () => {
         return () => clearInterval(interval); // Cleanup on unmount
     }, []);
 
-    const handleStatusChange = async (id: number, status: 'listo' | 'entregado') => {
+    const handleItemStatusChange = async (orderId: number, itemId: number, status: 'pendiente' | 'listo' | 'entregado') => {
         try {
-            await updateOrderStatus(id, status);
-            // Optimistically update UI
-            setOrders(prevOrders => prevOrders.map(o => o.id === id ? { ...o, status } : o).filter(o => o.status !== 'entregado'));
+            await updateKitchenItemStatus(itemId, status);
+            setOrders(prevOrders => prevOrders
+                .map(o => {
+                    if (o.id !== orderId) return o;
+                    const updatedItems = o.items.map(i => i.id === itemId ? { ...i, status } : i);
+                    const statuses = updatedItems.map(i => i.status);
+                    let newStatus: 'pendiente' | 'listo' | 'entregado' = 'pendiente';
+                    if (statuses.every(s => s === 'entregado')) {
+                        newStatus = 'entregado';
+                    } else if (statuses.every(s => s !== 'pendiente')) {
+                        newStatus = 'listo';
+                    }
+                    return { ...o, items: updatedItems, status: newStatus };
+                })
+                .filter(o => o.status !== 'entregado')
+            );
         } catch (err) {
-            setError('No se pudo actualizar la comanda.');
+            setError('No se pudo actualizar el producto.');
             console.error(err);
         }
     };
@@ -124,7 +134,7 @@ export const KitchenDisplayPage = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
                 {orders.length > 0 ? (
                     orders.map(order => (
-                        <OrderCard key={order.id} order={order} onStatusChange={handleStatusChange} />
+                        <OrderCard key={order.id} order={order} onItemStatusChange={handleItemStatusChange} />
                     ))
                 ) : (
                     <div className="col-span-full text-center py-10">

@@ -144,3 +144,8 @@ export const updateOrderStatus = async (orderId: number, status: 'pendiente' | '
     return response.data;
 };
 
+export const updateKitchenItemStatus = async (itemId: number, status: 'pendiente' | 'listo' | 'entregado') => {
+    const response = await api.patch(`/kitchen/items/${itemId}/status`, { status });
+    return response.data;
+};
+
