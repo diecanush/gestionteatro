@@ -153,3 +153,15 @@ export interface SnackBarSale {
 }
 
 
+export interface ComboComponent {
+  id?: number;
+  name: string;
+  productIds: string[];
+}
+
+export interface Combo {
+  id?: number;
+  name: string;
+  components: ComboComponent[];
+
+}
