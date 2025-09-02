@@ -3,15 +3,17 @@ import React, { useState, useEffect } from 'react';
 import { SnackBarProduct, OrderItem, SnackBarSale } from '../../types';
 import { getSnackBarProducts, confirmSale } from '../../services/api';
 import Modal from '../../components/Modal';
-import TicketModal from './TicketModal'; // Assuming this will be the new component
+import TicketModal from './TicketModal';
+import TableNumberModal from './TableNumberModal';
 
 const SnackBarPOSPage: React.FC = () => {
     const [products, setProducts] = useState<SnackBarProduct[]>([]);
     const [order, setOrder] = useState<OrderItem[]>([]);
-    const [tableNumber, setTableNumber] = useState<number | ''>(0);
+    const [tableNumber, setTableNumber] = useState<number>(0);
     const [loading, setLoading] = useState(true);
     const [isPizzaModalOpen, setIsPizzaModalOpen] = useState(false);
     const [isTicketModalOpen, setIsTicketModalOpen] = useState(false);
+    const [isTableModalOpen, setIsTableModalOpen] = useState(true);
     const [pizzaToAdd, setPizzaToAdd] = useState<SnackBarProduct | null>(null);
     const [lastSale, setLastSale] = useState<SnackBarSale | null>(null);
     const [paymentMethod, setPaymentMethod] = useState<'Efectivo' | 'Transferencia' | 'Tarjeta'>('Efectivo');
@@ -68,14 +70,14 @@ const SnackBarPOSPage: React.FC = () => {
 
     const handleConfirmSale = async () => {
         if (order.length === 0) return;
-        if (tableNumber === '') {
-            alert("Por favor, ingrese un número de mesa válido.");
+        if (!tableNumber) {
+            alert("Por favor, seleccione un número de mesa válido.");
             return;
         }
         try {
             const result = await confirmSale(
                 order.map(item => ({ ...item, isHalf: item.isHalf || false })),
-                tableNumber as number,
+                tableNumber,
                 paymentMethod
             );
             setLastSale(result.sale);
@@ -158,15 +160,8 @@ const SnackBarPOSPage: React.FC = () => {
                 <div className="flex justify-between items-center mb-4">
                     <h3 className="text-xl font-bold text-gray-800 dark:text-white">Pedido Actual</h3>
                     <div className="flex items-center">
-                        <label htmlFor="tableNumber" className="text-sm font-medium text-gray-700 dark:text-gray-300 mr-2">Mesa:</label>
-                        <input
-                            type="number"
-                            id="tableNumber"
-                            value={tableNumber}
-                            onChange={(e) => setTableNumber(e.target.value === '' ? '' : parseInt(e.target.value))}
-                            className="w-20 rounded-md border-gray-300 shadow-sm focus:border-brand-accent focus:ring-brand-accent sm:text-sm dark:bg-brand-dark dark:border-gray-600 dark:text-white text-center"
-                            placeholder="#"
-                        />
+                        <span className="text-sm font-medium text-gray-700 dark:text-gray-300 mr-2">Mesa:</span>
+                        <span className="text-lg font-bold text-gray-800 dark:text-white">{tableNumber || '--'}</span>
                     </div>
                 </div>
                 <div className="flex-grow overflow-y-auto pr-2">
@@ -229,12 +224,23 @@ const SnackBarPOSPage: React.FC = () => {
             </Modal>
 
             {lastSale && (
-                <TicketModal 
-                    isOpen={isTicketModalOpen} 
-                    onClose={() => setIsTicketModalOpen(false)} 
-                    sale={lastSale} 
+                <TicketModal
+                    isOpen={isTicketModalOpen}
+                    onClose={() => {
+                        setIsTicketModalOpen(false);
+                        setIsTableModalOpen(true);
+                    }}
+                    sale={lastSale}
                 />
             )}
+
+            <TableNumberModal
+                isOpen={isTableModalOpen}
+                onSelect={(num) => {
+                    setTableNumber(num);
+                    setIsTableModalOpen(false);
+                }}
+            />
         </div>
     );
 };
