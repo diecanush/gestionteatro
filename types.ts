@@ -133,3 +133,16 @@ export interface SnackBarSale {
 }
 
 
+export interface ComboItem {
+  id: number;
+  comboId: string;
+  label: string;
+  options: SnackBarProduct[];
+}
+
+export interface Combo {
+  id: string;
+  name: string;
+  price: number;
+  items: ComboItem[];
+}
