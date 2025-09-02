@@ -16,6 +16,7 @@ const SnackBarPOSPage: React.FC = () => {
 
     const [customerName, setCustomerName] = useState<string>('');
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
     const [isPizzaModalOpen, setIsPizzaModalOpen] = useState(false);
     const [isTicketModalOpen, setIsTicketModalOpen] = useState(false);
     const [isTableModalOpen, setIsTableModalOpen] = useState(true);
@@ -25,18 +26,26 @@ const SnackBarPOSPage: React.FC = () => {
     const [lastSale, setLastSale] = useState<SnackBarSale | null>(null);
     const [paymentMethod, setPaymentMethod] = useState<'Efectivo' | 'Transferencia' | 'Tarjeta'>('Efectivo');
 
-    useEffect(() => {
-        const fetchData = async () => {
+    const fetchProducts = async () => {
+        try {
             setLoading(true);
+            setError(null);
             const [productsData, combosData] = await Promise.all([
                 getSnackBarProducts(),
                 getSnackBarCombos(),
             ]);
             setProducts(productsData);
             setCombos(combosData);
+        } catch (err) {
+            console.error(err);
+            setError('Error al cargar los productos y combos.');
+        } finally {
             setLoading(false);
-        };
-        fetchData();
+        }
+    };
+
+    useEffect(() => {
+        fetchProducts();
     }, []);
     
     const addToOrder = (product: SnackBarProduct, isHalf: boolean = false, comboId?: string) => {
@@ -185,7 +194,11 @@ const SnackBarPOSPage: React.FC = () => {
             {/* Products */}
             <div className="flex-grow lg:w-2/3 w-full bg-white dark:bg-brand-navy p-4 rounded-lg shadow-lg overflow-y-auto lg:h-auto h-2/3">
                 <h3 className="text-xl font-bold mb-4 text-gray-800 dark:text-white">Productos</h3>
-                {loading ? <p className="text-gray-700 dark:text-gray-300">Cargando...</p> : (
+                {error ? (
+                    <p className="text-red-500 bg-red-100 p-3 rounded">{error}</p>
+                ) : loading ? (
+                    <p className="text-gray-700 dark:text-gray-300">Cargando...</p>
+                ) : (
                     <div className="space-y-6">
                         {categories.map(category => (
                              <div key={category}>
