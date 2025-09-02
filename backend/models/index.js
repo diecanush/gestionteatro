@@ -1,4 +1,3 @@
-
 import { DataTypes } from 'sequelize';
 import sequelize from '../config/database.js'; // Import sequelize instance
 
@@ -7,6 +6,8 @@ import Workshop from './Workshop.js';
 import Student from './Student.js';
 import Show from './Show.js';
 import SnackBarProduct from './SnackBarProduct.js';
+import Combo from './Combo.js';
+import ComboItem from './ComboItem.js';
 
 // Import model functions and initialize them
 import _KitchenOrder from './KitchenOrder.js';
@@ -33,6 +34,26 @@ KitchenOrderItem.belongsTo(SnackBarProduct, { as: 'product', foreignKey: 'produc
 SnackBarProduct.hasMany(SnackBarPurchase, { as: 'purchases', foreignKey: 'product_id' });
 SnackBarPurchase.belongsTo(SnackBarProduct, { as: 'product', foreignKey: 'product_id' });
 
+// Combo-ComboItem Association
+Combo.hasMany(ComboItem, { as: 'items', foreignKey: 'comboId' });
+ComboItem.belongsTo(Combo, { as: 'combo', foreignKey: 'comboId' });
+
+// ComboItem-SnackBarProduct Association (options)
+ComboItem.belongsToMany(SnackBarProduct, {
+  through: 'comboitem_products',
+  as: 'options',
+  foreignKey: 'combo_item_id',
+  otherKey: 'product_id',
+  timestamps: false,
+});
+SnackBarProduct.belongsToMany(ComboItem, {
+  through: 'comboitem_products',
+  as: 'comboItems',
+  foreignKey: 'product_id',
+  otherKey: 'combo_item_id',
+  timestamps: false,
+});
+
 // Import model functions and initialize them
 import _SnackBarSale from './SnackBarSale.js';
 import _SnackBarSaleItem from './SnackBarSaleItem.js';
@@ -44,5 +65,17 @@ const SnackBarSaleItem = _SnackBarSaleItem(sequelize, DataTypes);
 SnackBarSale.hasMany(SnackBarSaleItem, { as: 'items', foreignKey: 'sale_id' });
 SnackBarSaleItem.belongsTo(SnackBarSale, { as: 'sale', foreignKey: 'sale_id' });
 
-
-export { Workshop, Student, Show, SnackBarProduct, KitchenOrder, KitchenOrderItem, SnackBarPurchase, SnackBarSale, SnackBarSaleItem, sequelize };
+export {
+  Workshop,
+  Student,
+  Show,
+  SnackBarProduct,
+  Combo,
+  ComboItem,
+  KitchenOrder,
+  KitchenOrderItem,
+  SnackBarPurchase,
+  SnackBarSale,
+  SnackBarSaleItem,
+  sequelize,
+};

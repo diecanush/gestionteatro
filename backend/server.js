@@ -7,6 +7,7 @@ import showRoutes from './routes/shows.js';
 import snackbarRoutes from './routes/snackbar.js';
 import kitchenRoutes from './routes/kitchen.js';
 import salesRoutes from './routes/sales.js'; // New import
+import comboRoutes from './routes/combos.js';
 
 const app = express();
 app.use(cors());
@@ -17,6 +18,7 @@ app.use('/api/shows', showRoutes);
 app.use('/api/snackbar', snackbarRoutes);
 app.use('/api/kitchen', kitchenRoutes);
 app.use('/api/sales', salesRoutes); // New route
+app.use('/api/combos', comboRoutes);
 
 const PORT = process.env.PORT || 8080;
 
