@@ -1,5 +1,7 @@
 import axios from 'axios';
-import { Workshop, Student, Show, SnackBarProduct, SnackBarProductCategory, SnackBarProductDelivery, KitchenOrder, OrderItem, SnackBarSale, Combo} from '../types';
+
+import { Workshop, Student, Show, SnackBarProduct, SnackBarProductCategory, SnackBarProductDelivery, KitchenOrder, OrderItem, SnackBarSale, Combo } from '../types';
+
 
 const API_BASE_URL = 'http://69.62.95.248:8080/api';
 
@@ -174,3 +176,19 @@ export const updateKitchenItemStatus = async (itemId: number, status: 'pendiente
     return response.data;
 };
 
+
+// --- Combo API ---
+export const getCombos = async (): Promise<Combo[]> => {
+    const response = await api.get('/combos');
+    return response.data;
+};
+
+export const createCombo = async (combo: Omit<Combo, 'id'>): Promise<Combo> => {
+    const response = await api.post('/combos', combo);
+    return response.data;
+};
+
+export const updateCombo = async (id: number, combo: Omit<Combo, 'id'>): Promise<Combo> => {
+    const response = await api.put(`/combos/${id}`, combo);
+    return response.data;
+};
