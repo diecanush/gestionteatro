@@ -31,7 +31,7 @@ const TableNumberModal: React.FC<TableNumberModalProps> = ({ isOpen, onSelect })
                     className="w-full p-2 border rounded bg-white dark:bg-brand-blue text-gray-800 dark:text-white placeholder-gray-500 dark:placeholder-gray-300"
                 />
             </div>
-=
+
             <div className="grid grid-cols-5 gap-4">
                 {numbers.map(num => (
                     <button
