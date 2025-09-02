@@ -10,6 +10,11 @@ const ComboItem = sequelize.define('ComboItem', {
   comboId: {
     type: DataTypes.STRING,
     allowNull: false,
+    references: {
+      model: 'combos',
+      key: 'id',
+    },
+    field: 'combo_id',
   },
   name: {
     type: DataTypes.STRING,

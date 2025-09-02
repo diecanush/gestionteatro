@@ -5,6 +5,7 @@ const Combo = sequelize.define('Combo', {
   id: {
     type: DataTypes.STRING,
     primaryKey: true,
+    allowNull: false,
   },
   name: {
     type: DataTypes.STRING,
