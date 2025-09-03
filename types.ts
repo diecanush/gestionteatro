@@ -79,6 +79,7 @@ export interface SnackBarComboComponent {
     id: string;
     name: string;
     options: string[]; // product IDs allowed for this component
+    quantity: number;
 }
 
 export interface SnackBarCombo {
