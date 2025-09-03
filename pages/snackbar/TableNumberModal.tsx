@@ -5,12 +5,11 @@ import Modal from '../../components/Modal';
 
 interface TableNumberModalProps {
     isOpen: boolean;
-
     onSelect: (number: number, customerName?: string) => void;
-
+    onClose?: () => void;
 }
 
-const TableNumberModal: React.FC<TableNumberModalProps> = ({ isOpen, onSelect }) => {
+const TableNumberModal: React.FC<TableNumberModalProps> = ({ isOpen, onSelect, onClose }) => {
     const numbers = Array.from({ length: 20 }, (_, i) => i + 1);
 
     const [customerName, setCustomerName] = useState('');
@@ -21,7 +20,7 @@ const TableNumberModal: React.FC<TableNumberModalProps> = ({ isOpen, onSelect })
     };
 
     return (
-        <Modal isOpen={isOpen} onClose={() => {}} title="Seleccionar mesa" hideCloseButton>
+        <Modal isOpen={isOpen} onClose={onClose ?? (() => {})} title="Seleccionar mesa">
             <div className="mb-4">
                 <input
                     type="text"

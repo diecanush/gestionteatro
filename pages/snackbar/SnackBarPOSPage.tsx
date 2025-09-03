@@ -1,11 +1,12 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { SnackBarProduct, OrderItem, SnackBarSale, SnackBarCombo, OrderCombo, OrderComboItem } from '../../types';
 import { getSnackBarProducts, getSnackBarCombos, confirmSale } from '../../services/api';
 import Modal from '../../components/Modal';
 import TicketModal from './TicketModal';
 import TableNumberModal from './TableNumberModal';
 import ComboModal from './ComboModal';
+import { useLocation } from 'react-router-dom';
 
 const SnackBarPOSPage: React.FC = () => {
     const [products, setProducts] = useState<SnackBarProduct[]>([]);
@@ -25,6 +26,15 @@ const SnackBarPOSPage: React.FC = () => {
     const [comboToAdd, setComboToAdd] = useState<SnackBarCombo | null>(null);
     const [lastSale, setLastSale] = useState<SnackBarSale | null>(null);
     const [paymentMethod, setPaymentMethod] = useState<'Efectivo' | 'Transferencia' | 'Tarjeta'>('Efectivo');
+
+    const location = useLocation();
+    const initialPath = useRef(location.pathname);
+
+    useEffect(() => {
+        if (location.pathname !== initialPath.current) {
+            setIsTableModalOpen(false);
+        }
+    }, [location.pathname]);
 
     const fetchProducts = async () => {
         try {
@@ -323,6 +333,7 @@ const SnackBarPOSPage: React.FC = () => {
 
                     setIsTableModalOpen(false);
                 }}
+                onClose={() => setIsTableModalOpen(false)}
             />
         </div>
     );
