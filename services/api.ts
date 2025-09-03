@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { Workshop, Student, Show, SnackBarProduct, SnackBarProductCategory, SnackBarProductDelivery, KitchenOrder, OrderItem, SnackBarSale, SnackBarCombo, OrderCombo, Combo } from '../types';
+import { Workshop, Student, Show, SnackBarProduct, SnackBarProductCategory, SnackBarProductDelivery, KitchenOrder, OrderItem, SnackBarSale, OrderCombo, Combo } from '../types';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '/api';
 
@@ -93,11 +93,6 @@ export const getShowById = async (id: string): Promise<Show> => {
 
 export const getSnackBarProducts = async (): Promise<SnackBarProduct[]> => {
     const response = await api.get('/snackbar');
-    return response.data;
-};
-
-export const getSnackBarCombos = async (): Promise<SnackBarCombo[]> => {
-    const response = await api.get('/snackbar/combos');
     return response.data;
 };
 

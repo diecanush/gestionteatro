@@ -75,19 +75,6 @@ export interface SnackBarProduct {
     halfPrice?: number;
 }
 
-export interface SnackBarComboComponent {
-    id: string;
-    name: string;
-    options: string[]; // product IDs allowed for this component
-}
-
-export interface SnackBarCombo {
-    id: string;
-    name: string;
-    price: number;
-    components: SnackBarComboComponent[];
-}
-
 export interface OrderComboItem {
     productId: string;
     productName: string;
