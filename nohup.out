@@ -39,3 +39,14 @@
 2:38:50 PM [vite] (client) page reload pages/snackbar/SnackBarPOSPage.tsx
 2:38:50 PM [vite] (client) page reload services/api.ts
 2:38:50 PM [vite] (client) page reload types.ts
+
+> onírico-sur---sistema-de-gestión-teatral@0.0.0 dev
+> vite --host
+
+Port 5173 is in use, trying another one...
+
+  VITE v6.3.5  ready in 673 ms
+
+  ➜  Local:   http://localhost:5174/
+  ➜  Network: http://69.62.95.248:5174/
+  ➜  Network: http://172.19.0.1:5174/
