@@ -137,3 +137,133 @@ Port 5173 is in use, trying another one...
 3:32:28 PM [vite] (client) page reload types.ts
 3:33:01 PM [vite] (client) page reload types.ts
 3:33:10 PM [vite] (client) page reload types.ts
+3:36:57 PM [vite] (client) page reload types.ts
+3:36:58 PM [vite] (client) Pre-transform error: Transform failed with 1 error:
+/root/gestionteatro/types.ts:50:3: ERROR: Expected "," after "B" in enum
+  Plugin: vite:esbuild
+  File: /root/gestionteatro/types.ts:50:3
+  
+  Expected "," after "B" in enum
+  48 |  export enum SnackBarProductCategory {
+  49 |    Drink = "Bebida",
+  50 |    B
+     |     ^
+  51 |    Pizza = "Pizza",
+  52 |    Empanada = "Empanada",
+  
+3:36:58 PM [vite] (client) Pre-transform error: Transform failed with 1 error:
+/root/gestionteatro/types.ts:50:3: ERROR: Expected "," after "B" in enum
+  Plugin: vite:esbuild
+  File: /root/gestionteatro/types.ts:50:3
+  
+  Expected "," after "B" in enum
+  48 |  export enum SnackBarProductCategory {
+  49 |    Drink = "Bebida",
+  50 |    B
+     |     ^
+  51 |    Pizza = "Pizza",
+  52 |    Empanada = "Empanada",
+  
+3:36:58 PM [vite] (client) Pre-transform error: Transform failed with 1 error:
+/root/gestionteatro/types.ts:50:3: ERROR: Expected "," after "B" in enum
+  Plugin: vite:esbuild
+  File: /root/gestionteatro/types.ts:50:3
+  
+  Expected "," after "B" in enum
+  48 |  export enum SnackBarProductCategory {
+  49 |    Drink = "Bebida",
+  50 |    B
+     |     ^
+  51 |    Pizza = "Pizza",
+  52 |    Empanada = "Empanada",
+  
+3:37:01 PM [vite] Internal server error: Transform failed with 1 error:
+/root/gestionteatro/types.ts:50:3: ERROR: Expected "," after "B" in enum
+  Plugin: vite:esbuild
+  File: /root/gestionteatro/types.ts:50:3
+  
+  Expected "," after "B" in enum
+  48 |  export enum SnackBarProductCategory {
+  49 |    Drink = "Bebida",
+  50 |    B
+     |     ^
+  51 |    Pizza = "Pizza",
+  52 |    Empanada = "Empanada",
+  
+      at failureErrorWithLog (/root/gestionteatro/node_modules/esbuild/lib/main.js:1465:15)
+      at /root/gestionteatro/node_modules/esbuild/lib/main.js:734:50
+      at responseCallbacks.<computed> (/root/gestionteatro/node_modules/esbuild/lib/main.js:601:9)
+      at handleIncomingPacket (/root/gestionteatro/node_modules/esbuild/lib/main.js:656:12)
+      at Socket.readFromStdout (/root/gestionteatro/node_modules/esbuild/lib/main.js:579:7)
+      at Socket.emit (node:events:517:28)
+      at addChunk (node:internal/streams/readable:368:12)
+      at readableAddChunk (node:internal/streams/readable:341:9)
+      at Readable.push (node:internal/streams/readable:278:10)
+      at Pipe.onStreamRead (node:internal/stream_base_commons:190:23)
+3:37:02 PM [vite] (client) page reload types.ts
+3:37:05 PM [vite] (client) page reload types.ts
+3:37:05 PM [vite] (client) Pre-transform error: Transform failed with 1 error:
+/root/gestionteatro/types.ts:51:2: ERROR: Expected "," before "Pizza" in enum
+  Plugin: vite:esbuild
+  File: /root/gestionteatro/types.ts:51:2
+  
+  Expected "," before "Pizza" in enum
+  49 |    Drink = "Bebida",
+  50 |    Beer = "Cerveza"
+  51 |    Pizza = "Pizza",
+     |    ^
+  52 |    Empanada = "Empanada",
+  53 |    Cocktail = "Trago",
+  
+3:37:05 PM [vite] (client) Pre-transform error: Transform failed with 1 error:
+/root/gestionteatro/types.ts:51:2: ERROR: Expected "," before "Pizza" in enum
+  Plugin: vite:esbuild
+  File: /root/gestionteatro/types.ts:51:2
+  
+  Expected "," before "Pizza" in enum
+  49 |    Drink = "Bebida",
+  50 |    Beer = "Cerveza"
+  51 |    Pizza = "Pizza",
+     |    ^
+  52 |    Empanada = "Empanada",
+  53 |    Cocktail = "Trago",
+  
+3:37:06 PM [vite] (client) Pre-transform error: Transform failed with 1 error:
+/root/gestionteatro/types.ts:51:2: ERROR: Expected "," before "Pizza" in enum
+  Plugin: vite:esbuild
+  File: /root/gestionteatro/types.ts:51:2
+  
+  Expected "," before "Pizza" in enum
+  49 |    Drink = "Bebida",
+  50 |    Beer = "Cerveza"
+  51 |    Pizza = "Pizza",
+     |    ^
+  52 |    Empanada = "Empanada",
+  53 |    Cocktail = "Trago",
+  
+3:37:07 PM [vite] Internal server error: Transform failed with 1 error:
+/root/gestionteatro/types.ts:51:2: ERROR: Expected "," before "Pizza" in enum
+  Plugin: vite:esbuild
+  File: /root/gestionteatro/types.ts:51:2
+  
+  Expected "," before "Pizza" in enum
+  49 |    Drink = "Bebida",
+  50 |    Beer = "Cerveza"
+  51 |    Pizza = "Pizza",
+     |    ^
+  52 |    Empanada = "Empanada",
+  53 |    Cocktail = "Trago",
+  
+      at failureErrorWithLog (/root/gestionteatro/node_modules/esbuild/lib/main.js:1465:15)
+      at /root/gestionteatro/node_modules/esbuild/lib/main.js:734:50
+      at responseCallbacks.<computed> (/root/gestionteatro/node_modules/esbuild/lib/main.js:601:9)
+      at handleIncomingPacket (/root/gestionteatro/node_modules/esbuild/lib/main.js:656:12)
+      at Socket.readFromStdout (/root/gestionteatro/node_modules/esbuild/lib/main.js:579:7)
+      at Socket.emit (node:events:517:28)
+      at addChunk (node:internal/streams/readable:368:12)
+      at readableAddChunk (node:internal/streams/readable:341:9)
+      at Readable.push (node:internal/streams/readable:278:10)
+      at Pipe.onStreamRead (node:internal/stream_base_commons:190:23)
+3:37:08 PM [vite] (client) page reload types.ts
+3:37:36 PM [vite] (client) page reload types.ts
+3:37:41 PM [vite] (client) page reload types.ts
