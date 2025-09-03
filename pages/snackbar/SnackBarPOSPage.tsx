@@ -58,23 +58,37 @@ const SnackBarPOSPage: React.FC = () => {
         fetchProducts();
     }, []);
     
-    const addToOrder = (product: SnackBarProduct, isHalf: boolean = false, comboId?: string) => {
-        let price = Number(isHalf && product.halfPrice ? product.halfPrice : product.sellPrice);
+    const addToOrder = (
+        product: SnackBarProduct,
+        isHalf: boolean = false,
+        comboId?: string,
+        quantity: number = 1,
+    ) => {
+        let price = Number(
+            isHalf && product.halfPrice ? product.halfPrice : product.sellPrice,
+        );
         if (comboId) price = 0;
-        const existingItemIndex = order.findIndex(item => item.productId === product.id && item.isHalf === isHalf && item.comboId === comboId);
-        
+        const existingItemIndex = order.findIndex(
+            item =>
+                item.productId === product.id &&
+                item.isHalf === isHalf &&
+                item.comboId === comboId,
+        );
+
         if (existingItemIndex > -1) {
             const newOrder = [...order];
-            newOrder[existingItemIndex].quantity++;
-            newOrder[existingItemIndex].totalPrice = newOrder[existingItemIndex].quantity * newOrder[existingItemIndex].unitPrice;
+            newOrder[existingItemIndex].quantity += quantity;
+            newOrder[existingItemIndex].totalPrice =
+                newOrder[existingItemIndex].quantity *
+                newOrder[existingItemIndex].unitPrice;
             setOrder(newOrder);
         } else {
             const newItem: OrderItem = {
                 productId: product.id,
                 productName: product.name + (isHalf ? ' (1/2)' : ''),
-                quantity: 1,
+                quantity,
                 unitPrice: Number(price),
-                totalPrice: Number(price),
+                totalPrice: Number(price) * quantity,
                 isHalf: isHalf,
                 delivery: product.delivery,
                 comboId,
@@ -105,20 +119,27 @@ const SnackBarPOSPage: React.FC = () => {
         setPizzaToAdd(null);
     };
 
-    const handleComboConfirm = (selection: { [componentId: string]: string }) => {
+    const handleComboConfirm = (
+        selection: {
+            [componentId: string]: { productId: string; quantity: number }[];
+        },
+    ) => {
         if (comboToAdd) {
-            const selectedProducts = Object.values(selection)
-                .map(id => products.find(p => p.id === id))
-                .filter((p): p is SnackBarProduct => !!p);
-
-            selectedProducts.forEach(prod => addToOrder(prod, false, comboToAdd.id));
-
-            const comboItems: OrderComboItem[] = selectedProducts.map(prod => ({
-                productId: prod.id,
-                productName: prod.name,
-                quantity: 1,
-                delivery: prod.delivery,
-            }));
+            const comboItems: OrderComboItem[] = [];
+            Object.values(selection).forEach(items => {
+                items.forEach(({ productId, quantity }) => {
+                    const prod = products.find(p => p.id === productId);
+                    if (prod) {
+                        addToOrder(prod, false, comboToAdd.id, quantity);
+                        comboItems.push({
+                            productId: prod.id,
+                            productName: prod.name,
+                            quantity,
+                            delivery: prod.delivery,
+                        });
+                    }
+                });
+            });
 
             setSelectedCombos([
                 ...selectedCombos,
