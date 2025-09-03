@@ -29,3 +29,9 @@
 10:40:20 PM [vite] (client) ✨ new dependencies optimized: react/jsx-dev-runtime
 10:40:20 PM [vite] (client) ✨ optimized dependencies changed. reloading
 11:14:59 PM [vite] (client) page reload index.html
+1:42:44 PM [vite] (client) page reload App.tsx
+1:42:44 PM [vite] (client) page reload components/Sidebar.tsx
+1:42:44 PM [vite] (client) page reload pages/snackbar/SnackBarPOSPage.tsx
+1:42:44 PM [vite] (client) page reload pages/snackbar/TableNumberModal.tsx
+1:42:44 PM [vite] (client) page reload types.ts
+1:42:44 PM [vite] (client) page reload pages/snackbar/ComboBuilderPage.tsx
