@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import Modal from '../../components/Modal';
-import { SnackBarCombo, SnackBarProduct } from '../../types';
+import { Combo, SnackBarProduct } from '../../types';
 
 interface ComboModalProps {
     isOpen: boolean;
-    combo: SnackBarCombo | null;
+    combo: Combo | null;
     products: SnackBarProduct[];
     onConfirm: (selection: { [componentId: string]: string }) => void;
     onClose: () => void;
@@ -25,7 +25,7 @@ const ComboModal: React.FC<ComboModalProps> = ({ isOpen, combo, products, onConf
         setSelected(prev => ({ ...prev, [componentId]: productId }));
     };
 
-    const allSelected = combo.components.every(c => selected[c.id]);
+    const allSelected = combo.components.every(c => selected[String(c.id)]);
 
     const confirm = () => {
         if (allSelected) {
@@ -40,13 +40,13 @@ const ComboModal: React.FC<ComboModalProps> = ({ isOpen, combo, products, onConf
                     <p className="font-semibold mb-2 text-gray-800 dark:text-white">{component.name}</p>
                     <div className="grid grid-cols-2 gap-2">
                         {products
-                            .filter(p => component.options.includes(p.id))
+                            .filter(p => component.productIds.includes(p.id))
                             .map(p => (
                                 <button
                                     key={p.id}
-                                    onClick={() => handleSelect(component.id, p.id)}
+                                    onClick={() => handleSelect(String(component.id), p.id)}
                                     className={`p-2 rounded border text-left ${
-                                        selected[component.id] === p.id
+                                        selected[String(component.id)] === p.id
                                             ? 'bg-brand-accent text-white'
                                             : 'bg-gray-100 dark:bg-brand-blue text-gray-800 dark:text-white'
                                     }`}
