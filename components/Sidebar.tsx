@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { DashboardIcon, WorkshopIcon, ShowIcon, SnackBarIcon, LogoIcon, KitchenIcon } from './icons';
-import { Clock, Package, ChevronDown, ChevronUp, ShoppingCart } from 'lucide-react';
+import { Clock, Package, ChevronDown, ChevronUp, ShoppingCart, PackagePlus } from 'lucide-react';
 
 const NavItem: React.FC<{
   icon: React.ReactNode;
@@ -106,17 +106,23 @@ const Sidebar: React.FC<{ isOpen: boolean; toggleSidebar: () => void }> = ({ isO
             </div>
             {isSnackbarSubmenuOpen && (
               <ul className="ml-6">
-                <NavItem
-                  icon={<Package className="h-6 w-6" />}
-                  label="Gestión Productos"
-                  to="/products"
-                  onClick={toggleSidebar}
-                />
-                <NavItem
-                  icon={<ShoppingCart className="h-6 w-6" />}
-                  label="Compras"
-                  to="/products/purchase"
-                  onClick={toggleSidebar}
+                  <NavItem
+                    icon={<Package className="h-6 w-6" />}
+                    label="Gestión Productos"
+                    to="/products"
+                    onClick={toggleSidebar}
+                  />
+                  <NavItem
+                    icon={<PackagePlus className="h-6 w-6" />}
+                    label="Gestión de Combos"
+                    to="/products/combos"
+                    onClick={toggleSidebar}
+                  />
+                  <NavItem
+                    icon={<ShoppingCart className="h-6 w-6" />}
+                    label="Compras"
+                    to="/products/purchase"
+                    onClick={toggleSidebar}
                 />
                 <NavItem
                   icon={<KitchenIcon className="h-6 w-6" />}

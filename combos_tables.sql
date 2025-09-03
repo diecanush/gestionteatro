@@ -10,5 +10,6 @@ CREATE TABLE combo_items (
     id INT AUTO_INCREMENT PRIMARY KEY,
     combo_id VARCHAR(255) NOT NULL,
     name VARCHAR(255) NOT NULL,
+    quantity INT NOT NULL DEFAULT 1,
     FOREIGN KEY (combo_id) REFERENCES combos(id)
 );
