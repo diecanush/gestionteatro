@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
-import { SnackBarProduct, OrderItem, SnackBarSale, SnackBarCombo, OrderCombo, OrderComboItem } from '../../types';
-import { getSnackBarProducts, getSnackBarCombos, confirmSale } from '../../services/api';
+import { SnackBarProduct, OrderItem, SnackBarSale, Combo, OrderCombo, OrderComboItem } from '../../types';
+import { getSnackBarProducts, getCombos, confirmSale } from '../../services/api';
 import Modal from '../../components/Modal';
 import TicketModal from './TicketModal';
 import TableNumberModal from './TableNumberModal';
@@ -10,7 +10,7 @@ import { useLocation } from 'react-router-dom';
 
 const SnackBarPOSPage: React.FC = () => {
     const [products, setProducts] = useState<SnackBarProduct[]>([]);
-    const [combos, setCombos] = useState<SnackBarCombo[]>([]);
+    const [combos, setCombos] = useState<Combo[]>([]);
     const [order, setOrder] = useState<OrderItem[]>([]);
     const [selectedCombos, setSelectedCombos] = useState<OrderCombo[]>([]);
     const [tableNumber, setTableNumber] = useState<number>(0);
@@ -23,7 +23,7 @@ const SnackBarPOSPage: React.FC = () => {
     const [isTableModalOpen, setIsTableModalOpen] = useState(true);
     const [pizzaToAdd, setPizzaToAdd] = useState<SnackBarProduct | null>(null);
     const [isComboModalOpen, setIsComboModalOpen] = useState(false);
-    const [comboToAdd, setComboToAdd] = useState<SnackBarCombo | null>(null);
+    const [comboToAdd, setComboToAdd] = useState<Combo | null>(null);
     const [lastSale, setLastSale] = useState<SnackBarSale | null>(null);
     const [paymentMethod, setPaymentMethod] = useState<'Efectivo' | 'Transferencia' | 'Tarjeta'>('Efectivo');
 
@@ -42,7 +42,7 @@ const SnackBarPOSPage: React.FC = () => {
             setError(null);
             const [productsData, combosData] = await Promise.all([
                 getSnackBarProducts(),
-                getSnackBarCombos(),
+                getCombos(),
             ]);
             setProducts(productsData);
             setCombos(combosData);
@@ -92,7 +92,7 @@ const SnackBarPOSPage: React.FC = () => {
         }
     };
 
-    const handleComboClick = (combo: SnackBarCombo) => {
+    const handleComboClick = (combo: Combo) => {
         setComboToAdd(combo);
         setIsComboModalOpen(true);
     };

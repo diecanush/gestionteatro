@@ -4,7 +4,6 @@
   "description": "Backend for Onírico Sur Theater Management System",
   "type": "module",
   "main": "server.js",
-  "type": "module",
   "scripts": {
     "start": "node server.js",
     "dev": "nodemon server.js",
