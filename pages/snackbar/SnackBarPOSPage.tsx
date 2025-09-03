@@ -1,11 +1,12 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { SnackBarProduct, OrderItem, SnackBarSale, SnackBarCombo, OrderCombo, OrderComboItem } from '../../types';
 import { getSnackBarProducts, getSnackBarCombos, confirmSale } from '../../services/api';
 import Modal from '../../components/Modal';
 import TicketModal from './TicketModal';
 import TableNumberModal from './TableNumberModal';
 import ComboModal from './ComboModal';
+import { useLocation } from 'react-router-dom';
 
 const SnackBarPOSPage: React.FC = () => {
     const [products, setProducts] = useState<SnackBarProduct[]>([]);
@@ -25,6 +26,15 @@ const SnackBarPOSPage: React.FC = () => {
     const [comboToAdd, setComboToAdd] = useState<SnackBarCombo | null>(null);
     const [lastSale, setLastSale] = useState<SnackBarSale | null>(null);
     const [paymentMethod, setPaymentMethod] = useState<'Efectivo' | 'Transferencia' | 'Tarjeta'>('Efectivo');
+
+    const location = useLocation();
+    const initialPath = useRef(location.pathname);
+
+    useEffect(() => {
+        if (location.pathname !== initialPath.current) {
+            setIsTableModalOpen(false);
+        }
+    }, [location.pathname]);
 
     const fetchProducts = async () => {
         try {
@@ -49,7 +59,7 @@ const SnackBarPOSPage: React.FC = () => {
     }, []);
     
     const addToOrder = (product: SnackBarProduct, isHalf: boolean = false, comboId?: string) => {
-        let price = isHalf && product.halfPrice ? product.halfPrice : product.sellPrice;
+        let price = Number(isHalf && product.halfPrice ? product.halfPrice : product.sellPrice);
         if (comboId) price = 0;
         const existingItemIndex = order.findIndex(item => item.productId === product.id && item.isHalf === isHalf && item.comboId === comboId);
         
@@ -63,8 +73,8 @@ const SnackBarPOSPage: React.FC = () => {
                 productId: product.id,
                 productName: product.name + (isHalf ? ' (1/2)' : ''),
                 quantity: 1,
-                unitPrice: price,
-                totalPrice: price,
+                unitPrice: Number(price),
+                totalPrice: Number(price),
                 isHalf: isHalf,
                 delivery: product.delivery,
                 comboId,
@@ -115,7 +125,7 @@ const SnackBarPOSPage: React.FC = () => {
                 {
                     comboId: comboToAdd.id,
                     comboName: comboToAdd.name,
-                    price: comboToAdd.price,
+                    price: Number(comboToAdd.price),
                     items: comboItems,
                 },
             ]);
@@ -183,8 +193,10 @@ const SnackBarPOSPage: React.FC = () => {
         }
     };
 
-    const totalStandalone = order.filter(item => !item.comboId).reduce((sum, item) => sum + item.totalPrice, 0);
-    const comboTotal = selectedCombos.reduce((sum, c) => sum + c.price, 0);
+    const totalStandalone = order
+        .filter(item => !item.comboId)
+        .reduce((sum, item) => sum + Number(item.totalPrice), 0);
+    const comboTotal = selectedCombos.reduce((sum, c) => sum + Number(c.price), 0);
     const total = totalStandalone + comboTotal;
 
     const categories = [...new Set(products.map(p => p.category)), ...(combos.length ? ['Combos'] : [])];
@@ -323,6 +335,7 @@ const SnackBarPOSPage: React.FC = () => {
 
                     setIsTableModalOpen(false);
                 }}
+                onClose={() => setIsTableModalOpen(false)}
             />
         </div>
     );
