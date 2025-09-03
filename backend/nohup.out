@@ -5791,3 +5791,104 @@ Executing (default): SELECT `id`, `name`, `category`, `brand`, `size`, `purchase
 Ignoring invalid configuration option passed to Connection: useUTC. This is currently a warning, but in future versions of MySQL2, an error will be thrown if you pass an invalid configuration option to a Connection
 Executing (default): SELECT `id`, `name`, `category`, `brand`, `size`, `purchasePrice`, `sellPrice`, `stock`, `delivery`, `canBeHalf`, `halfPrice`, `createdAt`, `updatedAt` FROM `snackbarproducts` AS `SnackBarProduct`;
 Executing (default): SELECT `id`, `name`, `category`, `brand`, `size`, `purchasePrice`, `sellPrice`, `stock`, `delivery`, `canBeHalf`, `halfPrice`, `createdAt`, `updatedAt` FROM `snackbarproducts` AS `SnackBarProduct`;
+Ignoring invalid configuration option passed to Connection: useUTC. This is currently a warning, but in future versions of MySQL2, an error will be thrown if you pass an invalid configuration option to a Connection
+Executing (default): SELECT `id`, `name`, `category`, `brand`, `size`, `purchasePrice`, `sellPrice`, `stock`, `delivery`, `canBeHalf`, `halfPrice`, `createdAt`, `updatedAt` FROM `snackbarproducts` AS `SnackBarProduct` WHERE `SnackBarProduct`.`id` = 'p1';
+Executing (default): SELECT `id`, `name`, `category`, `brand`, `size`, `purchasePrice`, `sellPrice`, `stock`, `delivery`, `canBeHalf`, `halfPrice`, `createdAt`, `updatedAt` FROM `snackbarproducts` AS `SnackBarProduct` WHERE `SnackBarProduct`.`id` = 'p1';
+Ignoring invalid configuration option passed to Connection: useUTC. This is currently a warning, but in future versions of MySQL2, an error will be thrown if you pass an invalid configuration option to a Connection
+Ignoring invalid configuration option passed to Connection: useUTC. This is currently a warning, but in future versions of MySQL2, an error will be thrown if you pass an invalid configuration option to a Connection
+Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'workshops' AND TABLE_SCHEMA = 'onirico_sur_db'
+Ignoring invalid configuration option passed to Connection: useUTC. This is currently a warning, but in future versions of MySQL2, an error will be thrown if you pass an invalid configuration option to a Connection
+Executing (default): SHOW FULL COLUMNS FROM `workshops`;
+Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'workshops' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='onirico_sur_db' AND REFERENCED_TABLE_NAME IS NOT NULL;
+Executing (default): ALTER TABLE `workshops` CHANGE `name` `name` VARCHAR(255) NOT NULL;
+Executing (default): ALTER TABLE `workshops` CHANGE `schedule` `schedule` VARCHAR(255);
+Executing (default): ALTER TABLE `workshops` CHANGE `startDate` `startDate` DATETIME;
+Executing (default): ALTER TABLE `workshops` CHANGE `endDate` `endDate` DATETIME;
+Executing (default): ALTER TABLE `workshops` CHANGE `teacher` `teacher` VARCHAR(255);
+Executing (default): ALTER TABLE `workshops` CHANGE `fee` `fee` DECIMAL(10,2);
+Executing (default): SHOW INDEX FROM `workshops`
+Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'students' AND TABLE_SCHEMA = 'onirico_sur_db'
+Executing (default): SHOW FULL COLUMNS FROM `students`;
+Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'students' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='onirico_sur_db' AND REFERENCED_TABLE_NAME IS NOT NULL;
+Executing (default): ALTER TABLE `students` CHANGE `lastName` `lastName` VARCHAR(255) NOT NULL;
+Executing (default): ALTER TABLE `students` CHANGE `firstName` `firstName` VARCHAR(255) NOT NULL;
+Executing (default): ALTER TABLE `students` CHANGE `birthDate` `birthDate` DATETIME;
+Executing (default): ALTER TABLE `students` CHANGE `phone` `phone` VARCHAR(255);
+Executing (default): ALTER TABLE `students` CHANGE `email` `email` VARCHAR(255);
+Executing (default): SHOW INDEX FROM `students`
+Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'shows' AND TABLE_SCHEMA = 'onirico_sur_db'
+Executing (default): SHOW FULL COLUMNS FROM `shows`;
+Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'shows' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='onirico_sur_db' AND REFERENCED_TABLE_NAME IS NOT NULL;
+Executing (default): ALTER TABLE `shows` CHANGE `title` `title` VARCHAR(255) NOT NULL;
+Executing (default): ALTER TABLE `shows` CHANGE `description` `description` TEXT;
+Executing (default): ALTER TABLE `shows` CHANGE `producer` `producer` VARCHAR(255);
+Executing (default): ALTER TABLE `shows` CHANGE `date` `date` DATETIME;
+Executing (default): ALTER TABLE `shows` CHANGE `time` `time` TIME;
+Executing (default): ALTER TABLE `shows` CHANGE `hasBar` `hasBar` TINYINT(1);
+Executing (default): ALTER TABLE `shows` CHANGE `capacity` `capacity` INTEGER;
+Executing (default): ALTER TABLE `shows` CHANGE `availableSeats` `availableSeats` INTEGER;
+Executing (default): ALTER TABLE `shows` CHANGE `posterUrl` `posterUrl` VARCHAR(255);
+Executing (default): ALTER TABLE `shows` CHANGE `promoText` `promoText` VARCHAR(255);
+Executing (default): ALTER TABLE `shows` CHANGE `doorPrice` `doorPrice` DECIMAL(10,2);
+Executing (default): ALTER TABLE `shows` CHANGE `advancePrice` `advancePrice` DECIMAL(10,2);
+Executing (default): ALTER TABLE `shows` CHANGE `hasPromo` `hasPromo` TINYINT(1);
+Executing (default): ALTER TABLE `shows` CHANGE `promoName` `promoName` VARCHAR(255);
+Executing (default): ALTER TABLE `shows` CHANGE `promoPrice` `promoPrice` DECIMAL(10,2);
+Executing (default): SHOW INDEX FROM `shows`
+Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'snackbarproducts' AND TABLE_SCHEMA = 'onirico_sur_db'
+Executing (default): SHOW FULL COLUMNS FROM `snackbarproducts`;
+Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'snackbarproducts' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='onirico_sur_db' AND REFERENCED_TABLE_NAME IS NOT NULL;
+Executing (default): ALTER TABLE `snackbarproducts` CHANGE `name` `name` VARCHAR(255) NOT NULL;
+Executing (default): ALTER TABLE `snackbarproducts` CHANGE `category` `category` ENUM('Bebida', 'Pizza', 'Empanada', 'Trago', 'Snack') NOT NULL;
+node:internal/process/promises:288
+            triggerUncaughtException(err, true /* fromPromise */);
+            ^
+
+Error
+    at Query.run (/root/gestionteatro/backend/node_modules/sequelize/lib/dialects/mysql/query.js:52:25)
+    at /root/gestionteatro/backend/node_modules/sequelize/lib/sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async SnackBarProduct.sync (/root/gestionteatro/backend/node_modules/sequelize/lib/model.js:984:11)
+    at async Sequelize.sync (/root/gestionteatro/backend/node_modules/sequelize/lib/sequelize.js:377:9) {
+  name: 'SequelizeDatabaseError',
+  parent: Error: Data truncated for column 'category' at row 1
+      at Packet.asError (/root/gestionteatro/node_modules/mysql2/lib/packets/packet.js:740:17)
+      at Query.execute (/root/gestionteatro/node_modules/mysql2/lib/commands/command.js:29:26)
+      at Connection.handlePacket (/root/gestionteatro/node_modules/mysql2/lib/base/connection.js:475:34)
+      at PacketParser.onPacket (/root/gestionteatro/node_modules/mysql2/lib/base/connection.js:93:12)
+      at PacketParser.executeStart (/root/gestionteatro/node_modules/mysql2/lib/packet_parser.js:75:16)
+      at Socket.<anonymous> (/root/gestionteatro/node_modules/mysql2/lib/base/connection.js:100:25)
+      at Socket.emit (node:events:517:28)
+      at addChunk (node:internal/streams/readable:368:12)
+      at readableAddChunk (node:internal/streams/readable:341:9)
+      at Readable.push (node:internal/streams/readable:278:10) {
+    code: 'WARN_DATA_TRUNCATED',
+    errno: 1265,
+    sqlState: '01000',
+    sqlMessage: "Data truncated for column 'category' at row 1",
+    sql: "ALTER TABLE `snackbarproducts` CHANGE `category` `category` ENUM('Bebida', 'Pizza', 'Empanada', 'Trago', 'Snack') NOT NULL;",
+    parameters: undefined
+  },
+  original: Error: Data truncated for column 'category' at row 1
+      at Packet.asError (/root/gestionteatro/node_modules/mysql2/lib/packets/packet.js:740:17)
+      at Query.execute (/root/gestionteatro/node_modules/mysql2/lib/commands/command.js:29:26)
+      at Connection.handlePacket (/root/gestionteatro/node_modules/mysql2/lib/base/connection.js:475:34)
+      at PacketParser.onPacket (/root/gestionteatro/node_modules/mysql2/lib/base/connection.js:93:12)
+      at PacketParser.executeStart (/root/gestionteatro/node_modules/mysql2/lib/packet_parser.js:75:16)
+      at Socket.<anonymous> (/root/gestionteatro/node_modules/mysql2/lib/base/connection.js:100:25)
+      at Socket.emit (node:events:517:28)
+      at addChunk (node:internal/streams/readable:368:12)
+      at readableAddChunk (node:internal/streams/readable:341:9)
+      at Readable.push (node:internal/streams/readable:278:10) {
+    code: 'WARN_DATA_TRUNCATED',
+    errno: 1265,
+    sqlState: '01000',
+    sqlMessage: "Data truncated for column 'category' at row 1",
+    sql: "ALTER TABLE `snackbarproducts` CHANGE `category` `category` ENUM('Bebida', 'Pizza', 'Empanada', 'Trago', 'Snack') NOT NULL;",
+    parameters: undefined
+  },
+  sql: "ALTER TABLE `snackbarproducts` CHANGE `category` `category` ENUM('Bebida', 'Pizza', 'Empanada', 'Trago', 'Snack') NOT NULL;",
+  parameters: {}
+}
+
+Node.js v18.19.1
