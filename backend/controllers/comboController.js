@@ -6,11 +6,12 @@ const formatCombo = (combo) => ({
   id: combo.id,
   name: combo.name,
   price: combo.price,
-  components: combo.components.map((item) => ({
-    id: item.id,
-    name: item.name,
-    productIds: item.options.map((p) => p.id),
-  })),
+    components: combo.components.map((item) => ({
+      id: item.id,
+      name: item.name,
+      quantity: item.quantity,
+      productIds: item.options.map((p) => p.id),
+    })),
 });
 
 export const getCombos = async (req, res) => {
@@ -63,14 +64,18 @@ export const createCombo = async (req, res) => {
     const combo = await Combo.create({ id: `combo_${Date.now()}`, name, price });
 
     if (Array.isArray(components)) {
-      for (const component of components) {
-        const comboItem = await ComboItem.create({ comboId: combo.id, name: component.name });
-        if (Array.isArray(component.productIds) && component.productIds.length) {
-          const products = await SnackBarProduct.findAll({ where: { id: component.productIds } });
-          await comboItem.setOptions(products);
+        for (const component of components) {
+          const comboItem = await ComboItem.create({
+            comboId: combo.id,
+            name: component.name,
+            quantity: component.quantity ?? 1,
+          });
+          if (Array.isArray(component.productIds) && component.productIds.length) {
+            const products = await SnackBarProduct.findAll({ where: { id: component.productIds } });
+            await comboItem.setOptions(products);
+          }
         }
       }
-    }
 
     const created = await Combo.findByPk(combo.id, {
       include: {
@@ -104,14 +109,18 @@ export const updateCombo = async (req, res) => {
     await combo.save();
 
     if (Array.isArray(components)) {
-      await ComboItem.destroy({ where: { comboId: id } });
-      for (const component of components) {
-        const comboItem = await ComboItem.create({ comboId: id, name: component.name });
-        if (Array.isArray(component.productIds) && component.productIds.length) {
-          const products = await SnackBarProduct.findAll({ where: { id: component.productIds } });
-          await comboItem.setOptions(products);
+        await ComboItem.destroy({ where: { comboId: id } });
+        for (const component of components) {
+          const comboItem = await ComboItem.create({
+            comboId: id,
+            name: component.name,
+            quantity: component.quantity ?? 1,
+          });
+          if (Array.isArray(component.productIds) && component.productIds.length) {
+            const products = await SnackBarProduct.findAll({ where: { id: component.productIds } });
+            await comboItem.setOptions(products);
+          }
         }
-      }
     }
 
     const updatedCombo = await Combo.findByPk(id, {
