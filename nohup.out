@@ -50,3 +50,5 @@ Port 5173 is in use, trying another one...
   ➜  Local:   http://localhost:5174/
   ➜  Network: http://69.62.95.248:5174/
   ➜  Network: http://172.19.0.1:5174/
+2:56:08 PM [vite] changed tsconfig file detected: /root/gestionteatro/backend/tsconfig.json - Clearing cache and forcing full-reload to ensure TypeScript is compiled with updated config values.
+2:56:08 PM [vite] changed tsconfig file detected: /root/gestionteatro/backend/tsconfig.json - Clearing cache and forcing full-reload to ensure TypeScript is compiled with updated config values.
