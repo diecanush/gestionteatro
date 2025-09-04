@@ -2,23 +2,30 @@
 import { Sequelize } from 'sequelize';
 import mysql2 from 'mysql2';
 
-const sequelize = new Sequelize('onirico_sur_db', 'root', '', {
-  host: '127.0.0.1',
-  dialect: 'mysql',
-  dialectModule: mysql2,
-  timezone: '+00:00', // Use UTC timezone
-  dialectOptions: {
-    useUTC: false, // for reading from database
-    dateStrings: true,
-    typeCast: true,
-    timezone: '+00:00'
-  },
-  pool: {
-    max: 5,
-    min: 0,
-    acquire: 30000,
-    idle: 10000
-  }
-});
+let sequelize;
+
+if (process.env.NODE_ENV === 'test') {
+  // Use an in-memory SQLite database for tests
+  sequelize = new Sequelize('sqlite::memory:', { logging: false });
+} else {
+  sequelize = new Sequelize('onirico_sur_db', 'root', '', {
+    host: '127.0.0.1',
+    dialect: 'mysql',
+    dialectModule: mysql2,
+    timezone: '+00:00', // Use UTC timezone
+    dialectOptions: {
+      useUTC: false, // for reading from database
+      dateStrings: true,
+      typeCast: true,
+      timezone: '+00:00'
+    },
+    pool: {
+      max: 5,
+      min: 0,
+      acquire: 30000,
+      idle: 10000
+    }
+  });
+}
 
 export default sequelize;

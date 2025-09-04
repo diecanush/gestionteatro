@@ -154,24 +154,30 @@ const ComboBuilderPage: React.FC = () => {
     return (
         <div className="max-w-4xl mx-auto">
             <h2 className="text-2xl font-bold mb-4">{editingCombo ? 'Editar Combo' : 'Nuevo Combo'}</h2>
+
             <div className="bg-white dark:bg-brand-navy p-4 rounded shadow mb-6 text-gray-800 dark:text-white">
                 <input
                     className="w-full p-2 border rounded mb-4 bg-white dark:bg-brand-blue text-gray-900 dark:text-white border-gray-300 dark:border-gray-600 placeholder-gray-500 dark:placeholder-gray-400"
+
                     placeholder="Nombre del combo"
                     value={name}
                     onChange={e => setName(e.target.value)}
                 />
                 <input
                     type="number"
+
                     className="w-full p-2 border rounded mb-4 bg-white dark:bg-brand-blue text-gray-900 dark:text-white border-gray-300 dark:border-gray-600 placeholder-gray-500 dark:placeholder-gray-400"
+
                     placeholder="Precio del combo"
                     value={price}
                     onChange={e => setPrice(Number(e.target.value))}
                 />
                 {components.map((component, idx) => (
+
                     <div key={idx} className="border rounded p-3 mb-4 bg-gray-50 dark:bg-brand-dark border-gray-300 dark:border-gray-600">
                         <input
                             className="w-full p-2 border rounded mb-2 bg-white dark:bg-brand-blue text-gray-900 dark:text-white border-gray-300 dark:border-gray-600 placeholder-gray-500 dark:placeholder-gray-400"
+
                             placeholder="Nombre del componente"
                             value={component.name}
                             onChange={e => updateComponent(idx, { name: e.target.value })}
@@ -179,7 +185,9 @@ const ComboBuilderPage: React.FC = () => {
                         <input
                             type="number"
                             min={1}
+
                             className="w-full p-2 border rounded mb-2 bg-white dark:bg-brand-blue text-gray-900 dark:text-white border-gray-300 dark:border-gray-600 placeholder-gray-500 dark:placeholder-gray-400"
+
                             placeholder="Cantidad"
                             value={component.quantity}
                             onChange={e =>
@@ -189,7 +197,9 @@ const ComboBuilderPage: React.FC = () => {
                             }
                         />
                         <select
+
                             className="w-full border rounded p-2 mb-2 bg-white dark:bg-brand-blue text-gray-900 dark:text-white border-gray-300 dark:border-gray-600"
+
                             value={component.selectionType}
                             onChange={e => handleSelectionTypeChange(idx, e)}
                         >
@@ -199,7 +209,9 @@ const ComboBuilderPage: React.FC = () => {
                         {component.selectionType === 'category' ? (
                             <select
                                 multiple
+
                                 className="w-full border rounded p-2 h-32 mb-2 bg-white dark:bg-brand-blue text-gray-900 dark:text-white border-gray-300 dark:border-gray-600"
+
                                 value={component.categories}
                                 onChange={e => handleCategoryChange(idx, e)}
                             >
@@ -212,7 +224,9 @@ const ComboBuilderPage: React.FC = () => {
                         ) : (
                             <select
                                 multiple
+
                                 className="w-full border rounded p-2 h-32 mb-2 bg-white dark:bg-brand-blue text-gray-900 dark:text-white border-gray-300 dark:border-gray-600"
+
                                 value={component.productIds}
                                 onChange={e => handleProductChange(idx, e)}
                             >
@@ -254,6 +268,7 @@ const ComboBuilderPage: React.FC = () => {
                     )}
                 </div>
             </div>
+
             <h2 className="text-2xl font-bold mb-4 text-gray-800 dark:text-white">Combos existentes</h2>
             <ul>
                 {combos.map(combo => (
@@ -261,6 +276,7 @@ const ComboBuilderPage: React.FC = () => {
                         key={combo.id}
                         className="flex justify-between items-center bg-gray-200 dark:bg-brand-blue p-2 rounded mb-2 text-gray-800 dark:text-white"
                     >
+
                         <span>{combo.name}</span>
                         <button
                             className="bg-blue-500 hover:bg-blue-600 text-white px-2 py-1 rounded"
