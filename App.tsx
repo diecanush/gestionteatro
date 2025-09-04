@@ -7,7 +7,7 @@ import DashboardPage from './pages/Dashboard';
 import WorkshopsPage from './pages/workshops/WorkshopsPage';
 import ShowsPage from './pages/shows/ShowsPage';
 import SnackBarPOSPage from './pages/snackbar/SnackBarPOSPage';
-import ComboBuilderPage from './pages/snackbar/ComboBuilderPage';
+import ComboBuilderPage from './pages/products/ComboBuilderPage';
 import ShowForm from './pages/shows/ShowForm';
 import WorkshopForm from './pages/workshops/WorkshopForm';
 import { KitchenDisplayPage } from './pages/kitchen/KitchenDisplayPage';
@@ -56,8 +56,8 @@ const AppContent: React.FC = () => {
     if (pathname.startsWith('/shows/new')) return 'Crear Espectáculo';
     if (pathname.startsWith('/shows/edit')) return 'Editar Espectáculo';
     if (pathname.startsWith('/shows')) return 'Gestión de Espectáculos';
-    if (pathname.startsWith('/snackbar/combos')) return 'Combos Snack Bar';
-    if (pathname.startsWith('/snackbar')) return 'Punto de Venta - Snack Bar';
+      if (pathname.startsWith('/products/combos')) return 'Gestión de Combos';
+      if (pathname.startsWith('/snackbar')) return 'Punto de Venta - Snack Bar';
     if (pathname.startsWith('/sales/history')) return 'Historial de Ventas';
     if (pathname.startsWith('/products/new')) return 'Nuevo Producto';
     if (pathname.startsWith('/products/edit')) return 'Editar Producto';
@@ -82,9 +82,9 @@ const AppContent: React.FC = () => {
             <Route path="/shows" element={<ShowsPage />} />
             <Route path="/shows/new" element={<ShowForm />} />
             <Route path="/shows/edit/:id" element={<ShowForm />} />
-            <Route path="/snackbar" element={<SnackBarPOSPage />} />
-            <Route path="/snackbar/combos" element={<ComboBuilderPage />} />
-            <Route path="/sales/history" element={<SalesHistoryPage />} />
+              <Route path="/snackbar" element={<SnackBarPOSPage />} />
+              <Route path="/products/combos" element={<ComboBuilderPage />} />
+              <Route path="/sales/history" element={<SalesHistoryPage />} />
             <Route path="/products" element={<ProductManagementPage />} />
             <Route path="/products/new" element={<ProductForm />} />
             <Route path="/products/edit/:id" element={<ProductForm />} />

@@ -16,13 +16,18 @@ const ComboItem = sequelize.define('ComboItem', {
     },
     field: 'combo_id',
   },
-  name: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-}, {
-  tableName: 'combo_items',
-  timestamps: false,
-});
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    quantity: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: 1,
+    },
+  }, {
+    tableName: 'combo_items',
+    timestamps: false,
+  });
 
 export default ComboItem;

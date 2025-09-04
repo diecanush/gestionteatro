@@ -167,6 +167,7 @@ export interface ComboComponent {
   name: string;
   productIds: string[];
   categories?: SnackBarProductCategory[];
+  quantity: number;
 }
 
 export interface Combo {

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { DashboardIcon, WorkshopIcon, ShowIcon, SnackBarIcon, LogoIcon, KitchenIcon } from './icons';
-import { Clock, Package, ChevronDown, ChevronUp, ShoppingCart } from 'lucide-react';
+import { Clock, Package, ChevronDown, ChevronUp, ShoppingCart, PackagePlus } from 'lucide-react';
 
 const NavItem: React.FC<{
   icon: React.ReactNode;
@@ -86,11 +86,14 @@ const Sidebar: React.FC<{ isOpen: boolean; toggleSidebar: () => void }> = ({ isO
           />
           {/* Snack Bar with Submenu */}
           <li>
-            <div className="flex items-center justify-between p-3 my-1 rounded-lg cursor-pointer transition-colors duration-200 
-              ${location.pathname.startsWith('/snackbar') || location.pathname.startsWith('/products') || location.pathname.startsWith('/kitchen')
-                ? 'bg-brand-accent text-white shadow-lg'
-                : 'text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-brand-blue dark:hover:text-white'
-              }"
+            <div
+              className={`flex items-center justify-between p-3 my-1 rounded-lg cursor-pointer transition-colors duration-200 ${
+                location.pathname.startsWith('/snackbar') ||
+                location.pathname.startsWith('/products') ||
+                location.pathname.startsWith('/kitchen')
+                  ? 'bg-brand-accent text-white shadow-lg'
+                  : 'text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-brand-blue dark:hover:text-white'
+              }`}
             >
               <Link
                 to="/snackbar"
@@ -106,17 +109,23 @@ const Sidebar: React.FC<{ isOpen: boolean; toggleSidebar: () => void }> = ({ isO
             </div>
             {isSnackbarSubmenuOpen && (
               <ul className="ml-6">
-                <NavItem
-                  icon={<Package className="h-6 w-6" />}
-                  label="Gestión Productos"
-                  to="/products"
-                  onClick={toggleSidebar}
-                />
-                <NavItem
-                  icon={<ShoppingCart className="h-6 w-6" />}
-                  label="Compras"
-                  to="/products/purchase"
-                  onClick={toggleSidebar}
+                  <NavItem
+                    icon={<Package className="h-6 w-6" />}
+                    label="Gestión Productos"
+                    to="/products"
+                    onClick={toggleSidebar}
+                  />
+                  <NavItem
+                    icon={<PackagePlus className="h-6 w-6" />}
+                    label="Gestión de Combos"
+                    to="/products/combos"
+                    onClick={toggleSidebar}
+                  />
+                  <NavItem
+                    icon={<ShoppingCart className="h-6 w-6" />}
+                    label="Compras"
+                    to="/products/purchase"
+                    onClick={toggleSidebar}
                 />
                 <NavItem
                   icon={<KitchenIcon className="h-6 w-6" />}
