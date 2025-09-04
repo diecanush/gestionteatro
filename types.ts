@@ -47,10 +47,6 @@ export interface Show {
 
 export enum SnackBarProductCategory {
   Drink = "Bebida",
-  Beer = "Cerveza",
-  Soda = "Gaseosa",
-  Water = "Agua",
-  FlavoredWater = "Agua Saborizada",
   Pizza = "Pizza",
   Empanada = "Empanada",
   Cocktail = "Trago",
