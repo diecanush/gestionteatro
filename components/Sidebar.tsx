@@ -86,11 +86,14 @@ const Sidebar: React.FC<{ isOpen: boolean; toggleSidebar: () => void }> = ({ isO
           />
           {/* Snack Bar with Submenu */}
           <li>
-            <div className="flex items-center justify-between p-3 my-1 rounded-lg cursor-pointer transition-colors duration-200 
-              ${location.pathname.startsWith('/snackbar') || location.pathname.startsWith('/products') || location.pathname.startsWith('/kitchen')
-                ? 'bg-brand-accent text-white shadow-lg'
-                : 'text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-brand-blue dark:hover:text-white'
-              }"
+            <div
+              className={`flex items-center justify-between p-3 my-1 rounded-lg cursor-pointer transition-colors duration-200 ${
+                location.pathname.startsWith('/snackbar') ||
+                location.pathname.startsWith('/products') ||
+                location.pathname.startsWith('/kitchen')
+                  ? 'bg-brand-accent text-white shadow-lg'
+                  : 'text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-brand-blue dark:hover:text-white'
+              }`}
             >
               <Link
                 to="/snackbar"
