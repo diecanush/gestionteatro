@@ -25,7 +25,7 @@ const mockProducts = [
   {
     id: '1',
     name: 'Beer',
-    category: SnackBarProductCategory.Beer,
+    category: SnackBarProductCategory.Bebida,
     purchasePrice: 10,
     sellPrice: 20,
     stock: 100,
@@ -85,7 +85,7 @@ describe('ComboBuilderPage', () => {
     const categorySelect = screen.getByRole('listbox');
     fireEvent.change(categorySelect, {
       target: {
-        selectedOptions: [{ value: SnackBarProductCategory.Beer }],
+        selectedOptions: [{ value: SnackBarProductCategory.Bebida }],
       },
     });
 

@@ -8,7 +8,7 @@ const ProductForm: React.FC = () => {
     const navigate = useNavigate();
     const [product, setProduct] = useState<Partial<SnackBarProduct>>({
         name: '',
-        category: SnackBarProductCategory.Beer,
+        category: SnackBarProductCategory.Bebida,
         purchasePrice: 0,
         sellPrice: 0,
         stock: 0,

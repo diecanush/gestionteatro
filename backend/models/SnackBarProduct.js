@@ -12,7 +12,7 @@ const SnackBarProduct = sequelize.define('SnackBarProduct', {
     allowNull: false,
   },
   category: {
-    type: DataTypes.ENUM('Bebida', 'Pizza', 'Empanada', 'Trago', 'Snack'),
+    type: DataTypes.ENUM('Bebida', 'Trago', 'Pizza', 'Empanada', 'Snack'),
     allowNull: false,
   },
   brand: {

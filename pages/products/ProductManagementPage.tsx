@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { SnackBarProduct, SnackBarProductCategory, SnackBarProductDelivery } from '../../types';
+import { SnackBarProduct, SnackBarProductDelivery } from '../../types';
 import { getSnackBarProducts, deleteSnackBarProduct } from '../../services/api';
 import { Link } from 'react-router-dom';
 import { Edit, Trash2, PlusCircle } from 'lucide-react';
