@@ -46,10 +46,10 @@ export interface Show {
 }
 
 export enum SnackBarProductCategory {
-  Drink = "Bebida",
+  Bebida = "Bebida",
+  Trago = "Trago",
   Pizza = "Pizza",
   Empanada = "Empanada",
-  Cocktail = "Trago",
   Snack = "Snack",
 }
 
