@@ -270,3 +270,21 @@ Port 5173 is in use, trying another one...
 3:59:16 PM [vite] (client) page reload types.ts
 2:11:40 AM [vite] (client) page reload pages/products/ComboBuilderPage.tsx
 2:11:40 AM [vite] (client) page reload components/Sidebar.tsx
+7:12:09 PM [vite] (client) page reload components/ProductForm.tsx
+7:12:09 PM [vite] (client) page reload pages/products/ProductManagementPage.tsx
+7:12:09 PM [vite] (client) page reload pages/products/__tests__/ComboBuilderPage.test.tsx
+7:12:09 PM [vite] (client) page reload types.ts
+node:internal/modules/cjs/loader:1137
+  throw err;
+  ^
+
+Error: Cannot find module '/root/gestionteatro/server'
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1134:15)
+    at Module._load (node:internal/modules/cjs/loader:975:27)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:128:12)
+    at node:internal/main/run_main_module:28:49 {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: []
+}
+
+Node.js v18.19.1
