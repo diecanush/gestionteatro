@@ -1,4 +1,3 @@
-
 import { DataTypes } from 'sequelize';
 import sequelize from '../config/database.js';
 
@@ -16,9 +15,16 @@ const Workshop = sequelize.define('Workshop', {
   },
   startDate: {
     type: DataTypes.DATE,
+    allowNull: true,
   },
   endDate: {
     type: DataTypes.DATE,
+    allowNull: true,
+  },
+  classDays: {
+    type: DataTypes.STRING,
+    allowNull: true,
+    comment: 'Días de clase en formato JSON: [0,2,4] para domingo,martes,jueves',
   },
   teacher: {
     type: DataTypes.STRING,
@@ -28,7 +34,7 @@ const Workshop = sequelize.define('Workshop', {
   },
 }, {
   tableName: 'workshops',
-  timestamps: false
+  timestamps: false,
 });
 
 export default Workshop;
