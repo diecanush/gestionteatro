@@ -1,0 +1,32 @@
+[
+  {
+    "id": "prod-empanada-carne",
+    "name": "Empanada carne",
+    "category": "Cocina",
+    "price": 3500,
+    "stock": 8,
+    "active": true,
+    "createdAt": "2026-07-07T00:00:00.000Z",
+    "updatedAt": "2026-07-07T23:06:11.086Z"
+  },
+  {
+    "id": "prod-pizza-muzzarella",
+    "name": "Empanada J/Q",
+    "category": "Cocina",
+    "price": 3500,
+    "stock": 8,
+    "active": true,
+    "createdAt": "2026-07-07T00:00:00.000Z",
+    "updatedAt": "2026-07-07T23:06:11.086Z"
+  },
+  {
+    "id": "prod-1783465472734-qfeksk",
+    "name": "Empanada Verdura",
+    "category": "General",
+    "price": 3500,
+    "stock": 10,
+    "active": true,
+    "createdAt": "2026-07-07T23:04:32.729Z",
+    "updatedAt": "2026-07-07T23:04:32.729Z"
+  }
+]

@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Salon - Comandas</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div>
+          <p class="eyebrow">Onirico Sur</p>
+          <h1>Salon</h1>
+        </div>
+        <nav class="tabs" aria-label="Secciones">
+          <button class="tab is-active" type="button" data-view="order">Comanda</button>
+          <button class="tab" type="button" data-view="products">Productos</button>
+          <button class="tab" type="button" data-view="history">Historial</button>
+        </nav>
+        <div class="status-panel">
+          <span class="dot" id="serviceDot"></span>
+          <span id="serviceStatus">Conectando</span>
+        </div>
+      </aside>
+
+      <main class="content">
+        <section class="view is-active" id="view-order">
+          <header class="page-header">
+            <div>
+              <p class="eyebrow">Misma cocina, stock propio</p>
+              <h2>Nueva comanda</h2>
+            </div>
+            <button class="secondary" type="button" id="reloadOrderProducts">Actualizar</button>
+          </header>
+
+          <div class="order-layout">
+            <section class="panel catalog-panel">
+              <div class="panel-header">
+                <h3>Productos disponibles</h3>
+                <input id="productSearch" type="search" placeholder="Buscar" />
+              </div>
+              <div class="product-grid" id="orderProductList"></div>
+            </section>
+
+            <section class="panel ticket-panel">
+              <div class="panel-header">
+                <h3>Comanda</h3>
+                <button class="ghost" type="button" id="clearOrder">Limpiar</button>
+              </div>
+              <div class="field-row">
+                <label>
+                  Mesa
+                  <input id="tableNumber" type="text" inputmode="numeric" />
+                </label>
+                <label>
+                  Cliente
+                  <input id="customerName" type="text" />
+                </label>
+              </div>
+              <div class="cart-list" id="cartList"></div>
+              <label>
+                Nota general
+                <textarea id="orderNotes" rows="3"></textarea>
+              </label>
+              <div class="ticket-footer">
+                <strong id="orderTotal">$ 0</strong>
+                <button class="primary" type="button" id="submitOrder">Emitir</button>
+              </div>
+            </section>
+          </div>
+        </section>
+
+        <section class="view" id="view-products">
+          <header class="page-header">
+            <div>
+              <p class="eyebrow">Archivo JSON local</p>
+              <h2>Productos</h2>
+            </div>
+          </header>
+
+          <div class="management-layout">
+            <form class="panel product-form" id="productForm">
+              <input type="hidden" id="productId" />
+              <label>
+                Nombre
+                <input id="productName" type="text" required />
+              </label>
+              <label>
+                Categoria
+                <input id="productCategory" type="text" value="General" />
+              </label>
+              <div class="field-row">
+                <label>
+                  Precio
+                  <input id="productPrice" type="number" min="0" step="0.01" value="0" />
+                </label>
+                <label>
+                  Stock
+                  <input id="productStock" type="number" min="0" step="1" value="0" />
+                </label>
+              </div>
+              <label class="switch-line">
+                <input id="productActive" type="checkbox" checked />
+                Activo
+              </label>
+              <div class="form-actions">
+                <button class="secondary" type="button" id="cancelEdit">Cancelar</button>
+                <button class="primary" type="submit">Guardar</button>
+              </div>
+            </form>
+
+            <section class="panel">
+              <div class="panel-header">
+                <h3>Stock del salon</h3>
+                <button class="secondary" type="button" id="reloadProducts">Actualizar</button>
+              </div>
+              <div class="table-wrap">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Producto</th>
+                      <th>Categoria</th>
+                      <th>Precio</th>
+                      <th>Stock</th>
+                      <th>Estado</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody id="productsTable"></tbody>
+                </table>
+              </div>
+            </section>
+          </div>
+        </section>
+
+        <section class="view" id="view-history">
+          <header class="page-header">
+            <div>
+              <p class="eyebrow">Comandas emitidas</p>
+              <h2>Historial</h2>
+            </div>
+            <button class="secondary" type="button" id="reloadHistory">Actualizar</button>
+          </header>
+          <div class="history-list" id="historyList"></div>
+        </section>
+      </main>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <script src="./app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,22 @@
+[
+    {
+        "id": "prod-empanada-carne",
+        "name": "Empanada carne",
+        "category": "Cocina",
+        "price": 0,
+        "stock": 0,
+        "active": true,
+        "createdAt": "2026-07-07T00:00:00+00:00",
+        "updatedAt": "2026-07-07T00:00:00+00:00"
+    },
+    {
+        "id": "prod-pizza-muzzarella",
+        "name": "Pizza muzzarella",
+        "category": "Cocina",
+        "price": 0,
+        "stock": 0,
+        "active": true,
+        "createdAt": "2026-07-07T00:00:00+00:00",
+        "updatedAt": "2026-07-07T00:00:00+00:00"
+    }
+]
