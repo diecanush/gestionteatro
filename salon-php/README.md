@@ -35,16 +35,16 @@ salon-php/data/comandas.json
 
 ## Impresion
 
-Por defecto PHP llama al backend PHP de impresion en:
+Por defecto PHP llama al backend PHP de impresion de la compu impresora en:
 
 ```text
-http://127.0.0.1/comandas/backend-php/public/api/printing/command
+http://192.168.1.10/comandas/backend-php/public/api/printing/command
 ```
 
 Si `comandas` esta instalado en otra ruta, editar `config.php` o definir:
 
 ```text
-PRINTER_COMMAND_URL=http://127.0.0.1/otra-ruta/backend-php/public/api/printing/command
+PRINTER_COMMAND_URL=http://192.168.1.10/otra-ruta/backend-php/public/api/printing/command
 ```
 
 Las comandas salen con el titulo `SALON` en grande.

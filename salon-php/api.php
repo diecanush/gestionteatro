@@ -301,7 +301,7 @@ function printerCommandUrl(array $config): string
         return rtrim($serviceUrl, '/') . '/imprimir-comanda';
     }
 
-    return 'http://127.0.0.1/comandas/backend-php/public/api/printing/command';
+    return 'http://192.168.1.10/comandas/backend-php/public/api/printing/command';
 }
 
 function centerText(string $text, int $width = 32): string
